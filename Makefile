@@ -5,4 +5,4 @@
 
 .PHONY: build
 build: .build/Dockerfile
-	docker buildx build --platform linux/amd64,linux/arm64 -f .build/Dockerfile . --tag ghcr.io/kraken-build/kraken:$(shell git describe --tags --dirty) --push
+	docker buildx build --platform linux/amd64,linux/arm64 -f .build/Dockerfile . --cache-from ghcr.io/kraken-build/kraken:cache --cache-to ghcr.io/kraken-build/kraken:cache --tag ghcr.io/kraken-build/kraken:$(shell git describe --tags --dirty) --push
