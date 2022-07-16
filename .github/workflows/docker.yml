@@ -18,4 +18,16 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: make build
+      - run: make .build/Dockerfile
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@master
+        with:
+          images: ghcr.io/kraken-build/kraken
+      - name: Build and push Docker image
+        uses: docker/build-push-action@master
+        with:
+          file: .build/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
