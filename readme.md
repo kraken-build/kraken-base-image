@@ -12,11 +12,12 @@ published, instead consumers should pin the exact image version according to Git
 The image is currently built for `linux/amd64` and `linux/arm64`. It contains the following software:
 
 * Starting from `ubuntu:focal`
-* curl, Git, oppenssh-client, wget, xdd, cmake, pyenv
-* Python 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 and 3.11-dev installed via pyenv (default: 3.10.4)
-* NodeJS 18
-* Docker (installed via `docker.io` package)
-* Rustup and Rust
-* Pipx, Poetry, [Slap][]
+* [x] curl, Git, oppenssh-client, wget, xdd, cmake, pyenv
+* [x] Python 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 and 3.11-dev installed via pyenv (default: 3.10.4)
+* [x] NodeJS 18
+* [x] Docker (installed via `docker.io` package)
+* [x] Rustup and Rust
+* [x] Pipx, Poetry, [Slap][]
+* [ ] Kubectl, Helm, manifest-tool
 
 [Slap]: https://github.com/python-slap/slap-cli
