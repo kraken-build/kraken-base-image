@@ -37,5 +37,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-to: ghcr.io/kraken-build/kraken-base-image:cache
           cache-from: ghcr.io/kraken-build/kraken-base-image:cache
-          build-args:
-            CACHE_BUSTER: ${{ steps.date.outputs.date }}
+          build-args: CACHE_BUSTER="${{ steps.date.outputs.date }}"
