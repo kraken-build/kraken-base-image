@@ -66,3 +66,6 @@ RUN apt-get update && apt-get install -y kubectl
 # Install Helm
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
+# Install Docker Buildx.
+COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
+
