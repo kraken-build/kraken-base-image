@@ -1,24 +1,31 @@
-# kraken
+# kraken-base-image
 
-This repository, despite the name, does not contain the main components for the Kraken build system. Instead, it
-provides tools to _use_ Kraken. Currently, these tools are just one Docker image that contains all kinds of software
-that may be required to successfully build projects with Kraken, such as multiple Python versions, Rust, Docker, etc.
+This repository provides a Docker image with the latest `kraken-cli` and loads of common programming language
+runtimes and toolchains for effectively executing project builds with Kraken.
 
-## Docker image
+## Platforms
 
-The Docker image provided by this repository is accessible under `ghcr.io/kraken-build/kraken-base-image`. No `:latest`
-tag is published, instead consumers should pin the exact image version according to Git tags in this repository.
+Currently, the image is only available for `linux/amd64`. This is because compiling Python on `linux/arm64` via
+QEMU is impossibly slow on GitHub actions and I have yet to see it complete successfully.
 
-The image is currently built for `linux/amd64` and `linux/arm64`. It contains the following software:
+## Overview
 
-* Starting from `ubuntu:focal`
-* [x] curl, Git, oppenssh-client, wget, xdd, cmake, pyenv
-* [x] Python 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 and 3.11-dev installed via pyenv (default: 3.10.4)
-* [x] NodeJS 18
-* [x] Docker (installed via `docker.io` package)
-* [x] Rustup and Rust
-* [x] Pipx, Poetry, [Slap][]
-* [x] Kubectl, Helm
-* [ ] manifest-tool
-
-[Slap]: https://github.com/python-slap/slap-cli
+| Software | Installed via | Version |
+| -------- | ------------- | ------- |
+| cmake | apt-get | latest |
+| cURL | apt-get | latest |
+| Docker | apt-get (`docker.io` package) | latest |
+| Docker Buildx | DockerHub | latest |
+| Git | apt-get | latest |
+| Helm | get-helm-3 | latest |
+| Kubectl | apt-get (`apt.kubernetes.io`) | latest |
+| manifest-tool | n/a | |
+| NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
+| Pipx | Pip | latest |
+| pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
+| Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
+| Rust | Rustup | latest |
+| Rustup | rustup.rs | latest |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pip | latest |
+| wget | apt-get | latest |
+| Kraken CLI | Pip | latest |
