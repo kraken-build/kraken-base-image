@@ -69,6 +69,9 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 # Install Docker Buildx.
 COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 
+ARG CACHE_BUSTER
+RUN echo "CACHE_BUSTER"
+
 # Install kraken-cli
 RUN pipx install kraken-cli
 
