@@ -31,3 +31,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-to: ghcr.io/kraken-build/kraken-base-image:cache
+          cache-from: ghcr.io/kraken-build/kraken-base-image:cache

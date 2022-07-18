@@ -18,6 +18,7 @@ The image is currently built for `linux/amd64` and `linux/arm64`. It contains th
 * [x] Docker (installed via `docker.io` package)
 * [x] Rustup and Rust
 * [x] Pipx, Poetry, [Slap][]
-* [ ] Kubectl, Helm, manifest-tool
+* [x] Kubectl, Helm
+* [ ] manifest-tool
 
 [Slap]: https://github.com/python-slap/slap-cli
