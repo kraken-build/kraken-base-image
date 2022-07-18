@@ -23,7 +23,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@master
         with:
-          images: ghcr.io/kraken-build/kraken
+          images: ghcr.io/kraken-build/kraken-base-image
       - name: Build and push Docker image
         uses: docker/build-push-action@master
         with:

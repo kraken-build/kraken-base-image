@@ -6,8 +6,8 @@ that may be required to successfully build projects with Kraken, such as multipl
 
 ## Docker image
 
-The Docker image provided by this repository is accessible under `ghcr.io/kraken-build/kraken`. No `:latest` tag is
-published, instead consumers should pin the exact image version according to Git tags in this repository.
+The Docker image provided by this repository is accessible under `ghcr.io/kraken-build/kraken-base-image`. No `:latest`
+tag is published, instead consumers should pin the exact image version according to Git tags in this repository.
 
 The image is currently built for `linux/amd64` and `linux/arm64`. It contains the following software:
 
