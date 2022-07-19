@@ -38,7 +38,7 @@ def docker_config(dockerfile: RenderFileTask) -> None:
         auth=auth,
         tags=[f"{image}:{tag}"],
         build_args={"CACHE_BUSTER": str(time.time())},
-        cache_repo=f"{image}:cache" if auth else None,
+        cache_repo=image if auth else None,
         load=False if auth else True,
     )
 
