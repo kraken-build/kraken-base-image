@@ -3,8 +3,7 @@ name: Docker image
 on:
   push: { branches: [ develop ], tags: [ "*" ] }
   pull_request: { branches: [ develop ] }
-  schedule:
-    - cron: "* */6 * * *"
+  repository_dispatch: { types: [ "rebuild" ] }
 
 jobs:
   build:
@@ -13,7 +12,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      # TODO (@NiklasRosenstein): Validate that the build/Dockerfile is up to date.
+
+      # Validate that the build/Dockerfile is up to date. The buildx build and push action checks out the
+      # repository again from GitHub so we cannot rely on changes we make to the project inside actions.
+      - run: |
+          make
+          if ! git diff --exit-code; thern >&2 echo "error: rerun make and commit locally"; exit 1; fi
+
       - uses: docker/setup-qemu-action@v2
       - uses: docker/setup-buildx-action@v2
       - uses: docker/login-action@v2
@@ -21,13 +26,17 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@master
         with:
           images: ghcr.io/kraken-build/kraken-base-image
+
+      # We use the current date as a cache buster for the Docker build.
       - id: date
         run: echo "::set-output name=date::$(date)"
+
       - name: Build and push Docker image
         uses: docker/build-push-action@master
         with:
