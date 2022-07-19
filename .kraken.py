@@ -40,6 +40,7 @@ def docker_config(dockerfile: RenderFileTask) -> None:
         build_args={"CACHE_BUSTER": str(time.time())},
         cache_repo=f"{image}/cache" if auth else None,
         load=False if auth else True,
+        push=True if auth else False,
     )
 
 
