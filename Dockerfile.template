@@ -1,7 +1,10 @@
 
-# ==== Base layers for Pyenv and Python versions.
-
-${{ shell bin/pyenv-dockerfile-generator.py --from ubuntu:focal --as pyenv_all --versions 3.6.15,3.7.13,3.8.13,3.9.12,3.10.4,3.11-dev --default 3.10.4 }}
+{{ pyenv(
+    as_="pyenv_all",
+    from_="ubuntu:focal",
+    versions=["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"],
+    default_version="3.10.4",
+) }}
 
 # == Install additional tools for the final layer.
 
