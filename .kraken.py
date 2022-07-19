@@ -19,30 +19,27 @@ def render_dockerfile() -> str:
     return template.render()
 
 
+def get_docker_auth() -> dict[str, tuple[str, str]]:
+    username, password = os.getenv("GITHUB_USER"), os.getenv("GITHUB_PASSWORD")
+    if username and password:
+        return {"ghcr.io": (username, password)}
+    if "CI" in os.environ:
+        raise Exception("GITHUB_USER/GITHUB_PASSWORD are required in CI")
+    return {}
+
+
 def docker_config(dockerfile: RenderFileTask) -> None:
     image = "ghcr.io/kraken-build/kraken-base-image"
     tag = "develop"
-    auth = {}
-
-    cache_repo: str | None = None
-    load: bool = True
-    username, password = os.getenv("GITHUB_USER"), os.getenv("GITHUB_PASSWORD")
-    if username and password:
-        auth["ghcr.io"] = (username, password)
-        load = False
-        cache_repo = f"{image}:cache"
-    else:
-        load = True
-
+    auth = get_docker_auth()
     build_docker_image(
         backend="kaniko",
         dockerfile=dockerfile.file,
+        auth=auth,
         tags=[f"{image}:{tag}"],
         build_args={"CACHE_BUSTER": str(time.time())},
-        cache_repo=cache_repo,
-        cache=False,
-        auth=auth,
-        load=load,
+        cache_repo=f"{image}:cache" if auth else None,
+        load=False if auth else True,
     )
 
 
