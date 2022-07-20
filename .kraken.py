@@ -1,18 +1,16 @@
 # ::requirements kraken-std jinja2
+# ::pythonpath build-support
 
 import os
 import time
 import jinja2
-import sys
 from kraken.api import project
 from kraken.std.generic.render_file import RenderFileTask
 from kraken.std.docker import build_docker_image
+from pyenv_docker import render_pyenv_dockerfile
 
 
 def render_dockerfile() -> str:
-    sys.path.append(str(project.directory / "build-support"))
-    from pyenv_docker import render_pyenv_dockerfile
-
     jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(project.directory))
     jinja_env.globals["pyenv"] = render_pyenv_dockerfile
     template = jinja_env.get_template("Dockerfile.template")
