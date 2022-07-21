@@ -18,11 +18,9 @@ RUN apt-get install -y docker.io nodejs
 RUN apt update && apt install -y xxd cmake
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
-# Install Pipx, and with it Poetry and Slap.
+# Install Pipx
 ENV PATH="$PATH:/root/.local/bin"
 RUN python -m pip install --user pipx -v
-RUN pipx install poetry
-RUN pipx install slap-cli
 
 # Install Kubectl
 RUN apt-get install -y apt-transport-https ca-certificates curl
@@ -39,5 +37,6 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 ARG CACHE_BUSTER
 RUN echo "CACHE_BUSTER"
 
-# Install kraken-cli
+RUN pipx install poetry
+RUN pipx install slap-cli
 RUN pipx install kraken-cli
