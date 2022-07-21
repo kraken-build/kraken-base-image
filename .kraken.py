@@ -26,15 +26,17 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
     return {}
 
 
-def docker_config(dockerfile: RenderFileTask) -> None:
-    image = "ghcr.io/kraken-build/kraken-base-image"
+def docker_config(dockerfile: RenderFileTask, platform: str) -> None:
+    image = f"ghcr.io/kraken-build/kraken-base-image/{platform}"
     tag = "develop"
     auth = get_docker_auth()
     build_docker_image(
+        name=f"buildDocker-{platform}",
         backend="kaniko",
         dockerfile=dockerfile.file,
         auth=auth,
         tags=[f"{image}:{tag}"],
+        platform=platform,
         build_args={"CACHE_BUSTER": str(time.time())},
         cache_repo=f"{image}/cache" if auth else None,
         load=False if auth else True,
@@ -50,4 +52,5 @@ dockerfile = project.do(
 )
 
 
-docker_config(dockerfile)
+docker_config(dockerfile, "linux/arm64")
+docker_config(dockerfile, "linux/amd64")
