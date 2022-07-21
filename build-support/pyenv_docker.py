@@ -44,7 +44,7 @@ class PyenvDockerfileGenerator:
                 textwrap.dedent(
                     f"""
                     FROM {self.temp_stage_prefix}-base as {stage_name}
-                    RUN pyenv install {version}
+                    RUN pyenv install --verbose {version}
                     RUN pyenv global {version} && python --version && python -m pip install --upgrade pip
                     """
                 ).strip()
