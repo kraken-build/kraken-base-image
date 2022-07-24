@@ -23,7 +23,7 @@
     "keyring": "23.7.0",
     "kraken-cli": "0.3.6",
     "kraken-core": "0.5.2",
-    "kraken-std": "0.1.22",
+    "kraken-std": "0.1.23",
     "markupsafe": "2.1.1",
     "networkx": "2.8.5",
     "nr.io.graphviz": "0.1.0",
