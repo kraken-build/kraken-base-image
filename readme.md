@@ -17,6 +17,7 @@ QEMU is impossibly slow on GitHub actions and I have yet to see it complete succ
 | Docker | apt-get (`docker.io` package) | latest |
 | Docker Buildx | DockerHub | latest |
 | Git | apt-get | latest |
+| GraphViz | apt-get | latest |
 | Helm | get-helm-3 | latest |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | manifest-tool | n/a | |

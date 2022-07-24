@@ -34,6 +34,9 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 # Install Docker Buildx.
 COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 
+# Install GraphViz.
+RUN apt-get install -y graphviz
+
 ARG CACHE_BUSTER
 RUN echo "CACHE_BUSTER"
 
