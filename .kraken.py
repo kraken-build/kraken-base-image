@@ -7,7 +7,6 @@ import jinja2
 from kraken.api import project
 from kraken.std.generic.render_file import RenderFileTask
 from kraken.std.docker import build_docker_image
-from kraken.std.docker.manifest_tool import ManifestToolPushTask
 from pyenv_docker import render_pyenv_dockerfile
 
 
@@ -54,4 +53,3 @@ dockerfile = project.do(
 
 docker_config(dockerfile, "linux/arm64")
 docker_config(dockerfile, "linux/amd64")
-project.do("buildDocker-multi", ManifestToolPushTask,
