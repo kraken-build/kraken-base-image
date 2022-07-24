@@ -15,7 +15,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y docker.io nodejs
 
 # Install Rust
-RUN apt update && apt install -y xxd cmake
+RUN apt update && apt install -y cmake
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Install Pipx
@@ -43,7 +43,7 @@ ARG MANIFEST_TOOL_VERSION=2.0.4
 RUN : \
     && wget https://github.com/estesp/manifest-tool/releases/download/v${MANIFEST_TOOL_VERSION}/binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz \
     && tar -xvf binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz -C /usr/local/bin manifest-tool-linux-${ARCH} \
-    && chmod +x /usr/local/bin manifest-tool-linux-${ARCH} \
+    && chmod +x /usr/local/bin/manifest-tool-linux-${ARCH} \
     && rm binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz
 
 ARG CACHE_BUSTER
