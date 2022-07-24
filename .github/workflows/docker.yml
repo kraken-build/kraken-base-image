@@ -29,7 +29,7 @@ jobs:
           python-version: "3.10"
       - run: pip install kraken-cli
       - run: |
-          kraken describe :buildDocker-${{ matrix.platform }} -v
+          kraken q describe :buildDocker-${{ matrix.platform }} -v
           kraken run :buildDocker-${{ matrix.platform }} -v
         env:
           GITHUB_USER: ${{ github.actor }}
