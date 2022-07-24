@@ -37,6 +37,15 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 # Install GraphViz.
 RUN apt-get install -y graphviz
 
+# Install manifest-tool.
+ARG ARCH
+ARG MANIFEST_TOOL_VERSION=2.0.4
+RUN : \
+    && wget https://github.com/estesp/manifest-tool/releases/download/v${MANIFEST_TOOL_VERSION}/binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz \
+    && tar -xvf binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz -C /usr/local/bin manifest-tool-linux-${ARCH} \
+    && chmod +x /usr/local/bin manifest-tool-linux-${ARCH} \
+    && rm binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz
+
 ARG CACHE_BUSTER
 RUN echo "CACHE_BUSTER"
 

@@ -20,7 +20,7 @@ QEMU is impossibly slow on GitHub actions and I have yet to see it complete succ
 | GraphViz | apt-get | latest |
 | Helm | get-helm-3 | latest |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
-| manifest-tool | n/a | |
+| manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) | 2.0.4 |
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
 | Pipx | Pip | latest |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
