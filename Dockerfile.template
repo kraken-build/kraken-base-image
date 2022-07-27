@@ -17,6 +17,7 @@ RUN apt-get install -y docker.io nodejs
 # Install Rust
 RUN apt update && apt install -y xxd cmake
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="$PATH:/root/.cargo/bin"
 
 # Install Pipx
 ENV PATH="$PATH:/root/.local/bin"
