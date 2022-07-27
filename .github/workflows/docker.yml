@@ -58,7 +58,7 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          path: build/.kraken/build-state
+          name: kraken-build-state
 
       - uses: actions/setup-python@v2
         with:
