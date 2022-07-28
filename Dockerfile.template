@@ -10,56 +10,63 @@
 
 FROM pyenv_all as final
 
-# Install additional system dependencies.
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get install -y docker.io nodejs
-
-# Install Rust
-RUN apt update && apt install -y xxd cmake
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="$PATH:/root/.cargo/bin"
-
-# Install Pipx
-ENV PATH="$PATH:/root/.local/bin"
-RUN python -m pip install --user pipx -v
-
-# Install Kubectl
-RUN apt-get install -y apt-transport-https ca-certificates curl
-RUN curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
-RUN apt-get update && apt-get install -y kubectl
-
-# Install Helm
-RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-
-# Install Docker Buildx.
-COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
-
-# Install GraphViz.
-RUN apt-get install -y graphviz
-
-# Install manifest-tool.
 ARG ARCH
 ARG MANIFEST_TOOL_VERSION=2.0.4
+
+ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
+
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+
 RUN : \
+    && apt-get update \
+    && apt-get install -y docker.io nodejs graphviz protobuf-compiler \
+    #
+    # Rust
+    #
+    && apt-get install -y xxd cmake \
+    && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
+    #
+    # sccache
+    #
+    && cargo install sccache \
+    && rm -rfv ~/.cargo/git ~/.cargo/registry \
+    #
+    # kubectl
+    #
+    && apt-get install apt-transport-https ca-certificates curl \
+    && curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
+    && apt-get update && apt-get install -y kubectl \
+    #
+    # helm
+    #
+    && ( curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash ) \
+    #
+    # manifest-tool
+    #
     && wget https://github.com/estesp/manifest-tool/releases/download/v${MANIFEST_TOOL_VERSION}/binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz \
     && tar -xvf binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz -C /usr/local/bin manifest-tool-linux-${ARCH} \
     && chmod +x /usr/local/bin/manifest-tool-linux-${ARCH} \
     && mv /usr/local/bin/manifest-tool-linux-${ARCH} /usr/local/bin/manifest-tool \
-    && rm binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz
+    && rm binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz \
+    #
+    # [cleanup]
+    #
+    && rm -rfv ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
-# Install sccache.
-RUN cargo install sccache
+#
+# docker-buildx
+#
+COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 
-# Install protobuf-compiler.
-RUN apt-get install -y protobuf-compiler
-
+#
+# Pipx, poetry, slap, kraken
+#
 ARG CACHE_BUSTER
-RUN echo "CACHE_BUSTER"
-
-RUN pipx install poetry
-RUN pipx install slap-cli
-RUN pipx install kraken-cli
-
-# Cleanup
-RUN rm -rfv ~/.cache ~/.cargo/git ~/.cargo/registry /var/cache/apt/archives /var/lib/apt/lists/*
+RUN : \
+    echo ${CACHE_BUSTER} \
+    && python -m pip install --user pipx -v \
+    && pipx install poetry \
+    && pipx install slap-cli \
+    && pipx install kraken-cli \
+    && rm -rfv ~/.cache/pip
