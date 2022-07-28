@@ -13,6 +13,7 @@ FROM pyenv_all as final
 ARG ARCH
 ARG MANIFEST_TOOL_VERSION=2.0.4
 
+ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
 
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
@@ -33,7 +34,7 @@ RUN : \
     #
     # kubectl
     #
-    && apt-get install apt-transport-https ca-certificates curl \
+    && apt-get install -y apt-transport-https ca-certificates curl \
     && curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
     && apt-get update && apt-get install -y kubectl \
