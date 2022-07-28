@@ -23,6 +23,7 @@ QEMU is impossibly slow on GitHub actions and I have yet to see it complete succ
 | manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) | 2.0.4 |
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
 | Pipx | Pip | latest |
+| protobuf-compiler | apt-get | latest |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
 | Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
 | Rust | Rustup | latest |

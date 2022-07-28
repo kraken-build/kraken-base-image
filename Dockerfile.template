@@ -49,7 +49,10 @@ RUN : \
     && rm binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz
 
 # Install sccache.
-RUN cargo instal sccache
+RUN cargo install sccache
+
+# Install protobuf-compiler.
+RUN apt-get install -y protobuf-compiler
 
 ARG CACHE_BUSTER
 RUN echo "CACHE_BUSTER"
