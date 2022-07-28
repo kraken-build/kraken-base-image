@@ -60,3 +60,6 @@ RUN echo "CACHE_BUSTER"
 RUN pipx install poetry
 RUN pipx install slap-cli
 RUN pipx install kraken-cli
+
+# Cleanup
+RUN rm -rfv ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
