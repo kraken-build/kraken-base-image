@@ -27,6 +27,7 @@ QEMU is impossibly slow on GitHub actions and I have yet to see it complete succ
 | Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
+| sccache | cargo | latest |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pip | latest |
 | wget | apt-get | latest |
 | Kraken CLI | Pip | latest |

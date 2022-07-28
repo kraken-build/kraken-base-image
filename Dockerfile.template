@@ -48,6 +48,9 @@ RUN : \
     && mv /usr/local/bin/manifest-tool-linux-${ARCH} /usr/local/bin/manifest-tool \
     && rm binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz
 
+# Install sccache.
+RUN cargo instal sccache
+
 ARG CACHE_BUSTER
 RUN echo "CACHE_BUSTER"
 
