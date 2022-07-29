@@ -45,6 +45,7 @@ RUN : \
     && wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip \
     && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local bin/protoc \
     && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local 'include/*' \
+    && rm protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip \
     #
     # helm
     #
