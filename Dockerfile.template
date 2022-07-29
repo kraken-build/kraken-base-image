@@ -21,7 +21,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 
 RUN : \
     && apt-get update \
-    && apt-get install -y docker.io nodejs graphviz \
+    && apt-get install -y docker.io nodejs graphviz unzip \
     #
     # Rust
     #
@@ -42,7 +42,7 @@ RUN : \
     #
     # protobuf-compiler
     #
-    && wget https://github.com/protocolbuffers/protobuf/releases/download/$PROTOCOL_BUF_VERSION/protoc-v$PROTOCOL_BUF_VERSION-linux-x86_64.zip \
+    && wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-x86_64.zip \
     && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-x86_64.zip -d /usr/local bin/protoc \
     && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-x86_64.zip -d /usr/local 'include/*' \
     #
