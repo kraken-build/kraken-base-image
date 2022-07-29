@@ -12,6 +12,7 @@ FROM pyenv_all as final
 
 ARG ARCH
 ARG MANIFEST_TOOL_VERSION=2.0.4
+ARG PROTOCOL_BUF_VERSION=3.15.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
@@ -20,7 +21,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 
 RUN : \
     && apt-get update \
-    && apt-get install -y docker.io nodejs graphviz protobuf-compiler \
+    && apt-get install -y docker.io nodejs graphviz unzip \
     #
     # Rust
     #
@@ -38,6 +39,12 @@ RUN : \
     && curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
     && apt-get update && apt-get install -y kubectl \
+    #
+    # protobuf-compiler
+    #
+    && wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local bin/protoc \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local 'include/*' \
     #
     # helm
     #
