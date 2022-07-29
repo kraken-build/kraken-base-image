@@ -42,9 +42,9 @@ RUN : \
     #
     # protobuf-compiler
     #
-    && wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-x86_64.zip \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-x86_64.zip -d /usr/local bin/protoc \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-x86_64.zip -d /usr/local 'include/*' \
+    && wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local bin/protoc \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local 'include/*' \
     #
     # helm
     #
