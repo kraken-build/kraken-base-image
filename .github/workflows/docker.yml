@@ -38,7 +38,7 @@ jobs:
         run: source .venv/bin/activate && env >> $GITHUB_ENV
 
       - name: Install Kraken CLI
-        run: which pip && exit 1 && pip install kraken-cli==0.3.6
+        run: pip install kraken-cli==0.3.12
 
       - run: |
           kraken q describe :buildDocker-linux/${{ matrix.platform }} -v
