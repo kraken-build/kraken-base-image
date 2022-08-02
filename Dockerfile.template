@@ -40,12 +40,13 @@ RUN : \
     && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
     && apt-get update && apt-get install -y kubectl \
     #
-    # protobuf-compiler
+    # protobuf-compiler; need to translate `aarch64` to `aarch_64`
     #
-    && wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local bin/protoc \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip -d /usr/local 'include/*' \
-    && rm protoc-$PROTOCOL_BUF_VERSION-linux-$(uname -i).zip \
+    && PROTOC_ARCH=$(uname -i | perl -pe 's/(?<!_)64/_64/') \
+    && wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOC_ARCH}.zip \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOC_ARCH}.zip -d /usr/local bin/protoc \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOC_ARCH}.zip -d /usr/local 'include/*' \
+    && rm protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOC_ARCH}.zip \
     #
     # helm
     #
