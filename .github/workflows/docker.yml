@@ -7,10 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: [ "self-hosted", "os:linux", "platform:amd64" ]
+    runs-on: [ "self-hosted", "os:linux", "platform:${{ matrix.platform }}" ]
     strategy:
       matrix:
-        platform: [ "linux/arm64", "linux/amd64" ]
+        - platform: [ "arm64", "amd64" ]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -29,8 +29,8 @@ jobs:
           python-version: "3.10"
       - run: pip install kraken-cli==0.3.6
       - run: |
-          kraken q describe :buildDocker-${{ matrix.platform }} -v
-          kraken run :buildDocker-${{ matrix.platform }} -v
+          kraken q describe :buildDocker-linux/${{ matrix.platform }} -v
+          kraken run :buildDocker-linux/${{ matrix.platform }} -v
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
