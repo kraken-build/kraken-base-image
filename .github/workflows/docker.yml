@@ -35,7 +35,7 @@ jobs:
 
       - name: Activate Python 3 virtualenv (arm64)
         if: "${{ matrix.platform == 'arm64' }}"
-        run: .venv/bin/activate && env >> $GITHUB_ENV
+        run: source .venv/bin/activate && env >> $GITHUB_ENV
 
       - name: Install Kraken CLI
         run: which pip && exit 1 && pip install kraken-cli==0.3.6
