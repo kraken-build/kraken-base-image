@@ -25,16 +25,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v2
-        if: ${{ matrix.platform }} == "amd64"
+        if: ${{ matrix.platform == "amd64" }}
         with:
           python-version: "3.9.13"
 
       - name: Create Python 3 virtualenv (arm64)
-        if: ${{ matrix.platform }} == "arm64"
+        if: ${{ matrix.platform == "arm64" }}
         run: python3.9 -m venv .venv
 
       - name: Activate Python 3 virtualenv (arm64)
-        if: ${{ matrix.platform }} == "arm64"
+        if: ${{ matrix.platform == "arm64" }}
         run: .venv/bin/activate && env >> $GITHUB_ENV
 
       - name: Install Kraken CLI
