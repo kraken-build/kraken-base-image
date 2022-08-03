@@ -5,7 +5,8 @@ import os
 import time
 import jinja2
 from kraken.api import project
-from kraken.std.generic.render_file import RenderFileTask
+from kraken.core import Supplier
+from kraken.std.generic.render_file_task import RenderFileTask
 from kraken.std.docker import build_docker_image, manifest_tool
 from pyenv_docker import render_pyenv_dockerfile
 
@@ -59,7 +60,7 @@ dockerfile = project.do(
     "renderDockerfile",
     RenderFileTask,
     file=project.build_directory / "Dockerfile",
-    content=render_dockerfile,
+    content=Supplier.of_callable(render_dockerfile),
 )
 
 docker_config(dockerfile, ["linux/arm64", "linux/amd64"])
