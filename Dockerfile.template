@@ -31,7 +31,7 @@ RUN : \
     # sccache
     #
     && cargo install sccache \
-    && rm -rfv ~/.cargo/git ~/.cargo/registry \
+    && rm -rf ~/.cargo/git ~/.cargo/registry \
     #
     # kubectl
     #
@@ -79,4 +79,4 @@ RUN : \
     && pipx install poetry \
     && pipx install slap-cli \
     && pipx install kraken-cli \
-    && rm -rfv ~/.cache/pip
+    && rm -rf ~/.cache/pip
