@@ -62,7 +62,7 @@ RUN : \
     #
     # [cleanup]
     #
-    && rm -rfv ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
+    && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
 #
 # docker-buildx
