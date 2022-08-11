@@ -79,4 +79,5 @@ RUN : \
     && pipx install poetry \
     && pipx install slap-cli \
     && pipx install kraken-cli \
+    && pipx install kraken-wrapper \
     && rm -rf ~/.cache/pip
