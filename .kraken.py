@@ -4,11 +4,12 @@
 import os
 import time
 import jinja2
-from kraken.api import project
-from kraken.core import Supplier
-from kraken.std.generic.render_file_task import RenderFileTask
+from kraken.core import Supplier, Project
+from kraken.lib.render_file_task import RenderFileTask
 from kraken.std.docker import build_docker_image, manifest_tool
 from pyenv_docker import render_pyenv_dockerfile
+
+project = Project.current()
 
 
 def render_dockerfile() -> str:

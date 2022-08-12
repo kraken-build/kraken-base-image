@@ -1,67 +1,47 @@
-{
-  "metadata": {
-    "created_at": "2022-08-02T16:25:18.Z",
-    "kraken_cli_version": "0.3.12 (instrumented by 0.3.12)",
-    "python_version": "3.10.2 (main, Apr  4 2022, 11:19:54) [Clang 13.1.6 (clang-1316.0.21.2)] (instrumented by 3.10.2 (main, Apr  4 2022, 11:19:54) [Clang 13.1.6 (clang-1316.0.21.2)])",
-    "uname": "uname_result(system='Darwin', node='MUC-A-012.local', release='21.6.0', version='Darwin Kernel Version 21.6.0: Sat Jun 18 17:07:22 PDT 2022; root:xnu-8020.140.41~1/RELEASE_ARM64_T6000', machine='arm64')"
-  },
-  "pinned": {
-    "anyio": "3.6.1",
-    "bleach": "5.0.1",
-    "certifi": "2022.6.15",
-    "charset-normalizer": "2.1.0",
-    "commonmark": "0.9.1",
-    "deprecated": "1.2.13",
-    "dill": "0.3.5.1",
-    "docutils": "0.19",
-    "h11": "0.12.0",
-    "httpcore": "0.15.0",
-    "httpx": "0.23.0",
-    "idna": "3.3",
-    "importlib-metadata": "4.12.0",
-    "jinja2": "3.1.2",
-    "keyring": "23.7.0",
-    "kraken-cli": "0.3.12",
-    "kraken-core": "0.6.2",
-    "kraken-std": "0.1.41",
-    "markupsafe": "2.1.1",
-    "networkx": "2.8.5",
-    "nr.io.graphviz": "0.1.0",
-    "nr.python.environment": "0.1.4",
-    "nr.util": "0.8.12",
-    "packaging": "21.3",
-    "pkginfo": "1.8.3",
-    "proxy.py": "2.4.3",
-    "pygments": "2.12.0",
-    "pyparsing": "3.0.9",
-    "readme-renderer": "35.0",
-    "requests": "2.28.1",
-    "requests-toolbelt": "0.9.1",
-    "rfc3986": "1.5.0",
-    "rich": "12.5.1",
-    "setuptools": "58.1.0",
-    "six": "1.16.0",
-    "slap.core.cli": "0.3.1",
-    "sniffio": "1.2.0",
-    "termcolor": "1.1.0",
-    "tomli": "2.0.1",
-    "tomli-w": "1.0.0",
-    "twine": "4.0.1",
-    "typeapi": "0.2.1",
-    "typing-extensions": "4.3.0",
-    "urllib3": "1.26.10",
-    "webencodings": "0.5.1",
-    "wrapt": "1.14.1",
-    "zipp": "3.8.1"
-  },
-  "requirements": {
-    "pythonpath": [
-      "build-support"
-    ],
-    "requirements": [
-      "kraken-std",
-      "jinja2",
-      "kraken-cli<0.4.0,>=0.3.0"
-    ]
-  }
-}
+[requirements]
+requirements = [
+    "kraken-std",
+    "jinja2",
+]
+pythonpath = [
+    "build-support",
+]
+
+[pinned]
+anyio = "3.6.1"
+bleach = "5.0.1"
+certifi = "2022.6.15"
+charset-normalizer = "2.1.0"
+commonmark = "0.9.1"
+dill = "0.3.5.1"
+docutils = "0.19"
+h11 = "0.12.0"
+httpcore = "0.15.0"
+httpx = "0.23.0"
+idna = "3.3"
+importlib-metadata = "4.12.0"
+Jinja2 = "3.1.2"
+keyring = "23.8.2"
+kraken-core = "0.8.10"
+kraken-std = "0.3.2"
+MarkupSafe = "2.1.1"
+"nr.python.environment" = "0.1.4"
+pkginfo = "1.8.3"
+"proxy.py" = "2.4.3"
+Pygments = "2.12.0"
+readme-renderer = "36.0"
+requests = "2.28.1"
+requests-toolbelt = "0.9.1"
+rfc3986 = "1.5.0"
+rich = "12.5.1"
+setuptools = "58.1.0"
+six = "1.16.0"
+sniffio = "1.2.0"
+termcolor = "1.1.0"
+tomli = "2.0.1"
+tomli-w = "1.0.0"
+twine = "4.0.1"
+typing-extensions = "4.3.0"
+urllib3 = "1.26.11"
+webencodings = "0.5.1"
+zipp = "3.8.1"
