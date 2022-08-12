@@ -50,9 +50,9 @@ def docker_config(dockerfile: RenderFileTask, platforms: list[str]) -> None:
 
     manifest_tool(
         name="buildDocker",
-        template=f"{image}/OS/ARCH",
+        template=f"{image}/OS/ARCH:{tag}",
         platforms=platforms,
-        target=image,
+        target=f"{image}:{tag}",
         inputs=tasks,
     )
 
