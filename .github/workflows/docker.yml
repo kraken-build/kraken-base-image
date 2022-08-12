@@ -82,8 +82,8 @@ jobs:
       - name: Install manifest-tool
         run: |
           wget https://github.com/estesp/manifest-tool/releases/download/v2.0.5/binaries-manifest-tool-2.0.5.tar.gz
-          tar xvf binaries-manifest-tool-2.0.5.tar.gz manifest-tool-linux-`arch`
-          mv manifest-tool-linux-`arch` /usr/local/bin/manifest-tool
+          tar xvf binaries-manifest-tool-2.0.5.tar.gz manifest-tool-linux-amd64
+          mv manifest-tool-linux-amd64 /usr/local/bin/manifest-tool
 
       - run: |
           # krakenw q d --resume :buildDocker -v
