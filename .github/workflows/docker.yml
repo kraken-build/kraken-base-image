@@ -68,9 +68,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/download-artifact@v3
-        with:
-          name: kraken-build-state
+      # - uses: actions/download-artifact@v3
+      #   with:
+      #     name: kraken-build-state
 
       - uses: actions/setup-python@v2
         with:
@@ -81,7 +81,7 @@ jobs:
 
       - run: |
           krakenw q d --resume :buildDocker -v
-          krakenw r --resume :buildDocker -v
+          krakenw r --resume :buildDocker -v -X buildDocker-linux/arm64 -X buildDocker-linux/amd64
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
