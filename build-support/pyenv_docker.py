@@ -47,7 +47,7 @@ class PyenvDockerfileGenerator:
             print(
                 textwrap.dedent(
                     f"""
-                    FROM {self.temp_stage_prefix}-base as {stage_name}
+                    # FROM {self.temp_stage_prefix}-base as {stage_name}
                     RUN : \\
                         && pyenv install --verbose {version} \\
                         # Remove elements from the standard library that are not needed at runtime but are very large.
