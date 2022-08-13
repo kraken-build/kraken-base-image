@@ -27,7 +27,7 @@ class PyenvDockerfileGenerator:
                 f"""
                 FROM {self.source_stage} as {self.temp_stage_prefix}-base
                 ENV DEBIAN_FRONTEND noninteractive
-                RUN apt update && apt install -y curl git openssh-client \\
+                RUN apt-get update && apt-get install -y curl git openssh-client \\
                     build-essential libssl-dev zlib1g-dev libbz2-dev \\
                     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \\
                     xz-utils tk-dev libffi-dev liblzma-dev
