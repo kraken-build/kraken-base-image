@@ -7,9 +7,11 @@ import jinja2
 from kraken.core import Supplier, Project
 from kraken.lib.render_file_task import RenderFileTask
 from kraken.std.docker import build_docker_image, manifest_tool
+from kraken.std.git.version import git_describe, GitVersion
 from pyenv_docker import render_pyenv_dockerfile
 
 project = Project.current()
+version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 
 
 def render_dockerfile() -> str:
@@ -30,7 +32,7 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
 
 def docker_config(dockerfile: RenderFileTask, platforms: list[str]) -> None:
     image = "ghcr.io/kraken-build/kraken-base-image"
-    tag = "develop"
+    tags = [version, "develop"]
     auth = get_docker_auth()
     tasks = []
     for platform in platforms:
@@ -39,7 +41,7 @@ def docker_config(dockerfile: RenderFileTask, platforms: list[str]) -> None:
             backend="kaniko",
             dockerfile=dockerfile.file,
             auth=auth,
-            tags=[f"{image}/{platform}:{tag}"],
+            tags=[f"{image}/{platform}:{tag}" for tag in tags],
             platform=platform,
             build_args={"CACHE_BUSTER": str(time.time()), "ARCH": platform.split("/")[1]},
             cache_repo=f"{image}/cache" if auth else None,
@@ -48,13 +50,15 @@ def docker_config(dockerfile: RenderFileTask, platforms: list[str]) -> None:
         )
         tasks.append(task)
 
-    manifest_tool(
-        name="buildDocker",
-        template=f"{image}/OS/ARCH:{tag}",
-        platforms=platforms,
-        target=f"{image}:{tag}",
-        inputs=tasks,
-    )
+    for idx, tag in enumerate(tags):
+        manifest_tool(
+            name=f"buildDocker-manifestTool{idx}",
+            group="buildDocker",
+            template=f"{image}/OS/ARCH:{version}",
+            platforms=platforms,
+            target=f"{image}:{tag}",
+            inputs=tasks,
+        )
 
 
 dockerfile = project.do(
