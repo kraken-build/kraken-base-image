@@ -58,7 +58,7 @@ class PyenvDockerfileGenerator:
                         && python --version \\
                         && python -m pip install --upgrade pip \\
                         # Create a minor version shim.
-                        && ln -s /usr/local/bin/python{minor_version} $(python -c 'import sys; print(sys.executable)')
+                        && ln -s $(python -c 'import sys; print(sys.executable)') /usr/local/bin/python{minor_version}
                     """
                 ).strip()
             )
