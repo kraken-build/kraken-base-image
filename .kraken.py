@@ -1,4 +1,4 @@
-# ::requirements kraken-std jinja2
+# ::requirements kraken-std kraken-core>=0.8.11 jinja2
 # ::pythonpath build-support
 
 import os

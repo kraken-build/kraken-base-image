@@ -1,6 +1,7 @@
 [requirements]
 requirements = [
     "kraken-std",
+    "kraken-core>=0.8.11",
     "jinja2",
 ]
 pythonpath = [
@@ -22,7 +23,7 @@ idna = "3.3"
 importlib-metadata = "4.12.0"
 Jinja2 = "3.1.2"
 keyring = "23.8.2"
-kraken-core = "0.8.10"
+kraken-core = "0.8.11"
 kraken-std = "0.3.2"
 MarkupSafe = "2.1.1"
 "nr.python.environment" = "0.1.4"
