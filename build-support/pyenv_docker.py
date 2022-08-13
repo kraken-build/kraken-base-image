@@ -52,7 +52,7 @@ class PyenvDockerfileGenerator:
                         && pyenv install --verbose {version} \\
                         # Remove elements from the standard library that are not needed at runtime but are very large.
                         && rm -r /root/.pyenv/versions/{version}/lib/python{minor_version}/test/ \\
-                        && rm -r /root/.pyenv/versions/{version}/lib/python{minor_version}/config-{minor_version}-*/ \\
+                        && rm -r /root/.pyenv/versions/{version}/lib/python{minor_version}/config-{minor_version}*/ \\
                         # Upgrade Pip
                         && pyenv global {version} \\
                         && python --version \\
