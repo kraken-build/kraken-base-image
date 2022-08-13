@@ -64,7 +64,7 @@ class PyenvDockerfileGenerator:
             )
             stages.append(stage_name)
 
-        # print(f"FROM {self.temp_stage_prefix}-base as {self.result_stage}")
+        print(f"FROM {self.temp_stage_prefix}-base as {self.result_stage}")
         # for stage_name in stages:
         #     print(f"COPY --from={stage_name} $PYENV_ROOT $PYENV_ROOT")
         print("RUN pyenv update")
