@@ -3,6 +3,7 @@
 import builtins
 import dataclasses
 import io
+import re
 import textwrap
 from functools import partial
 
@@ -39,13 +40,25 @@ class PyenvDockerfileGenerator:
 
         stages = []
         for version in self.python_versions:
+            minor_version = re.match(r"\d+\.\d+", version).group(0)
             stage_name = self.temp_stage_prefix + version.replace(".", "_").replace("-", "_")
+            # NOTE (@NiklasRosenstein): We remove the test/ and config.../ directory as they are quite large
+            #       and are not needed usually at runtime.
             print(
                 textwrap.dedent(
                     f"""
                     FROM {self.temp_stage_prefix}-base as {stage_name}
-                    RUN pyenv install --verbose {version}
-                    RUN pyenv global {version} && python --version && python -m pip install --upgrade pip
+                    RUN : \\
+                        && pyenv install --verbose {version} \\
+                        # Remove elements from the standard library that are not needed at runtime but are very large.
+                        && rm -r /root/.pyenv/versions/{version}/python{minor_version}/test/ \\
+                        && rm -r /root/.pyenv/versions/{version}/python{minor_version}/config-{minor_version}-*/ \\
+                        # Upgrade Pip
+                        && pyenv global {version} \\
+                        && python --version \\
+                        && python -m pip install --upgrade pip \\
+                        # Create a minor version shim.
+                        && ln -s /usr/local/bin/python{minor_version} $(python -c 'import sys; print(sys.executable))'
                     """
                 ).strip()
             )
