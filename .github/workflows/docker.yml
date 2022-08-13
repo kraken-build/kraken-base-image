@@ -12,13 +12,12 @@ jobs:
       matrix:
         platform: [ "arm64", "amd64" ]
     steps:
+
+      # NOTE (@NiklasRosenstein): Need Git 2.18 available on the runner for the checkout action to use it; otherwise
+      #       it falls back to the REST API and Git operations afterwards will fail because no repository is present.
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - run: git --version
-      - run: git show-ref || true
-      - run: git tag || true
 
       - uses: docker/setup-qemu-action@v2
       - uses: docker/setup-buildx-action@v2
