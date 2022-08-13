@@ -1,7 +1,7 @@
 # kraken-base-image
 
-This repository provides a Docker image with the latest `kraken-cli` and loads of common programming language
-runtimes and toolchains for effectively executing project builds with Kraken.
+This repository provides a Docker image with the latest `kraken-wrapper` and loads of common programming
+language runtimes and toolchains for effectively executing project builds with Kraken.
 
 ## Platforms
 

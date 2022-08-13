@@ -38,7 +38,7 @@ def docker_config(dockerfile: RenderFileTask, platforms: list[str]) -> None:
     for platform in platforms:
         task = build_docker_image(
             name=f"buildDocker-{platform}",
-            backend="kaniko",
+            backend="buildx",
             dockerfile=dockerfile.file,
             auth=auth,
             tags=[f"{image}/{platform}:{tag}" for tag in tags],
