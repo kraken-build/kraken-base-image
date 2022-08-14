@@ -13,7 +13,6 @@ from kraken.std.git.version import git_describe, GitVersion
 project = Project.current()
 version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 image_prefix = "ghcr.io/kraken-build/kraken-base-image"
-cache_repo = f"{image_prefix}/cache"
 platforms = ["linux/arm64", "linux/amd64"]
 python_versions = ["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"]
 sccache_arch = {
