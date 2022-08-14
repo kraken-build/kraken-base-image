@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import os
+import re
 import time
 from functools import lru_cache
 from pathlib import Path
@@ -53,14 +54,22 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
 
     # Produce the builds for the Python versions and the code to copy the Python versions
     # into the kraken-base-image.
-    copy_code = []
     python_tasks = []
+    copy_code = []
+    pyenv_code = []
     for python_version in python_versions:
+        python_version_major = re.match(r"\d+\.\d+", python_version).group(0)
         task, tag = build_python_image(platform, python_version)
         python_tasks.append(task)
-        copy_code.append(
-            f"COPY --from={tag} /root/.pyenv /root/.pyenv"
+        copy_code.append(f"COPY --from={tag} /root/.pyenv /root/.pyenv")
+        pyenv_code.append(f"pyenv global {python_version}")
+        pyenv_code.append(
+            f"ln -s $(python -c 'import sys; print(sys.executable)') /usr/local/bin/python{python_version_major}"
         )
+    pyenv_code.append(f"pyenv global {global_python_version}")
+
+    docker_code = "\n".join(copy_code) + "\n"
+    docker_code += "RUN " + " \\\n    && ".join([":"] + pyenv_code) + "\n"
 
     # Insert the code to copy the Python versions into the Dockerfile.
     render = render_file(
@@ -68,9 +77,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         create_check=False,
         group=None,
         file=project.build_directory / f"kraken-base-image-{platform.replace('/', '-')}.Dockerfile",
-        content=Path("docker/kraken-base-image.Dockerfile")
-        .read_text()
-        .replace("# PYTHON_VERSIONS_HERE", "\n".join(copy_code)),
+        content=Path("docker/kraken-base-image.Dockerfile").read_text().replace("# PYTHON_VERSIONS_HERE", docker_code),
     )[0]
 
     prefix = f"{image_prefix}/{platform}"
@@ -86,7 +93,6 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
             "CACHE_BUSTER": str(time.time()),
             "ARCH": platform.split("/")[1],
             "SCCACHE_ARCH": sccache_arch[platform],
-            "GLOBAL_PYTHON_VERSION": global_python_version,
         },
         cache_repo=f"{prefix}:cache",
         push=True,
@@ -101,7 +107,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
 build_tasks = [build_kraken_image(platform, python_versions) for platform in platforms]
 
 for idx, tag in enumerate(build_tasks[0][1]):
-    tag_version = tag.rpartition(':')[-1]
+    tag_version = tag.rpartition(":")[-1]
     manifest_tool(
         name=f"docker-kraken-image-multiarch-{tag_version}",
         group="docker-kraken-image-multiarch",
