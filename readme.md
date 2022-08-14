@@ -1,10 +1,16 @@
 # kraken-base-image
 
-The `kraken-base-image` provides a Docker image for AMD64 and ARM64 platforms that comes pre-bundled with
+  [pkg]: https://github.com/kraken-build/kraken-base-image/pkgs/container/kraken-base-image
+
+The [`kraken-base-image`][pkg] provides a Docker image for AMD64 and ARM64 platforms that comes pre-bundled with
 a lot of different common programming language runtimes and toolchains, intended to be used as a runtime
 image for continuous integration pipelines.
 
     $ docker pull ghcr.io/kraken-build/kraken-base-image:develop
+
+## Versioning
+
+Aside from the `develop` tag, exact image versions can be pinned based on `git tag --describe`.
 
 ## Image contents
 
