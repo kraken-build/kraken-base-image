@@ -4,7 +4,7 @@
 
 The [`kraken-base-image`][pkg] provides a Docker image for AMD64 and ARM64 platforms that comes pre-bundled with
 a lot of different common programming language runtimes and toolchains, intended to be used as a runtime
-image for continuous integration pipelines.
+image for continuous integration pipelines. The image is currently base on `ubuntu:focal`.
 
     $ docker pull ghcr.io/kraken-build/kraken-base-image:develop
 
