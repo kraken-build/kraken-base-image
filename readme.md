@@ -1,14 +1,12 @@
 # kraken-base-image
 
-This repository provides a Docker image with the latest `kraken-wrapper` and loads of common programming
-language runtimes and toolchains for effectively executing project builds with Kraken.
+The `kraken-base-image` provides a Docker image for AMD64 and ARM64 platforms that comes pre-bundled with
+a lot of different common programming language runtimes and toolchains, intended to be used as a runtime
+image for continuous integration pipelines.
 
-## Platforms
+    $ docker pull ghcr.io/kraken-build/kraken-base-image:develop
 
-Currently, the image is only available for `linux/amd64`. This is because compiling Python on `linux/arm64` via
-QEMU is impossibly slow on GitHub actions and I have yet to see it complete successfully.
-
-## Overview
+## Image contents
 
 | Software | Installed via | Version |
 | -------- | ------------- | ------- |
@@ -28,7 +26,7 @@ QEMU is impossibly slow on GitHub actions and I have yet to see it complete succ
 | Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
-| sccache | cargo | latest |
+| sccache | Github releases | 0.3.0 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pip | latest |
 | wget | apt-get | latest |
-| Kraken CLI | Pip | latest |
+| kraken-wrapper | Pip | latest |
