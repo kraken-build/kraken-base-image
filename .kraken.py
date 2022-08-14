@@ -59,7 +59,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         task, tag = build_python_image(platform, python_version)
         python_tasks.append(task)
         copy_code.append(
-            f"COPY --from={tag} /root/.pyenv/versions/{python_version} /root/.pyenv/versions/{python_version}"
+            f"COPY --from={tag} /root/.pyenv /root/.pyenv"
         )
 
     # Insert the code to copy the Python versions into the Dockerfile.
