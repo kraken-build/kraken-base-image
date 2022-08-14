@@ -26,13 +26,13 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) | 2.0.4 |
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
-| Pipx | Pip | latest |
+| Pipx | Pip (3.10.4) | latest |
 | protobuf-compiler | GitHub releases | 3.15.1 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
 | Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | sccache | Github releases | 0.3.0 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pip | latest |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pip (3.10.4) | latest |
 | wget | apt-get | latest |
-| kraken-wrapper | Pip | latest |
+| kraken-wrapper | Pip (3.10.4) | latest |
