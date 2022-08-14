@@ -61,11 +61,22 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         python_version_major = re.match(r"\d+\.\d+", python_version).group(0)
         task, tag = build_python_image(platform, python_version)
         python_tasks.append(task)
+
+        # Copy the Pyenv folder from the image that compiled the given Python version.
         copy_code.append(f"COPY --from={tag} /root/.pyenv /root/.pyenv")
-        pyenv_code.append(f"pyenv global {python_version}")
-        pyenv_code.append(
-            f"ln -s $(python -c 'import sys; print(sys.executable)') /usr/local/bin/python{python_version_major}"
-        )
+
+        # NOTE (@NiklasRosenstein): It seems we don't need to manually create links for minor Python versions,
+        #       they already exist in the Pyenv shims folder.
+        # pyenv_code.append(f"pyenv global {python_version}")
+        # pyenv_code.append(
+        #     f"ln -s $(python -c 'import sys; print(sys.executable)') /usr/local/bin/python{python_version_major}"
+        # )
+
+        # Create a symlink for the minor Python version, allowing to use `pyenv global 3.x` instead of also specifying
+        # the patch version.
+        pyenv_code.append(f"ln -s /root/.pyenv/versions/{python_version} /root/.pyenv/versions/{python_version_major}")
+
+    # Set the default Python version.
     pyenv_code.append(f"pyenv global {global_python_version}")
 
     docker_code = "\n".join(copy_code) + "\n"
