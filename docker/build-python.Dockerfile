@@ -11,8 +11,8 @@ ARG PYTHON_VERSION
 RUN : \
     && pyenv install --verbose ${PYTHON_VERSION} \
     # Remove elements from the standard library that are not needed at runtime but are very large.
-    && rm -r /root/.pyenv/versions/${PYTHON_VERSION}/lib/python{minor_version}/test/ \
-    && rm -r /root/.pyenv/versions/${PYTHON_VERSION}/lib/python{minor_version}/config-*/ \
+    && rm -r /root/.pyenv/versions/${PYTHON_VERSION}/lib/python*/test/ \
+    && rm -r /root/.pyenv/versions/${PYTHON_VERSION}/lib/python*/config-*/ \
     # Upgrade Pip
     && pyenv global ${PYTHON_VERSION} \
     && python --version \
