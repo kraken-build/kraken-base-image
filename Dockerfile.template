@@ -13,11 +13,13 @@ FROM pyenv_all as final
 ARG ARCH
 ARG MANIFEST_TOOL_VERSION=2.0.4
 ARG PROTOCOL_BUF_VERSION=3.15.1
+ARG SCCACHE_VERSION=0.3.0
+ARG SCCACHE_ARCH
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
 
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - )
 
 RUN : \
     && apt-get update \
@@ -30,8 +32,8 @@ RUN : \
     #
     # sccache
     #
-    && cargo install sccache \
-    && rm -rf ~/.cargo/git ~/.cargo/registry \
+    && curl -qfSL https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-aarch64-unknown-linux-musl.tar.gz \
+        | tar xzvf - -C /usr/local/bin sccache-v${SCCACHE_VERSION}-aarch64-unknown-linux-musl/sccache --strip-components 1 \
     #
     # kubectl
     #

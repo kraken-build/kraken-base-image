@@ -11,6 +11,10 @@ from pyenv_docker import render_pyenv_dockerfile
 
 project = Project.current()
 version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
+sccache_arch = {
+    "linux/arm64": "aarch64",
+    "linux/amd64": "x86_64",
+}
 
 
 def render_dockerfile() -> str:
@@ -42,7 +46,11 @@ def docker_config(dockerfile: RenderFileTask, platforms: list[str]) -> None:
             auth=auth,
             tags=[f"{image}/{platform}:{tag}" for tag in tags],
             platform=platform,
-            build_args={"CACHE_BUSTER": str(time.time()), "ARCH": platform.split("/")[1]},
+            build_args={
+                "CACHE_BUSTER": str(time.time()),
+                "ARCH": platform.split("/")[1],
+                "SCCACHE_ARCH": sccache_arch[platform],
+            },
             cache_repo=f"{image}/cache" if auth else None,
             load=False if auth else True,
             push=True if auth else False,
