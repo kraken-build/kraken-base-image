@@ -33,7 +33,8 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
 
 
 def build_python_image(platform: str, version: str) -> tuple[Task, str]:
-    tag = f"{image_prefix}/python-{version}-{platform}:latest"
+    prefix = f"{image_prefix}/python/{platform}"
+    tag = f"{prefix}:{version}"
     task = build_docker_image(
         name=f"docker-python-image-{version}-{platform}",
         backend="buildx",
@@ -42,7 +43,7 @@ def build_python_image(platform: str, version: str) -> tuple[Task, str]:
         tags=[tag],
         platform=platform,
         build_args={"PYTHON_VERSION": version},
-        cache_repo=cache_repo,
+        cache_repo=f"{prefix}:cache-{version}",
         push=True,
     )
     return task, tag
@@ -72,7 +73,8 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         .replace("# PYTHON_VERSIONS_HERE", "\n".join(copy_code)),
     )[0]
 
-    tags = [f"{image_prefix}/{platform}:{tag}" for tag in (version, "develop")]
+    prefix = f"{image_prefix}/{platform}"
+    tags = [f"{prefix}:{tag}" for tag in (version, "develop")]
     task = build_docker_image(
         name=f"docker-kraken-image-{platform}",
         backend="buildx",
@@ -85,7 +87,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
             "ARCH": platform.split("/")[1],
             "SCCACHE_ARCH": sccache_arch[platform],
         },
-        cache_repo=cache_repo,
+        cache_repo=f"{prefix}:cache",
         push=True,
     )
 
