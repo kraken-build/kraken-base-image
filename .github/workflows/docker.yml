@@ -44,8 +44,8 @@ jobs:
         run: pip install kraken-wrapper
 
       - run: |
-          krakenw q d :buildDocker-linux/${{ matrix.platform }} -v
-          krakenw r --resume :buildDocker-linux/${{ matrix.platform }} -v
+          krakenw q d :docker-kraken-image-linux/${{ matrix.platform }} -v
+          krakenw r --resume :docker-kraken-image-linux/${{ matrix.platform }} -v
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
@@ -95,8 +95,8 @@ jobs:
           mv manifest-tool-linux-amd64 /usr/local/bin/manifest-tool
 
       - run: |
-          krakenw q d --resume :buildDocker -v
-          krakenw r --resume :buildDocker -X buildDocker-linux/arm64 -X buildDocker-linux/amd64 -v
+          krakenw q d --resume :docker-kraken-image-multiarch -v
+          krakenw r --resume :docker-kraken-image-multiarch -v
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}

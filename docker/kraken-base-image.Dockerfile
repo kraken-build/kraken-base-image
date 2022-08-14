@@ -1,14 +1,13 @@
 
-{{ pyenv(
-    as_="pyenv_all",
-    from_="ubuntu:focal",
-    versions=["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"],
-    default_version="3.10.4",
-) }}
+FROM ubuntu:focal
 
-# == Install additional tools for the final layer.
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y curl
+ENV PYENV_ROOT /root/.pyenv
+ENV PATH $PATH:$PYENV_ROOT/shims:$PYENV_ROOT/bin
+RUN curl https://pyenv.run | bash
 
-FROM pyenv_all as final
+# PYTHON_VERSIONS_HERE
 
 ARG ARCH
 ARG MANIFEST_TOOL_VERSION=2.0.4
