@@ -3,10 +3,13 @@ FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y curl git wget
+
+# Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv
-ENV PATH $PATH:$PYENV_ROOT/shims:$PYENV_ROOT/bin
+ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 RUN curl https://pyenv.run | bash
 
+# Copy Pyenv folders from other images.
 # PYTHON_VERSIONS_HERE
 
 ARG ARCH
