@@ -2,7 +2,7 @@
 FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y curl git
+RUN apt-get update && apt-get install -y curl git wget
 ENV PYENV_ROOT /root/.pyenv
 ENV PATH $PATH:$PYENV_ROOT/shims:$PYENV_ROOT/bin
 RUN curl https://pyenv.run | bash
