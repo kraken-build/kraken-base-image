@@ -15,6 +15,7 @@ version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 image_prefix = "ghcr.io/kraken-build/kraken-base-image"
 platforms = ["linux/arm64", "linux/amd64"]
 python_versions = ["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"]
+global_python_version = "3.10.4"
 sccache_arch = {
     "linux/arm64": "aarch64",
     "linux/amd64": "x86_64",
@@ -85,6 +86,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
             "CACHE_BUSTER": str(time.time()),
             "ARCH": platform.split("/")[1],
             "SCCACHE_ARCH": sccache_arch[platform],
+            "GLOBAL_PYTHON_VERSION": global_python_version,
         },
         cache_repo=f"{prefix}:cache",
         push=True,
