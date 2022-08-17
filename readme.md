@@ -24,9 +24,13 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | GraphViz | apt-get | latest |
 | Helm | get-helm-3 | latest |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
+| libffi | apt-get | latest |
+| libssl | apt-get | latest |
+| llvm | apt-get | latest |
 | manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) | 2.0.4 |
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
 | Pipx | Pip (3.10.4) | latest |
+| pkg-config | apt-get | latest |
 | protobuf-compiler | GitHub releases | 3.15.1 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
 | Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
