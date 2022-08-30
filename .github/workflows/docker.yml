@@ -41,7 +41,7 @@ jobs:
         run: source .venv/bin/activate && env >> $GITHUB_ENV
 
       - name: Install kraken-wrapper
-        run: pip install kraken-wrapper
+        run: pip install --upgrade kraken-wrapper
 
       - run: |
           krakenw q d :docker-kraken-image-linux/${{ matrix.platform }} -v
