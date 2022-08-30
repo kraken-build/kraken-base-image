@@ -1,4 +1,4 @@
-# ::requirements kraken-std>=0.3.3 kraken-core>=0.8.11 jinja2
+# ::requirements kraken-std>=0.3.3 kraken-core>=0.9.0 jinja2
 
 from __future__ import annotations
 import os
