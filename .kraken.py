@@ -47,6 +47,7 @@ def build_python_image(platform: str, version: str) -> tuple[Task, str]:
         build_args={"PYTHON_VERSION": version},
         cache_repo=f"{prefix}:cache-{version}",
         push=True,
+        load=False,
     )
     return task, tag
 
@@ -108,6 +109,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         },
         cache_repo=f"{prefix}:cache",
         push=True,
+        load=False,
     )
 
     for python_task in python_tasks:
