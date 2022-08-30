@@ -7,7 +7,8 @@ import time
 from functools import lru_cache
 from pathlib import Path
 from kraken.core import Project, Task
-from kraken.lib.render_file_task import render_file
+from kraken.core.util.helpers import not_none
+from kraken.core.lib.render_file_task import render_file
 from kraken.std.docker import build_docker_image, manifest_tool
 from kraken.std.git.version import git_describe, GitVersion
 
@@ -58,7 +59,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
     copy_code = []
     pyenv_code = []
     for python_version in python_versions:
-        python_version_major = re.match(r"\d+\.\d+", python_version).group(0)
+        python_version_major = not_none(re.match(r"\d+\.\d+", python_version)).group(0)
         task, tag = build_python_image(platform, python_version)
         python_tasks.append(task)
 
@@ -77,7 +78,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         pyenv_code.append(f"ln -s /root/.pyenv/versions/{python_version} /root/.pyenv/versions/{python_version_major}")
 
     # Set the default Python version.
-    pyenv_code.append(f"pyenv global {global_python_version}")
+    pyenv_code.append(f"pyenv global {global_python_version} " + " ".join(set(python_versions) - {global_python_version}))
 
     docker_code = "\n".join(copy_code) + "\n"
     docker_code += "RUN " + " \\\n    && ".join([":"] + pyenv_code) + "\n"
