@@ -44,7 +44,8 @@ jobs:
         run: pip install --upgrade kraken-wrapper
 
       - run: |
-          krakenw q d :docker-kraken-image-linux/${{ matrix.platform }} -v
+          krakenw r -s
+          krakenw q d --resume :docker-kraken-image-linux/${{ matrix.platform }} -v
           krakenw r --resume :docker-kraken-image-linux/${{ matrix.platform }} -v
         env:
           GITHUB_USER: ${{ github.actor }}
