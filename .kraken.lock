@@ -1,7 +1,7 @@
 [requirements]
 requirements = [
     "kraken-std>=0.3.3",
-    "kraken-core>=0.9.0",
+    "kraken-core>=0.9.5",
     "jinja2",
 ]
 pythonpath = [
@@ -25,7 +25,7 @@ idna = "3.3"
 importlib-metadata = "4.12.0"
 Jinja2 = "3.1.2"
 keyring = "23.8.2"
-kraken-core = "0.9.4"
+kraken-core = "0.9.5"
 kraken-std = "0.3.9"
 MarkupSafe = "2.1.1"
 networkx = "2.6.3"
@@ -46,7 +46,7 @@ termcolor = "1.1.0"
 tomli = "2.0.1"
 tomli-w = "1.0.0"
 twine = "4.0.1"
-typeapi = "0.2.1"
+typeapi = "0.2.2"
 typing-extensions = "4.3.0"
 urllib3 = "1.26.12"
 webencodings = "0.5.1"
