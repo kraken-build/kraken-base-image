@@ -37,6 +37,6 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | sccache | Github releases | 0.3.0 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pip (3.10.4) | latest |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pip (3.10.4) | `>= 1.6.27` |
 | wget | apt-get | latest |
 | kraken-wrapper | Pip (3.10.4) | latest |

@@ -81,6 +81,6 @@ RUN : \
     echo ${CACHE_BUSTER} \
     && python -m pip install --user pipx -v \
     && pipx install poetry \
-    && pipx install slap-cli \
+    && pipx install "slap-cli>=1.6.27" \
     && pipx install kraken-wrapper \
     && rm -rf ~/.cache/pip
