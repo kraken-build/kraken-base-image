@@ -26,6 +26,7 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | libffi | apt-get | latest |
 | libssl | apt-get | latest |
+| libpq-dev | apt-get | latest |
 | llvm | apt-get | latest |
 | manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) | 2.0.4 |
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
