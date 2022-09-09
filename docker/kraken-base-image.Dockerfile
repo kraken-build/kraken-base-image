@@ -36,6 +36,7 @@ RUN : \
     #
     && curl -qfSL https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-aarch64-unknown-linux-musl.tar.gz \
         | tar xzvf - -C /usr/local/bin sccache-v${SCCACHE_VERSION}-aarch64-unknown-linux-musl/sccache --strip-components 1 \
+    && chmod +x /usr/local/bin/sccache \
     #
     # kubectl
     #
