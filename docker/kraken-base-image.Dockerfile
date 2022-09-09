@@ -25,7 +25,7 @@ RUN ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - )
 
 RUN : \
     && apt-get update \
-    && apt-get install -y docker.io nodejs graphviz unzip \
+    && apt-get install -y docker.io nodejs graphviz unzip libpq-dev \
     #
     # Rust
     #
