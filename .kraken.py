@@ -95,6 +95,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
 
     prefix = f"{image_prefix}/{platform}"
     tags = [f"{prefix}:{tag}" for tag in (version, "develop")]
+    arch = platform.split("/")[1]
     task = build_docker_image(
         name=f"docker-kraken-image-{platform}",
         backend="buildx",
@@ -104,7 +105,8 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         platform=platform,
         build_args={
             "CACHE_BUSTER": str(time.time()),
-            "ARCH": platform.split("/")[1],
+            "ARCH": arch,
+            "ARCH_ALIAS": "aarch64" if arch == "arm64" else arch,
             "SCCACHE_ARCH": sccache_arch[platform],
         },
         cache_repo=f"{prefix}:cache",
