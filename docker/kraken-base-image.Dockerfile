@@ -84,4 +84,5 @@ RUN : \
     && pipx install poetry \
     && pipx install "slap-cli>=1.6.27" \
     && pipx install kraken-wrapper \
+    && pipx install proxy.py \
     && rm -rf ~/.cache/pip

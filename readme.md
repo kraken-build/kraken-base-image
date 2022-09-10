@@ -31,12 +31,14 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
 | Pipx | Pip (3.10.4) | latest |
 | pkg-config | apt-get | latest |
+| Poetry | Pipx (3.10.4) | latest |
 | protobuf-compiler | GitHub releases | 3.15.1 |
+| proxy.py | Pipx (3.10.4) | latest |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
 | Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | sccache | Github releases | 0.3.0 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pip (3.10.4) | `>= 1.6.27` |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (3.10.4) | `>= 1.6.27` |
 | wget | apt-get | latest |
-| kraken-wrapper | Pip (3.10.4) | latest |
+| kraken-wrapper | Pipx (3.10.4) | latest |
