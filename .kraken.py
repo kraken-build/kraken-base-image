@@ -18,6 +18,10 @@ image_prefix = "ghcr.io/kraken-build/kraken-base-image"
 platforms = ["linux/arm64", "linux/amd64"]
 python_versions = ["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"]
 global_python_version = "3.10.4"
+protocol_buf_arch = {
+    "linux/arm64": "aarch_64",
+    "linux/amd64": "x86_64",
+}
 sccache_arch = {
     "linux/arm64": "aarch64",
     "linux/amd64": "x86_64",
@@ -106,7 +110,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         build_args={
             "CACHE_BUSTER": str(time.time()),
             "ARCH": arch,
-            "ARCH_ALIAS": "aarch64" if arch == "arm64" else arch,
+            "PROTOCOL_BUF_ARCH": protocol_buf_arch[platform],
             "SCCACHE_ARCH": sccache_arch[platform],
         },
         cache_repo=f"{prefix}:cache",

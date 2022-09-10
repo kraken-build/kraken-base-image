@@ -13,9 +13,9 @@ RUN curl https://pyenv.run | bash
 # PYTHON_VERSIONS_HERE
 
 ARG ARCH
-ARG ARCH_ALIAS
 ARG MANIFEST_TOOL_VERSION=2.0.4
 ARG PROTOCOL_BUF_VERSION=3.15.1
+ARG PROTOCOL_BUF_ARCH=3.15.1
 ARG SCCACHE_VERSION=0.3.0
 ARG SCCACHE_ARCH
 
@@ -35,8 +35,8 @@ RUN : \
     #
     # sccache
     #
-    && curl -qfSL https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-${ARCH_ALIAS}-unknown-linux-musl.tar.gz \
-        | tar xzvf - -C /usr/local/bin sccache-v${SCCACHE_VERSION}-${ARCH_ALIAS}-unknown-linux-musl/sccache --strip-components 1 \
+    && curl -qfSL https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-${SCCACHE_ARCH}-unknown-linux-musl.tar.gz \
+        | tar xzvf - -C /usr/local/bin sccache-v${SCCACHE_VERSION}-${SCCACHE_ARCH}-unknown-linux-musl/sccache --strip-components 1 \
     && chmod +x /usr/local/bin/sccache \
     #
     # kubectl
@@ -48,10 +48,10 @@ RUN : \
     #
     # protobuf-compiler
     #
-    && wget -q https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-${ARCH_ALIAS}.zip \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${ARCH_ALIAS}.zip -d /usr/local bin/protoc \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${ARCH_ALIAS}.zip -d /usr/local 'include/*' \
-    && rm protoc-$PROTOCOL_BUF_VERSION-linux-${ARCH_ALIAS}.zip \
+    && wget -q https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip -d /usr/local bin/protoc \
+    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip -d /usr/local 'include/*' \
+    && rm protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip \
     #
     # helm
     #
