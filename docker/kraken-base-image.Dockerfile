@@ -85,4 +85,5 @@ RUN : \
     && pipx install "slap-cli>=1.6.27" \
     && pipx install kraken-wrapper \
     && pipx install proxy.py \
+    && pipx inject proxy.py certifi \
     && rm -rf ~/.cache/pip
