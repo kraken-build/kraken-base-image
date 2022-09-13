@@ -18,14 +18,6 @@ image_prefix = "ghcr.io/kraken-build/kraken-base-image"
 platforms = ["linux/arm64", "linux/amd64"]
 python_versions = ["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"]
 global_python_version = "3.10.4"
-protocol_buf_arch = {
-    "linux/arm64": "aarch_64",
-    "linux/amd64": "x86_64",
-}
-sccache_arch = {
-    "linux/arm64": "aarch64",
-    "linux/amd64": "x86_64",
-}
 
 
 @lru_cache()
@@ -83,7 +75,9 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         pyenv_code.append(f"ln -s /root/.pyenv/versions/{python_version} /root/.pyenv/versions/{python_version_major}")
 
     # Set the default Python version.
-    pyenv_code.append(f"pyenv global {global_python_version} " + " ".join(set(python_versions) - {global_python_version}))
+    pyenv_code.append(
+        f"pyenv global {global_python_version} " + " ".join(set(python_versions) - {global_python_version})
+    )
 
     docker_code = "\n".join(copy_code) + "\n"
     docker_code += "RUN " + " \\\n    && ".join([":"] + pyenv_code) + "\n"
@@ -107,12 +101,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
-        build_args={
-            "CACHE_BUSTER": str(time.time()),
-            "ARCH": arch,
-            "PROTOCOL_BUF_ARCH": protocol_buf_arch[platform],
-            "SCCACHE_ARCH": sccache_arch[platform],
-        },
+        build_args={"CACHE_BUSTER": str(time.time())},
         cache_repo=f"{prefix}:cache",
         push=True,
         load=False,
