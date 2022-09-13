@@ -43,7 +43,7 @@ RUN : \
     # grcov
     #
     && curl -qfSL https://github.com/mozilla/grcov/releases/download/v${GRCOV_VERSION}/grcov-$(arch)-unknown-linux-gnu.tar.bz2 \
-        | tar xzvf - -C /usr/local/bin gcov \
+        | tar xzvf - -C /usr/local/bin grcov \
     #
     # kubectl
     #
