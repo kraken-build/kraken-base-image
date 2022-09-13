@@ -2,7 +2,7 @@
 FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm lcov pkg-config
+RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm pkg-config
 
 # Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv
@@ -12,38 +12,32 @@ RUN curl https://pyenv.run | bash
 # Copy Pyenv folders from other images.
 # PYTHON_VERSIONS_HERE
 
-ARG ARCH
-ARG MANIFEST_TOOL_VERSION=2.0.4
-ARG PROTOCOL_BUF_VERSION=3.15.1
-ARG PROTOCOL_BUF_ARCH=3.15.1
-ARG SCCACHE_VERSION=0.3.0
-ARG SCCACHE_ARCH
-ARG GRCOV_VERSION=0.8.11
-
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
 
 RUN ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - )
 
+COPY formulae /tmp/formulae
+COPY src /tmp/src
 RUN : \
+    #
+    # install from custom formulae
+    #
+    && python /tmp/src/main.py /tmp/formulae/grcov.py \
+    && python /tmp/src/main.py /tmp/formulae/manifest-tool.py \
+    && python /tmp/src/main.py /tmp/formulae/protobuf-compiler.py \
+    && python /tmp/src/main.py /tmp/formulae/sccache.py \
+    && rm -r /tmp/src /tmp/formulae \
+    #
+    # more APT packages
+    #
     && apt-get update \
-    && apt-get install -y docker.io nodejs graphviz unzip \
+    && apt-get install -y docker.io nodejs graphviz unzip lcov \
     #
     # Rust
     #
     && apt-get install -y xxd cmake \
     && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
-    #
-    # sccache
-    #
-    && curl -qfSL https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-${SCCACHE_ARCH}-unknown-linux-musl.tar.gz \
-        | tar xzvf - -C /usr/local/bin sccache-v${SCCACHE_VERSION}-${SCCACHE_ARCH}-unknown-linux-musl/sccache --strip-components 1 \
-    && chmod +x /usr/local/bin/sccache \
-    #
-    # grcov
-    #
-    && curl -qfSL https://github.com/mozilla/grcov/releases/download/v${GRCOV_VERSION}/grcov-$(arch)-unknown-linux-gnu.tar.bz2 \
-        | tar xzvf - -C /usr/local/bin grcov \
     #
     # kubectl
     #
@@ -52,24 +46,9 @@ RUN : \
     && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
     && apt-get update && apt-get install -y kubectl \
     #
-    # protobuf-compiler
-    #
-    && wget -q https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOCOL_BUF_VERSION/protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip -d /usr/local bin/protoc \
-    && unzip -o protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip -d /usr/local 'include/*' \
-    && rm protoc-$PROTOCOL_BUF_VERSION-linux-${PROTOCOL_BUF_ARCH}.zip \
-    #
     # helm
     #
     && ( curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash ) \
-    #
-    # manifest-tool
-    #
-    && wget -q https://github.com/estesp/manifest-tool/releases/download/v${MANIFEST_TOOL_VERSION}/binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz \
-    && tar -xvf binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz -C /usr/local/bin manifest-tool-linux-${ARCH} \
-    && chmod +x /usr/local/bin/manifest-tool-linux-${ARCH} \
-    && mv /usr/local/bin/manifest-tool-linux-${ARCH} /usr/local/bin/manifest-tool \
-    && rm binaries-manifest-tool-${MANIFEST_TOOL_VERSION}.tar.gz \
     #
     # [cleanup]
     #
