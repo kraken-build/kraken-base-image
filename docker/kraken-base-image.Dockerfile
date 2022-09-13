@@ -2,7 +2,7 @@
 FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm pkg-config
+RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm lcov pkg-config
 
 # Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv
@@ -18,6 +18,7 @@ ARG PROTOCOL_BUF_VERSION=3.15.1
 ARG PROTOCOL_BUF_ARCH=3.15.1
 ARG SCCACHE_VERSION=0.3.0
 ARG SCCACHE_ARCH
+ARG GRCOV_VERSION=0.8.11
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
@@ -38,6 +39,11 @@ RUN : \
     && curl -qfSL https://github.com/mozilla/sccache/releases/download/v${SCCACHE_VERSION}/sccache-v${SCCACHE_VERSION}-${SCCACHE_ARCH}-unknown-linux-musl.tar.gz \
         | tar xzvf - -C /usr/local/bin sccache-v${SCCACHE_VERSION}-${SCCACHE_ARCH}-unknown-linux-musl/sccache --strip-components 1 \
     && chmod +x /usr/local/bin/sccache \
+    #
+    # grcov
+    #
+    && curl -qfSL https://github.com/mozilla/grcov/releases/download/v${GRCOV_VERSION}/grcov-$(arch)-unknown-linux-gnu.tar.bz2 \
+        | tar xzvf - -C /usr/local/bin gcov \
     #
     # kubectl
     #
