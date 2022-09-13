@@ -1,3 +1,5 @@
+import platform
+import sys
 
 from formula import BinaryInstallFormula
 
@@ -9,5 +11,5 @@ class ManifestToolFormula(BinaryInstallFormula):
         "https://github.com/estesp/manifest-tool/releases/download/v${version}/"
         "binaries-manifest-tool-${version}.tar.gz"
     )
-    archive_members = {"manifest-tool-${platform}-${arch}": "manifest-tool"}
+    archive_members = {"manifest-tool-${platform}-${archv2}": "manifest-tool"}
     install_to = "/usr/local/bin"
