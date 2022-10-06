@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [ "arm64", "amd64" ]
-        base_image: [ "ubuntu_focal", "debian_bullseye" ]
+        base_image: [ "ubuntu_focal", "ubuntu_bionic" ]
     steps:
 
       # NOTE (@NiklasRosenstein): Need Git 2.18 available on the runner for the checkout action to use it; otherwise
