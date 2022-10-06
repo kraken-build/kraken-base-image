@@ -1,4 +1,5 @@
-FROM ubuntu:focal
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y curl git openssh-client \
     build-essential libssl-dev zlib1g-dev libbz2-dev \

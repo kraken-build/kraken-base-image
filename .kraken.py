@@ -15,6 +15,8 @@ from kraken.std.git.version import git_describe, GitVersion
 project = Project.current()
 version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 image_prefix = "ghcr.io/kraken-build/kraken-base-image"
+default_base_image = "ubuntu:focal"
+base_images = {default_base_image, "debian:bullseye"}
 platforms = ["linux/arm64", "linux/amd64"]
 python_versions = ["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"]
 global_python_version = "3.10.4"
@@ -30,25 +32,27 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
     return {}
 
 
-def build_python_image(platform: str, version: str) -> tuple[Task, str]:
+def build_python_image(base_image: str, platform: str, version: str) -> tuple[Task, str]:
     prefix = f"{image_prefix}/python/{platform}"
-    tag = f"{prefix}:{version}"
+    tags = [f"{prefix}:{version}-{base_image.replace(':', '_')}"]
+    if base_image == default_base_image:
+        tags.append(f"{prefix}:{version}")
     task = build_docker_image(
-        name=f"docker-python-image-{version}-{platform}",
+        name=f"docker-python-image-{version}/{base_image.replace(':', '_')}/{platform}",
         backend="buildx",
         dockerfile="docker/build-python.Dockerfile",
         auth=get_docker_auth(),
-        tags=[tag],
+        tags=tags,
         platform=platform,
-        build_args={"PYTHON_VERSION": version},
+        build_args={"PYTHON_VERSION": version, "BASE_IMAGE": base_image},
         cache_repo=f"{prefix}:cache-{version}",
         push=True,
         load=False,
     )
-    return task, tag
+    return task, tags[0]
 
 
-def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task, list[str]]:
+def build_kraken_image(base_image: str, platform: str, python_versions: list[str]) -> tuple[Task, list[str]]:
 
     # Produce the builds for the Python versions and the code to copy the Python versions
     # into the kraken-base-image.
@@ -57,7 +61,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
     pyenv_code = []
     for python_version in python_versions:
         python_version_major = not_none(re.match(r"\d+\.\d+", python_version)).group(0)
-        task, tag = build_python_image(platform, python_version)
+        task, tag = build_python_image(base_image, platform, python_version)
         python_tasks.append(task)
 
         # Copy the Pyenv folder from the image that compiled the given Python version.
@@ -84,7 +88,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
 
     # Insert the code to copy the Python versions into the Dockerfile.
     render = render_file(
-        name=f"render-kraken-image-Dockerfile-{platform}",
+        name=f"render-kraken-image-Dockerfile/{base_image.replace(':', '_')}/{platform}",
         create_check=False,
         group=None,
         file=project.build_directory / f"kraken-base-image-{platform.replace('/', '-')}.Dockerfile",
@@ -92,10 +96,13 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
     )[0]
 
     prefix = f"{image_prefix}/{platform}"
-    tags = [f"{prefix}:{tag}" for tag in (version, "develop")]
-    arch = platform.split("/")[1]
+    tag_prefixes = [f"{prefix}:{tag}" for tag in (version, "develop")]
+    tags = [f"{p}-{base_image.replace(':', '_')}" for p in tag_prefixes]
+    if base_image == default_base_image:
+        tags += tag_prefixes
+
     task = build_docker_image(
-        name=f"docker-kraken-image-{platform}",
+        name=f"docker-kraken-image/{base_image.replace(':', '_')}/{platform}",
         backend="buildx",
         dockerfile=render.file,
         auth=get_docker_auth(),
@@ -113,7 +120,7 @@ def build_kraken_image(platform: str, python_versions: list[str]) -> tuple[Task,
     return task, tags
 
 
-build_tasks = [build_kraken_image(platform, python_versions) for platform in platforms]
+build_tasks = [build_kraken_image(base_image, platform, python_versions) for platform in platforms for base_image in base_images]
 
 for idx, tag in enumerate(build_tasks[0][1]):
     tag_version = tag.rpartition(":")[-1]

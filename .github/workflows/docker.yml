@@ -11,6 +11,7 @@ jobs:
     strategy:
       matrix:
         platform: [ "arm64", "amd64" ]
+        base_image: [ "ubuntu_focal", "debian_bullseye" ]
     steps:
 
       # NOTE (@NiklasRosenstein): Need Git 2.18 available on the runner for the checkout action to use it; otherwise
@@ -45,8 +46,8 @@ jobs:
 
       - run: |
           krakenw r -s -v
-          krakenw q d --resume :docker-kraken-image-linux/${{ matrix.platform }} -v
-          krakenw r --resume :docker-kraken-image-linux/${{ matrix.platform }} -v
+          krakenw q d --resume :docker-kraken-image-linux/${{ matrix.base_image }}/${{ matrix.platform }} -v
+          krakenw r --resume :docker-kraken-image-linux/${{ matrix.base_image }}/${{ matrix.platform }} -v
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}

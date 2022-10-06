@@ -1,5 +1,6 @@
 
-FROM ubuntu:focal
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm pkg-config
