@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: [ "self-hosted", "os:linux", "arch:${{ matrix.platform }}" ]
     strategy:
+      fail-fast: false
       matrix:
         platform: [ "arm64", "amd64" ]
         base_image: [ "ubuntu_focal", "debian_bullseye" ]
