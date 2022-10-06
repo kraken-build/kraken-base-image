@@ -108,7 +108,7 @@ def build_kraken_image(base_image: str, platform: str, python_versions: list[str
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
-        build_args={"CACHE_BUSTER": str(time.time())},
+        build_args={"CACHE_BUSTER": str(time.time()), "BASE_IMAGE": base_image},
         cache_repo=f"{prefix}:cache",
         push=True,
         load=False,
