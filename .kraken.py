@@ -120,15 +120,16 @@ def build_kraken_image(base_image: str, platform: str, python_versions: list[str
     return task, tags
 
 
-build_tasks = [build_kraken_image(base_image, platform, python_versions) for platform in platforms for base_image in base_images]
+for base_image in base_images:
+    build_tasks = [build_kraken_image(base_image, platform, python_versions) for platform in platforms]
 
-for idx, tag in enumerate(build_tasks[0][1]):
-    tag_version = tag.rpartition(":")[-1]
-    manifest_tool(
-        name=f"docker-kraken-image-multiarch-{tag_version}",
-        group="docker-kraken-image-multiarch",
-        template=f"{image_prefix}/OS/ARCH:{version}",
-        platforms=platforms,
-        target=f"{image_prefix}:{tag_version}",
-        inputs=[task for task, _tags in build_tasks],
-    )
+    for idx, tag in enumerate(build_tasks[0][1]):
+        tag_version = tag.rpartition(":")[-1]
+        manifest_tool(
+            name=f"docker-kraken-image-multiarch-{tag_version}/{base_image.replace(':', '_')}",
+            group="docker-kraken-image-multiarch",
+            template=f"{image_prefix}/OS/ARCH:{version}",
+            platforms=platforms,
+            target=f"{image_prefix}:{tag_version}",
+            inputs=[task for task, _tags in build_tasks],
+        )
