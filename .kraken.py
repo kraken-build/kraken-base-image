@@ -128,7 +128,7 @@ for base_image in base_images:
         manifest_tool(
             name=f"docker-kraken-image-multiarch-{tag_version}/{base_image.replace(':', '_')}",
             group="docker-kraken-image-multiarch",
-            template=f"{image_prefix}/OS/ARCH:{version}",
+            template=f"{image_prefix}/OS/ARCH:{version}-{base_image.replace(':', '_')}",
             platforms=platforms,
             target=f"{image_prefix}:{tag_version}",
             inputs=[task for task, _tags in build_tasks],
