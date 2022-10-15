@@ -28,6 +28,7 @@ RUN : \
     && python /tmp/src/main.py /tmp/formulae/manifest-tool.py \
     && python /tmp/src/main.py /tmp/formulae/protobuf-compiler.py \
     && python /tmp/src/main.py /tmp/formulae/sccache.py \
+    && python /tmp/src/main.py /tmp/formulae/terraform.py \
     && rm -r /tmp/src /tmp/formulae \
     #
     # more APT packages
