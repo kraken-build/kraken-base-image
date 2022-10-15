@@ -43,4 +43,5 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | Rustup | rustup.rs | latest |
 | sccache | [Github releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (3.10.4) | `>= 1.6.27` |
+| Terraform | Hashicorp releases | 1.2.7 |
 | wget | apt-get | latest |
