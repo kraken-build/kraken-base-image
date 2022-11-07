@@ -3,7 +3,7 @@ ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang clang++ gcc g++ pkg-config build-essential
+RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential
 
 # Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv

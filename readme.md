@@ -17,7 +17,7 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | Software | Installed via | Version |
 | -------- | ------------- | ------- |
 | build-essential | apt-get | latest |
-| clang, clang++ | apt-get | latest |
+| clang | apt-get | latest |
 | cmake | apt-get | latest |
 | cURL | apt-get | latest |
 | Docker | apt-get (`docker.io` package) | latest |
