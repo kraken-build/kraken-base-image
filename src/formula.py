@@ -129,9 +129,11 @@ class BinaryInstallFormula(Formula):
     @contextlib.contextmanager
     def _read_archive(self, filename: str, fp: BinaryIO) -> Iterator[Archive]:
         if self.archive_type is None:
-            if filename.endswith(".zip"):
+            suffix1 = Path(filename).suffix
+            suffix2 = Path(Path(filename).stem).suffix
+            if suffix1 == ".zip":
                 archive_type = "zip"
-            elif filename.endswith(".tar") or filename.endswith(".tgz"):
+            elif suffix2 == ".tar" or suffix1 in (".taz", ".tgz", ".tb2", ".tbz", ".tz2", ".tlz", ".txz"):
                 archive_type = "tar"
             else:
                 raise RuntimeError(f"could not determine archive type from {filename!r}")
