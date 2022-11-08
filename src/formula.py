@@ -8,6 +8,7 @@ import logging
 import operator
 import os
 import platform
+import posixpath
 import shutil
 import stat
 import string
@@ -128,7 +129,12 @@ class BinaryInstallFormula(Formula):
     @contextlib.contextmanager
     def _read_archive(self, filename: str, fp: BinaryIO) -> Iterator[Archive]:
         if self.archive_type is None:
-            archive_type = "zip" if filename.endswith(".zip") else "tar"
+            if filename.endswith(".zip"):
+                archive_type = "zip"
+            elif filename.endswith(".tar") or filename.endswith(".tgz"):
+                archive_type = "tar"
+            else:
+                raise RuntimeError(f"could not determine archive type from {filename!r}")
         else:
             archive_type = self.archive_type
         if archive_type == "zip":
@@ -159,6 +165,35 @@ class BinaryInstallFormula(Formula):
                 with src, output_path.open("wb") as dst:
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
+
+
+class DownloadFileFormula(Formula):
+
+    download_url: str
+    output_file: str | None = None
+    output_directory: str | None = None
+    chmod: int | None = None
+    install_to: str
+
+    def install(self) -> None:
+        download_url = self._eval_member("download_url")
+
+        filename = posixpath.basename(download_url)
+        if self.output_file is not None:
+            output_file = self._eval_member("output_file")
+        elif self.output_directory is not None:
+            output_file = os.path.join(self._eval_member("output_directory"), filename)
+        else:
+            assert False, "output_file or output_directory must be set"
+
+        self.log('fetching file at "%s"', download_url)
+        with urllib.request.urlopen(download_url) as response:
+            # TODO(NiklasRosenstein): Parse Content-Disposition header?
+            self.log('writing file to "%s"', output_file)
+            os.makedirs(os.path.dirname(output_file), exist_ok=True)
+            Path(output_file).write_bytes(response.read())
+            if self.chmod is not None:
+                os.chmod(output_file, self.chmod)
 
 
 @dataclass

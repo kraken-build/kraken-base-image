@@ -25,6 +25,7 @@ RUN : \
     # install from custom formulae
     #
     && python /tmp/src/main.py /tmp/formulae/grcov.py \
+    && python /tmp/src/main.py /tmp/formulae/kubectl.py \
     && python /tmp/src/main.py /tmp/formulae/manifest-tool.py \
     && python /tmp/src/main.py /tmp/formulae/protobuf-compiler.py \
     && python /tmp/src/main.py /tmp/formulae/sccache.py \
@@ -40,13 +41,6 @@ RUN : \
     #
     && apt-get install -y xxd cmake \
     && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
-    #
-    # kubectl
-    #
-    && apt-get install -y apt-transport-https ca-certificates curl \
-    && curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
-    && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
-    && apt-get update && apt-get install -y kubectl \
     #
     # helm
     #
