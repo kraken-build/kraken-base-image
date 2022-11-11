@@ -12,6 +12,8 @@ RUN : \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
     && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv} \
+    && ln -s $(which python3.10) /usr/bin/python \
+    && ln -s $(which pip3.10) /usr/bin/pip \
     && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Pyenv.
