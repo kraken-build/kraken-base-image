@@ -8,12 +8,22 @@ RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llv
 # Install Python versions with deadsnakes.
 SHELL [ "/bin/bash", "-c" ]
 RUN : \
+    && python --version \
+    && python3 --version \
     && apt-get install -y software-properties-common \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
     && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv} \
-    && ln -s $(which python3.10) /usr/bin/python \
-    && ln -s $(which pip3.10) /usr/bin/pip \
+    && python --version \
+    && python3.6 --version \
+    && python3.7 --version \
+    && python3.8 --version \
+    && python3.9 --version \
+    && python3.10 --version \
+    && python3.11 --version \
+    && ln -sf $(which python3.10) /usr/bin/python \
+    && ln -sf $(which python3.10) /usr/bin/python3 \
+    && ln -sf $(which pip3.10) /usr/bin/pip \
     && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Pyenv.
