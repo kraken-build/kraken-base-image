@@ -56,15 +56,13 @@ RUN : \
 COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 
 #
-# Pipx, poetry, slap, kraken
+# Python tools
 #
-ARG CACHE_BUSTER
 RUN : \
-    echo ${CACHE_BUSTER} \
-    && python -m pip install --user pipx -v \
-    && pipx install poetry \
-    && pipx install "slap-cli>=1.6.27" \
-    && pipx install kraken-wrapper \
-    && pipx install proxy.py \
-    && pipx inject proxy.py certifi \
+    && python -m pip install pipx -v \
+    && pipx install poetry==1.2.2 \
+    && pipx install slap-cli==1.6.30 \
+    && pipx install kraken-wrapper==0.1.22 \
+    && pipx install proxy.py==2.4.3 && pipx inject proxy.py certifi \
+    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==6.6.0 \
     && rm -rf ~/.cache/pip
