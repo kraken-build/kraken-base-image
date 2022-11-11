@@ -17,7 +17,7 @@ RUN : \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
     # Install Python 3.6 - 3.10, and Pip for the system default Python version.
-    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} python3-pip \
+    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} python3-pip --no-install-recommends \
     # Install Pip for all other Python versions.
     && [ "${BASE_IMAGE}" != "ubuntu:bionic" ] && python3.6 -m ensurepip --alternate-pip \
     && python3.7 -m ensurepip --alternate-pip \
