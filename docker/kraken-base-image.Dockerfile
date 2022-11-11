@@ -10,6 +10,7 @@ RUN : \
 
 # Install Python versions with deadsnakes.
 SHELL [ "/bin/bash", "-c" ]
+ARG BASE_IMAGE
 RUN : \
     && set -x \
     && apt-get update \
