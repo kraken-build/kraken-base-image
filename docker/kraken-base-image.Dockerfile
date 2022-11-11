@@ -3,29 +3,32 @@ ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential
+RUN : \
+    && apt-get update \
+    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential \
+    && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Python versions with deadsnakes.
 SHELL [ "/bin/bash", "-c" ]
 RUN : \
     && set -x \
-    && apt-get install -y software-properties-common \
+    && apt-get update \
+    && apt-get install -y software-properties-common --no-install-recommends \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
-    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv} \
-    && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
-
-RUN : \
-    && set -x \
-    && python3.6 --version \
-    && python3.7 --version \
-    && python3.8 --version \
-    && python3.9 --version \
-    && python3.10 --version \
-    && python3.11 --version \
+    # Install Python 3.6 - 3.10, and Pip for the system default Python version.
+    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} python3-pip \
+    # Install Pip for all other Python versions.
+    && [ "${BASE_IMAGE}" != "ubuntu:bionic" ] && python3.6 -m ensurepip --alternate-pip \
+    && python3.7 -m ensurepip --alternate-pip \
+    && [ "${BASE_IMAGE}" != "ubuntu:focal" ] && python3.8 -m ensurepip --alternate-pip \
+    && python3.9 -m ensurepip --alternate-pip \
+    && python3.10 -m ensurepip --default-pip \
+    && python3.11 -m ensurepip --alternate-pip \
+    # Install Python 3.10 as the default version.
     && ln -svf $(which python3.10) /usr/bin/python \
     && ln -svf $(which python3.10) /usr/bin/python3 \
-    && ln -svf $(which pip3.10) /usr/bin/pip \
+    && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv
