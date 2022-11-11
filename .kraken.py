@@ -18,7 +18,7 @@ image_prefix = "ghcr.io/kraken-build/kraken-base-image"
 default_base_image = "ubuntu:focal"
 base_images = {default_base_image, "ubuntu:bionic"}
 platforms = ["linux/arm64", "linux/amd64"]
-python_versions = ["3.6.15", "3.7.13", "3.8.13", "3.9.12", "3.10.4", "3.11-dev"]
+python_versions = ["3.6.15", "3.7.15", "3.8.15", "3.9.15", "3.10.8", "3.11.0"]
 global_python_version = "3.10.4"
 
 

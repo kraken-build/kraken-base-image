@@ -43,7 +43,7 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
 | proxy.py | Pipx (3.10.4) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
-| Python | Pyenv | 3.6.15, 3.7.13, 3.8.13, 3.9.12, 3.10.4 <sup>default</sup>, 3.11-dev |
+| Python | Pyenv | 3.6.15, 3.7.15, 3.8.15, 3.9.15, 3.10.8 <sup>default</sup>, 3.11.0 |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | sccache | [Github releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
