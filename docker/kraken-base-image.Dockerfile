@@ -5,13 +5,21 @@ FROM ${BASE_IMAGE}
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential
 
+# Install Python versions with deadsnakes.
+RUN : \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository ppa:deadsnakes/ppa \
+    && apt update \
+    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv} \
+    && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
+
 # Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 RUN curl https://pyenv.run | bash
 
 # Copy Pyenv folders from other images.
-# PYTHON_VERSIONS_HERE
+# PYTHON_VERSIONS_NOT_HERE  # COMMENTED OUT IN FAVOR OF deadsnakes
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
