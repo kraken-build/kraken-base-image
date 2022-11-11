@@ -19,12 +19,12 @@ RUN : \
     # Install Python 3.6 - 3.10, and Pip for the system default Python version.
     && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} python3-pip --no-install-recommends \
     # Install Pip for all other Python versions.
-    && [ "${BASE_IMAGE}" != "ubuntu:bionic" ] && python3.6 -m ensurepip --alternate-pip \
-    && python3.7 -m ensurepip --alternate-pip \
-    && [ "${BASE_IMAGE}" != "ubuntu:focal" ] && python3.8 -m ensurepip --alternate-pip \
-    && python3.9 -m ensurepip --alternate-pip \
+    && [ "${BASE_IMAGE}" != "ubuntu:bionic" ] && python3.6 -m ensurepip --altinstall \
+    && python3.7 -m ensurepip --altinstall \
+    && [ "${BASE_IMAGE}" != "ubuntu:focal" ] && python3.8 -m ensurepip --altinstall \
+    && python3.9 -m ensurepip --altinstall \
     && python3.10 -m ensurepip --default-pip \
-    && python3.11 -m ensurepip --alternate-pip \
+    && python3.11 -m ensurepip --altinstall \
     # Install Python 3.10 as the default version.
     && ln -svf $(which python3.10) /usr/bin/python \
     && ln -svf $(which python3.10) /usr/bin/python3 \
