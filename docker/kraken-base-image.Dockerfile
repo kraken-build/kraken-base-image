@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y curl git wget libssl-dev libffi-dev llv
 SHELL [ "/bin/bash", "-c" ]
 RUN : \
     && python --version \
-    && python3 --version \
+    && ( which python3 && python3 --version || true) \
     && apt-get install -y software-properties-common \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
