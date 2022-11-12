@@ -48,8 +48,13 @@ def build_python_image(base_image: str, platform: str, version: str) -> tuple[Ta
 
 def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]:
 
+    if os.getenv("GITHUB_REF") == "refs/heads/develop":
+        versions = (version, "develop")
+    else:
+        versions = (version,)
+
     prefix = f"{image_prefix}/{platform}"
-    tag_prefixes = [f"{prefix}:{tag}" for tag in (version, "develop")]
+    tag_prefixes = [f"{prefix}:{tag}" for tag in versions]
     tags = [f"{p}-{base_image.replace(':', '_')}" for p in tag_prefixes]
     if base_image == default_base_image:
         tags += tag_prefixes
@@ -57,7 +62,7 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
     task = build_docker_image(
         name=f"docker-kraken-image/{base_image.replace(':', '_')}/{platform}",
         backend="buildx",
-        dockerfile=project.build_directory / f"kraken-base-image-{platform.replace('/', '-')}.Dockerfile",
+        dockerfile=project.directory / "docker" / f"kraken-base-image.Dockerfile",
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
