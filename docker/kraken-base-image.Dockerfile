@@ -23,7 +23,7 @@ RUN : \
 
 RUN : \
     # Install Pip for all other Python versions.
-    # get-pip.py not supported for 3.6.
+    # NOTE(NiklasRosenstein): get-pip.py is not supported for Python 3.6.
     && set -x \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 - \
@@ -35,18 +35,9 @@ RUN : \
     && ln -svf $(which python3.10) /usr/bin/python \
     && ln -svf $(which python3.10) /usr/bin/python3
 
-# Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
-RUN curl https://pyenv.run | bash
-
-# Copy Pyenv folders from other images.
-# PYTHON_VERSIONS_NOT_HERE  # COMMENTED OUT IN FAVOR OF deadsnakes
-
-ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
-
-RUN ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - )
 
 COPY formulae /tmp/formulae
 COPY src /tmp/src
@@ -60,10 +51,10 @@ RUN : \
     && python /tmp/src/main.py /tmp/formulae/protobuf-compiler.py \
     && python /tmp/src/main.py /tmp/formulae/sccache.py \
     && python /tmp/src/main.py /tmp/formulae/terraform.py \
-    && rm -r /tmp/src /tmp/formulae \
     #
     # more APT packages
     #
+    && ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - ) \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov \
     #
@@ -76,8 +67,13 @@ RUN : \
     #
     && ( curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash ) \
     #
+    # Pyenv
+    #
+    && curl https://pyenv.run | bash \
+    #
     # [cleanup]
     #
+    && rm -r /tmp/src /tmp/formulae \
     && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
 #
