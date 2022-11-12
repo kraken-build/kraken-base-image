@@ -1,6 +1,7 @@
 
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
+ARG BASE_IMAGE
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN : \
@@ -10,7 +11,6 @@ RUN : \
 
 # Install Python versions with deadsnakes.
 SHELL [ "/bin/bash", "-c" ]
-ARG BASE_IMAGE
 RUN : \
     && set -x \
     && apt-get update \
@@ -18,18 +18,22 @@ RUN : \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
     # Install Python 3.6 - 3.10, and Pip for the system default Python version.
-    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} python3-pip --no-install-recommends \
+    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends \
+    && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
+
+RUN : \
     # Install Pip for all other Python versions.
-    && [ "${BASE_IMAGE}" != "ubuntu:bionic" ] && python3.6 -m ensurepip --altinstall \
-    && python3.7 -m ensurepip --altinstall \
-    && [ "${BASE_IMAGE}" != "ubuntu:focal" ] && python3.8 -m ensurepip --altinstall \
-    && python3.9 -m ensurepip --altinstall \
-    && python3.10 -m ensurepip --default-pip \
-    && python3.11 -m ensurepip --altinstall \
+    # get-pip.py not supported for 3.6.
+    && set -x \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 - \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 - \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 - \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 - \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 - \
+    && if [ "${BASE_IMAGE}" != "ubuntu:bionic" ]; then python3.6 -m ensurepip && python3.6 -m pip install --upgrade pip; fi \
     # Install Python 3.10 as the default version.
     && ln -svf $(which python3.10) /usr/bin/python \
-    && ln -svf $(which python3.10) /usr/bin/python3 \
-    && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
+    && ln -svf $(which python3.10) /usr/bin/python3
 
 # Install Pyenv.
 ENV PYENV_ROOT /root/.pyenv
