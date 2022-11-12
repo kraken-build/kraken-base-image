@@ -51,3 +51,4 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (3.10.4) | 1.6.30 |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
+| [yq](https://mikefarah.gitbook.io/yq/) | [Github releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |

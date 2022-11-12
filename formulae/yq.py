@@ -3,11 +3,11 @@ import sys
 from formula import DownloadFileFormula
 
 
-class KubectlFormula(DownloadFileFormula):
+class YqFormula(DownloadFileFormula):
 
     platform = sys.platform
-    version = "v1.25.3"
-    download_url = "https://dl.k8s.io/release/${version}/bin/${platform}/${archv2}/kubectl"
+    version = "4.30.1"
+    download_url = "https://github.com/mikefarah/yq/releases/download/v${version}/yq_${platform}_${archv2}"
     chmod = 0o775
     output_directory = "${install_to}"
     install_to = "/usr/local/bin"
