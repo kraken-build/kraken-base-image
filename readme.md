@@ -28,6 +28,7 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | Git | apt-get | latest |
 | GraphViz | apt-get | latest |
 | grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.11 |
+| jq | apt-get | latest |
 | Helm | get-helm-3 | latest |
 | kraken-wrapper | Pipx (3.10.4) | 0.1.22 |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |

@@ -6,7 +6,7 @@ ARG BASE_IMAGE
 ENV DEBIAN_FRONTEND noninteractive
 RUN : \
     && apt-get update \
-    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential \
+    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Python versions with deadsnakes.
