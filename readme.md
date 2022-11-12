@@ -16,8 +16,8 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 
 | Software | Installed via | Version |
 | -------- | ------------- | ------- |
-| ansible | Pipx (3.10.4) | 6.6.0 |
-| ansible-base | Pipx (3.10.4) | 2.10.17 |
+| ansible | Pipx (Python 3.10) | 6.6.0 |
+| ansible-base | Pipx (Python 3.10) | 2.10.17 |
 | build-essential | apt-get | latest |
 | clang | apt-get | latest |
 | cmake | apt-get | latest |
@@ -30,7 +30,7 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.11 |
 | jq | apt-get | latest |
 | Helm | get-helm-3 | latest |
-| kraken-wrapper | Pipx (3.10.4) | 0.1.22 |
+| kraken-wrapper | Pipx (Python 3.10) | 0.1.22 |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | lcov | apt-get | latest
 | libffi | apt-get | latest |
@@ -38,17 +38,17 @@ Aside from the `develop` tag, exact image versions can be pinned based on `git t
 | llvm | apt-get | latest |
 | manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
-| Pipx | Pip (3.10.4) | latest |
+| Pipx | Pip (Python 3.10) | latest |
 | pkg-config | apt-get | latest |
-| Poetry | Pipx (3.10.4) | 1.2.2 |
+| Poetry | Pipx (Python 3.10) | 1.2.2 |
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
-| proxy.py | Pipx (3.10.4) | 2.4.3 |
+| proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
 | Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.6, 3.7, 3.8, 3.9, 3.10 <sup>default</sup>, 3.11 |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | sccache | [Github releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (3.10.4) | 1.6.30 |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.6.30 |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
 | [yq](https://mikefarah.gitbook.io/yq/) | [Github releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
