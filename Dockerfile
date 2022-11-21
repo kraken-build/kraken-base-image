@@ -57,7 +57,7 @@ RUN : \
     #
     && ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - ) \
     && apt-get update \
-    && apt-get install -y docker.io nodejs graphviz unzip lcov \
+    && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
     # Rust
     #
