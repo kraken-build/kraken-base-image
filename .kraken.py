@@ -26,26 +26,6 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
     return {}
 
 
-def build_python_image(base_image: str, platform: str, version: str) -> tuple[Task, str]:
-    prefix = f"{image_prefix}/python/{platform}"
-    tags = [f"{prefix}:{version}-{base_image.replace(':', '_')}"]
-    if base_image == default_base_image:
-        tags.append(f"{prefix}:{version}")
-    task = build_docker_image(
-        name=f"docker-python-image-{version}/{base_image.replace(':', '_')}/{platform}",
-        backend="buildx",
-        dockerfile="docker/build-python.Dockerfile",
-        auth=get_docker_auth(),
-        tags=tags,
-        platform=platform,
-        build_args={"PYTHON_VERSION": version, "BASE_IMAGE": base_image},
-        cache_repo=f"{prefix}:cache-{version}",
-        push=True,
-        load=False,
-    )
-    return task, tags[0]
-
-
 def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]:
 
     if os.getenv("GITHUB_REF") == "refs/heads/develop":
@@ -62,7 +42,7 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
     task = build_docker_image(
         name=f"docker-kraken-image/{base_image.replace(':', '_')}/{platform}",
         backend="buildx",
-        dockerfile=project.directory / "docker" / f"kraken-base-image.Dockerfile",
+        dockerfile=project.directory / "Dockerfile",
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
