@@ -18,7 +18,12 @@ RUN : \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
     # Install Python 3.6 - 3.10, and Pip for the system default Python version.
-    && apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends \
+    # Note that deadsnakes does not provide Python 3.6 on Jammy.
+    &&  if [ "${BASE_IMAGE}" == "ubuntu:jammy" ]; then \
+            apt-get install -y python{3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends; \
+        else \
+            apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends; \
+        fi \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 RUN : \

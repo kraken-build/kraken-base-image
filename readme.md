@@ -52,7 +52,7 @@ is built from various Ubuntu starting images.
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
 | proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
-| Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.6, 3.7, 3.8, 3.9, 3.10 <sup>default</sup>, 3.11 |
+| Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.6 <sup>1)</sup>, 3.7, 3.8, 3.9, 3.10 <sup>default</sup>, 3.11 |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | sccache | [Github releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
@@ -60,3 +60,7 @@ is built from various Ubuntu starting images.
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
 | [yq](https://mikefarah.gitbook.io/yq/) | [Github releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
+
+__Footnotes__
+
+<sup>1)</sup> Python 3.6 is not available on the `ubuntu:jammy` image.
