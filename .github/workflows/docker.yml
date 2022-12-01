@@ -48,7 +48,7 @@ jobs:
       - run: |
           krakenw r -s -v
           krakenw q d --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.platform }} -v
-          krakenw r --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.platform }} -v
+          krakenw r --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.platform }} -v --state-name ${{ matrix.base_image }}-{{ matrix.platform }}
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
