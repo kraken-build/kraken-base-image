@@ -10,7 +10,14 @@ image for continuous integration pipelines. The image is currently base on `ubun
 
 ## Versioning
 
-Aside from the `develop` tag, exact image versions can be pinned based on `git tag --describe`.
+Aside from the `develop` tag, exact image versions can be pinned based on `git tag --describe`. The Kraken base image
+is built from various Ubuntu starting images.
+
+| Starting Image | Kraken base image tags |
+| -------------- | ---------------------- |
+| `ubuntu:bionic` | `develop-ubuntu_bionic`, `x.y.z-ubuntu_bionic` |
+| `ubuntu:focal` | `develop`, `x.y.z`, `develop-ubuntu_focal`, `x.y.z-ubuntu_focal` |
+| `ubuntu:jammy` | `develop-ubuntu_jammy`, `x.y.z-ubuntu_jammy` |
 
 ## Image contents
 
