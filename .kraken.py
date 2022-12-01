@@ -12,7 +12,7 @@ project = Project.current()
 version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 image_prefix = "ghcr.io/kraken-build/kraken-base-image"
 default_base_image = "ubuntu:focal"
-base_images = {default_base_image, "ubuntu:bionic", "ubuntu:focal"}
+base_images = {default_base_image, "ubuntu:bionic", "ubuntu:jammy"}
 platforms = ["linux/arm64", "linux/amd64"]
 
 
