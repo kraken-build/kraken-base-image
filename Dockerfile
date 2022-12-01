@@ -28,14 +28,14 @@ RUN : \
 
 RUN : \
     # Install Pip for all other Python versions.
-    # NOTE(NiklasRosenstein): get-pip.py is not supported for Python 3.6.
     && set -x \
+    # NOTE(NiklasRosenstein): get-pip.py is not supported for Python 3.6. And we don't have Python3.6 on Jammy.
+    && if [ "${BASE_IMAGE}" != "ubuntu:bionic" ] && [ "${BASE_IMAGE}" != "ubuntu:jammy" ]; then python3.6 -m ensurepip && python3.6 -m pip install --upgrade pip; fi \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 - \
-    && if [ "${BASE_IMAGE}" != "ubuntu:bionic" ]; then python3.6 -m ensurepip && python3.6 -m pip install --upgrade pip; fi \
     # Install Python 3.10 as the default version.
     && ln -svf $(which python3.10) /usr/bin/python \
     && ln -svf $(which python3.10) /usr/bin/python3
