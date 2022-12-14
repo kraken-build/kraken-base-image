@@ -3,9 +3,8 @@ from kraken.common import buildscript
 
 buildscript(
     requirements=[
-        "kraken-core>=0.10.13",
-        "kraken-std>=0.3.3",
-        "kraken-core>=0.9.5",
+        "kraken-core>=0.11.0",
+        "kraken-std>=0.5.0",
         "jinja2",
     ],
 )
