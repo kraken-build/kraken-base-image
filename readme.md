@@ -38,7 +38,7 @@ is built from various Ubuntu starting images.
 | grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.11 |
 | jq | apt-get | latest |
 | Helm | get-helm-3 | latest |
-| kraken-wrapper | Pipx (Python 3.10) | 0.1.22 |
+| kraken-wrapper | Pipx (Python 3.10) | 0.2.0 |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | lcov | apt-get | latest
 | libffi | apt-get | latest |
@@ -48,7 +48,7 @@ is built from various Ubuntu starting images.
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
 | Pipx | Pip (Python 3.10) | latest |
 | pkg-config | apt-get | latest |
-| Poetry | Pipx (Python 3.10) | 1.2.2 |
+| Poetry | Pipx (Python 3.10) | 1.3.1 |
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
 | proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
