@@ -1,6 +1,15 @@
-# ::requirements kraken-core>=0.10.13 kraken-std>=0.3.3 kraken-core>=0.9.5 jinja2
-
 from __future__ import annotations
+from kraken.common import buildscript
+
+buildscript(
+    requirements=[
+        "kraken-core>=0.10.13",
+        "kraken-std>=0.3.3",
+        "kraken-core>=0.9.5",
+        "jinja2",
+    ],
+)
+
 import os
 import time
 from functools import lru_cache

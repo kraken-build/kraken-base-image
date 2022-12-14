@@ -3,7 +3,6 @@ name: Docker image
 on:
   push: { branches: [ develop ], tags: [ "*" ], paths: [ ".kraken.*", "Dockerfile", ".github/workflows/*.yml", "src/*", "formulae/*" ] }
   pull_request: { branches: [ develop ] }
-  repository_dispatch: { types: [ "kraken-wrapper release" ] }
 
 jobs:
   build:
