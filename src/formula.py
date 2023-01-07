@@ -128,7 +128,7 @@ class BinaryInstallFormula(Formula):
     @contextlib.contextmanager
     def _read_archive(self, filename: str, fp: BinaryIO) -> Iterator[Archive]:
         if self.archive_type is None:
-            archive_type = archive_type(filename)
+            archive_type = file_archive_type(filename)
         else:
             archive_type = self.archive_type
         if archive_type == "zip":
@@ -166,7 +166,7 @@ class UnixPackageFormula(Formula):
 
     @contextlib.contextmanager
     def _read_archive(self, filename: str, fp: BinaryIO) -> Iterator[Archive]:
-        archive_type = archive_type(filename)
+        archive_type = file_archive_type(filename)
         if archive_type == "zip":
             yield ZipArchive(io.BytesIO(fp.read()))
         elif archive_type == "tar":
@@ -187,7 +187,7 @@ class UnixPackageFormula(Formula):
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
 
-def archive_type(filename: str) -> str:
+def file_archive_type(filename: str) -> str:
     suffix1 = Path(filename).suffix
     suffix2 = Path(Path(filename).stem).suffix
     if suffix1 == ".zip":
