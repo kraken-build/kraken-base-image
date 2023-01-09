@@ -125,19 +125,6 @@ class BinaryInstallFormula(Formula):
     archive_members: Sequence[str] | Mapping[str, str]
     install_to: str
 
-    @contextlib.contextmanager
-    def _read_archive(self, filename: str, fp: BinaryIO) -> Iterator[Archive]:
-        if self.archive_type is None:
-            archive_type = file_archive_type(filename)
-        else:
-            archive_type = self.archive_type
-        if archive_type == "zip":
-            yield ZipArchive(io.BytesIO(fp.read()))
-        elif archive_type == "tar":
-            yield TarArchive(io.BytesIO(fp.read()))
-        else:
-            raise ValueError(f"invalid archive type: {archive_type!r}")
-
     # Formula
 
     def install(self) -> None:
@@ -150,7 +137,7 @@ class BinaryInstallFormula(Formula):
             archive_members = {self._eval(k): self._eval(v) for k, v in self.archive_members.items()}
 
         self.log('fetching archive from url "%s"', archive_url)
-        with urllib.request.urlopen(archive_url) as response, self._read_archive(archive_url, response) as archive:
+        with urllib.request.urlopen(archive_url) as response, _read_file_archive(archive_url, response) as archive:
             for archive_member, output_filename in archive_members.items():
                 output_path = Path(install_to) / output_filename
                 output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -162,24 +149,17 @@ class BinaryInstallFormula(Formula):
 
 # something split into e.g. bin/, lib/, include/
 class UnixPackageFormula(Formula):
+    """a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc."""
     archive_url: str
-
-    @contextlib.contextmanager
-    def _read_archive(self, filename: str, fp: BinaryIO) -> Iterator[Archive]:
-        archive_type = file_archive_type(filename)
-        if archive_type == "zip":
-            yield ZipArchive(io.BytesIO(fp.read()))
-        elif archive_type == "tar":
-            yield TarArchive(io.BytesIO(fp.read()))
-        else:
-            raise ValueError(f"invalid archive type: {archive_type!r}")
+    install_to: str | None = None
 
     def install(self) -> None:
         download_url = self._eval_member("archive_url")
+        install_to = Path(self._eval_member("install_to") or '/usr/local')
         self.log('fetching file at "%s"', download_url)
-        with urllib.request.urlopen(download_url) as response, self._read_archive(download_url, response) as archive:
+        with urllib.request.urlopen(download_url) as response, _read_file_archive(download_url, response) as archive:
             for item in archive.members():
-                output_path = Path('/usr/local') / item
+                output_path = Path(install_to) / item
                 output_path.parent.mkdir(parents=True, exist_ok=True)
                 src, info = archive.get_member(item)
                 self.log('extracting "%s" to "%s"', item, output_path)
@@ -187,7 +167,17 @@ class UnixPackageFormula(Formula):
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
 
-def file_archive_type(filename: str) -> str:
+@contextlib.contextmanager
+def _read_file_archive(filename: str, fp: BinaryIO) -> Iterator[Archive]:
+    archive_type = _file_archive_type(filename)
+    if archive_type == "zip":
+        yield ZipArchive(io.BytesIO(fp.read()))
+    elif archive_type == "tar":
+        yield TarArchive(io.BytesIO(fp.read()))
+    else:
+        raise ValueError(f"invalid archive type: {archive_type!r}")
+
+def _file_archive_type(filename: str) -> str:
     suffix1 = Path(filename).suffix
     suffix2 = Path(Path(filename).stem).suffix
     if suffix1 == ".zip":
