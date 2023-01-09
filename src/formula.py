@@ -149,7 +149,7 @@ class BinaryInstallFormula(Formula):
 
 # something split into e.g. bin/, lib/, include/
 class UnixPackageFormula(Formula):
-    """a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc."""
+    """ Installs a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc. """
     archive_url: str
     install_to: str | None = None
 
