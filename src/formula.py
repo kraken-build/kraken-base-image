@@ -147,7 +147,6 @@ class BinaryInstallFormula(Formula):
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
 
-# something split into e.g. bin/, lib/, include/
 class UnixPackageFormula(Formula):
     """ Installs a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc. """
     archive_url: str
