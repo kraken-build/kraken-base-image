@@ -118,33 +118,12 @@ class Formula:
     def finalize(self) -> None:
         pass
 
-
 class BinaryInstallFormula(Formula):
 
     archive_type: str | None = None
     archive_url: str
     archive_members: Sequence[str] | Mapping[str, str]
     install_to: str
-
-    @contextlib.contextmanager
-    def _read_archive(self, filename: str, fp: BinaryIO) -> Iterator[Archive]:
-        if self.archive_type is None:
-            suffix1 = Path(filename).suffix
-            suffix2 = Path(Path(filename).stem).suffix
-            if suffix1 == ".zip":
-                archive_type = "zip"
-            elif suffix2 == ".tar" or suffix1 in (".taz", ".tgz", ".tb2", ".tbz", ".tz2", ".tlz", ".txz"):
-                archive_type = "tar"
-            else:
-                raise RuntimeError(f"could not determine archive type from {filename!r}")
-        else:
-            archive_type = self.archive_type
-        if archive_type == "zip":
-            yield ZipArchive(io.BytesIO(fp.read()))
-        elif archive_type == "tar":
-            yield TarArchive(io.BytesIO(fp.read()))
-        else:
-            raise ValueError(f"invalid archive type: {archive_type!r}")
 
     # Formula
 
@@ -158,7 +137,7 @@ class BinaryInstallFormula(Formula):
             archive_members = {self._eval(k): self._eval(v) for k, v in self.archive_members.items()}
 
         self.log('fetching archive from url "%s"', archive_url)
-        with urllib.request.urlopen(archive_url) as response, self._read_archive(archive_url, response) as archive:
+        with urllib.request.urlopen(archive_url) as response, _read_file_archive(archive_url, response) as archive:
             for archive_member, output_filename in archive_members.items():
                 output_path = Path(install_to) / output_filename
                 output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -168,6 +147,44 @@ class BinaryInstallFormula(Formula):
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
 
+class UnixPackageFormula(Formula):
+    """ Installs a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc. """
+    archive_url: str
+    install_to: str = '/usr/local'
+
+    def install(self) -> None:
+        install_to = self._eval_member('install_to')
+        download_url = self._eval_member("archive_url")
+        self.log('fetching file at "%s"', download_url)
+        with urllib.request.urlopen(download_url) as response, _read_file_archive(download_url, response) as archive:
+            for item in archive.members():
+                output_path = Path(install_to) / item
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                src, info = archive.get_member(item)
+                self.log('extracting "%s" to "%s"', item, output_path)
+                with src, output_path.open("wb") as dst:
+                    shutil.copyfileobj(src, dst)
+                output_path.chmod(info.mode)
+
+@contextlib.contextmanager
+def _read_file_archive(filename: str, fp: BinaryIO) -> Iterator[Archive]:
+    archive_type = _file_archive_type(filename)
+    if archive_type == "zip":
+        yield ZipArchive(io.BytesIO(fp.read()))
+    elif archive_type == "tar":
+        yield TarArchive(io.BytesIO(fp.read()))
+    else:
+        raise ValueError(f"invalid archive type: {archive_type!r}")
+
+def _file_archive_type(filename: str) -> str:
+    suffix1 = Path(filename).suffix
+    suffix2 = Path(Path(filename).stem).suffix
+    if suffix1 == ".zip":
+        return "zip"
+    elif suffix2 == ".tar" or suffix1 in (".taz", ".tgz", ".tb2", ".tbz", ".tz2", ".tlz", ".txz"):
+        return "tar"
+    else:
+        raise RuntimeError(f"could not determine archive type from {filename!r}")
 
 class DownloadFileFormula(Formula):
 
@@ -207,6 +224,9 @@ class Archive:
     def get_member(self, name: str) -> tuple[BinaryIO, ArchiveMemberInfo]:
         pass
 
+    def members(self) -> list[str]:
+        pass
+
 
 class TarArchive(Archive):
     def __init__(self, fp: BinaryIO | Path) -> None:
@@ -225,6 +245,9 @@ class TarArchive(Archive):
             raise ValueError(f"no member named {name!r}")
         return fp, ArchiveMemberInfo(mode=info.mode)
 
+    def members(self) -> list[str]:
+        return [entry.name for entry in self._tf.getmembers() if entry.isfile()]
+
 
 class ZipArchive(Archive):
     def __init__(self, fp: BinaryIO | Path) -> None:
@@ -236,3 +259,6 @@ class ZipArchive(Archive):
         info = self._zip.getinfo(name)
         attr = info.external_attr >> 16
         return self._zip.open(info), ArchiveMemberInfo(mode=attr)
+
+    def members(self) -> list[str]:
+        return [entry.filename for entry in self._zip.infolist() if not entry.filename.endswith('/')] # dirs end with /
