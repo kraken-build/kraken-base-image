@@ -154,8 +154,12 @@ class UnixPackageFormula(Formula):
     install_to: str | None = None
 
     def install(self) -> None:
+        if self.install_to is not None:
+            install_to = self._eval_member('install_to')
+        else:
+            install_to = '/usr/local'
+
         download_url = self._eval_member("archive_url")
-        install_to = Path(self._eval_member("install_to") or '/usr/local')
         self.log('fetching file at "%s"', download_url)
         with urllib.request.urlopen(download_url) as response, _read_file_archive(download_url, response) as archive:
             for item in archive.members():
