@@ -151,14 +151,10 @@ class BinaryInstallFormula(Formula):
 class UnixPackageFormula(Formula):
     """ Installs a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc. """
     archive_url: str
-    install_to: str | None = None
+    install_to: str = '/usr/local'
 
     def install(self) -> None:
-        if self.install_to is not None:
-            install_to = self._eval_member('install_to')
-        else:
-            install_to = '/usr/local'
-
+        install_to = self._eval_member('install_to')
         download_url = self._eval_member("archive_url")
         self.log('fetching file at "%s"', download_url)
         with urllib.request.urlopen(download_url) as response, _read_file_archive(download_url, response) as archive:
