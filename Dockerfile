@@ -83,6 +83,13 @@ RUN : \
     && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
 #
+# Enable sparse registry support without having to move to nightly
+# Enable registry-auth, if required, without having to move to nightly
+#
+ENV CARGO_UNSTABLE_SPARSE_REGISTRY true
+ENV CARGO_UNSTABLE_REGISTRY_AUTH true
+
+#
 # docker-buildx
 #
 COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
