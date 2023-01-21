@@ -64,10 +64,11 @@ RUN : \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
-    # Rust
+    # Rust (nightly)
     #
     && apt-get install -y xxd cmake \
     && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
+    && rustup default nightly \
     #
     # helm
     #
@@ -83,8 +84,8 @@ RUN : \
     && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
 #
-# Enable sparse registry support without having to move to nightly
-# Enable registry-auth, if required, without having to move to nightly
+# Enable sparse registry support
+# Enable registry-auth support
 #
 ENV CARGO_UNSTABLE_SPARSE_REGISTRY true
 ENV CARGO_UNSTABLE_REGISTRY_AUTH true
