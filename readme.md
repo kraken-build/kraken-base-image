@@ -48,7 +48,7 @@ is built from various Ubuntu starting images.
 | NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
 | Pipx | Pip (Python 3.10) | latest |
 | pkg-config | apt-get | latest |
-| Poetry | Pipx (Python 3.10) | 1.3.1 |
+| Poetry | Pipx (Python 3.10) | 1.3.2 |
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
 | proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
@@ -56,7 +56,7 @@ is built from various Ubuntu starting images.
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | sccache | [Github releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.6.30 |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.6.33 |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
 | [yq](https://mikefarah.gitbook.io/yq/) | [Github releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
