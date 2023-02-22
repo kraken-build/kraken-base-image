@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [ "arm64", "amd64" ]
-        base_image: [ "ubuntu_jammy", "ubuntu_focal", "ubuntu_bionic" ]
+        base_image: [ "ubuntu_22.04", "ubuntu_20.04", "ubuntu_18.04" ]
     steps:
 
       # NOTE (@NiklasRosenstein): Need Git 2.18 available on the runner for the checkout action to use it; otherwise

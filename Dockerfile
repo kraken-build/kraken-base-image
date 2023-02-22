@@ -18,8 +18,8 @@ RUN : \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
     # Install Python 3.6 - 3.10, and Pip for the system default Python version.
-    # Note that deadsnakes does not provide Python 3.6 on Jammy.
-    &&  if [ "${BASE_IMAGE}" == "ubuntu:jammy" ]; then \
+    # Note that deadsnakes does not provide Python 3.6 on 22.04.
+    &&  if [ "${BASE_IMAGE}" == "ubuntu:22.04" ]; then \
             apt-get install -y python{3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends; \
         else \
             apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends; \
@@ -29,8 +29,8 @@ RUN : \
 RUN : \
     # Install Pip for all other Python versions.
     && set -x \
-    # NOTE(NiklasRosenstein): get-pip.py is not supported for Python 3.6. And we don't have Python3.6 on Jammy.
-    && if [ "${BASE_IMAGE}" != "ubuntu:bionic" ] && [ "${BASE_IMAGE}" != "ubuntu:jammy" ]; then python3.6 -m ensurepip && python3.6 -m pip install --upgrade pip; fi \
+    # NOTE(NiklasRosenstein): get-pip.py is not supported for Python 3.6. And we don't have Python3.6 on 22.04.
+    && if [ "${BASE_IMAGE}" != "ubuntu:18.04" ] && [ "${BASE_IMAGE}" != "ubuntu:22.04" ]; then python3.6 -m ensurepip && python3.6 -m pip install --upgrade pip; fi \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 - \
@@ -60,7 +60,11 @@ RUN : \
     #
     # more APT packages
     #
-    && ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - ) \
+    &&  if [ "${BASE_IMAGE}" == "ubuntu:18.04" ]; then \
+            ( curl -fsSL https://deb.nodesource.com/setup_16.x | bash - ); \
+        else \
+            ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - ); \
+        fi \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
