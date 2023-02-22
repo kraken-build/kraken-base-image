@@ -19,8 +19,13 @@ from kraken.std.git.version import git_describe, GitVersion
 project = Project.current()
 version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 image_prefix = "ghcr.io/kraken-build/kraken-base-image"
-default_base_image = "ubuntu:focal"
-base_images = {default_base_image, "ubuntu:bionic", "ubuntu:jammy"}
+
+base_image = "ubuntu"
+image_versions = ["18.04", "20.04", "22.04"]
+latest_version = image_versions[-1]
+
+default_base_image = f"{base_image}:{latest_version}"
+base_images = set([f"{base_image}:{version}" for version in image_versions])
 platforms = ["linux/arm64", "linux/amd64"]
 
 

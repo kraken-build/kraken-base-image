@@ -4,7 +4,7 @@
 
 The [`kraken-base-image`][pkg] provides a Docker image for AMD64 and ARM64 platforms that comes pre-bundled with
 a lot of different common programming language runtimes and toolchains, intended to be used as a runtime
-image for continuous integration pipelines. The image is currently base on `ubuntu:focal`.
+image for continuous integration pipelines. The image is currently base on `ubuntu:20.04`.
 
     $ docker pull ghcr.io/kraken-build/kraken-base-image:develop
 
@@ -15,9 +15,9 @@ is built from various Ubuntu starting images.
 
 | Starting Image | Kraken base image tags |
 | -------------- | ---------------------- |
-| `ubuntu:bionic` | `develop-ubuntu_bionic`, `x.y.z-ubuntu_bionic` |
-| `ubuntu:focal` | `develop`, `x.y.z`, `develop-ubuntu_focal`, `x.y.z-ubuntu_focal` |
-| `ubuntu:jammy` | `develop-ubuntu_jammy`, `x.y.z-ubuntu_jammy` |
+| `ubuntu:18.04` | `develop-ubuntu_18.04`, `x.y.z-ubuntu_18.04` |
+| `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04` |
+| `ubuntu:22.04` | `develop`, `x.y.z`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04` |
 
 ## Image contents
 
@@ -45,7 +45,7 @@ is built from various Ubuntu starting images.
 | libssl | apt-get | latest |
 | llvm | apt-get | latest |
 | manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
-| NodeJS | apt-get (`deb.nodesource.com/setup_18.x`) | latest (18) |
+| NodeJS | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall)) | 16 on `ubuntu:18.04`, 18 elsewhere |
 | Pipx | Pip (Python 3.10) | latest |
 | pkg-config | apt-get | latest |
 | Poetry | Pipx (Python 3.10) | 1.3.2 |
@@ -63,4 +63,4 @@ is built from various Ubuntu starting images.
 
 __Footnotes__
 
-<sup>1)</sup> Python 3.6 is not available on the `ubuntu:jammy` image.
+<sup>1)</sup> Python 3.6 is not available on the `ubuntu:22.04` image.
