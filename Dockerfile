@@ -106,4 +106,4 @@ RUN : \
 #
 # Rust tools
 #
-RUN cargo install cargo-audit
+RUN cargo install cargo-deny
