@@ -102,3 +102,8 @@ RUN : \
     && pipx install proxy.py==2.4.3 && pipx inject proxy.py certifi \
     && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==6.6.0 \
     && rm -rf ~/.cache/pip
+
+#
+# Rust tools
+#
+RUN cargo install cargo-audit
