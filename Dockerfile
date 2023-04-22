@@ -106,4 +106,6 @@ RUN : \
 #
 # Rust tools
 #
-RUN cargo install cargo-deny
+RUN : \
+    && cargo install cargo-deny \
+    && cargo install sqlx-cli
