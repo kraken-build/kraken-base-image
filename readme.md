@@ -58,6 +58,7 @@ is built from various Ubuntu starting images.
 | Rustup | rustup.rs | latest |
 | sccache | [Github releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.7.5 |
+| sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
 | [yq](https://mikefarah.gitbook.io/yq/) | [Github releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
