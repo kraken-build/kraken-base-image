@@ -109,3 +109,9 @@ RUN : \
 RUN : \
     && cargo install cargo-deny \
     && cargo install sqlx-cli
+
+# 
+# Protobuf tools
+# 
+RUN : \
+    && brew install bufbuild/buf/buf
