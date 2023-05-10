@@ -25,7 +25,7 @@ is built from various Ubuntu starting images.
 | -------- | ------------- | ------- |
 | ansible | Pipx (Python 3.10) | 6.6.0 |
 | ansible-base | Pipx (Python 3.10) | 2.10.17 |
-| buf | [Github releases](https://github.com/bufbuild/buf/releases/tag/v1.17.0) | 1.17.0 |
+| buf | [GitHub releases](https://github.com/bufbuild/buf/releases) | 1.17.0 |
 | build-essential | apt-get | latest |
 | cargo-deny | cargo | latest |
 | clang | apt-get | latest |
@@ -46,7 +46,7 @@ is built from various Ubuntu starting images.
 | libffi | apt-get | latest |
 | libssl | apt-get | latest |
 | llvm | apt-get | latest |
-| manifest-tool | [Releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
+| manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
 | NodeJS | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall)) | 16 on `ubuntu:18.04`, 18 elsewhere |
 | Pipx | Pip (Python 3.10) | latest |
 | pkg-config | apt-get | latest |
@@ -57,12 +57,12 @@ is built from various Ubuntu starting images.
 | Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.6 <sup>1)</sup>, 3.7, 3.8, 3.9, 3.10 <sup>default</sup>, 3.11 |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
-| sccache | [Github releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
+| sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.7.5 |
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
-| [yq](https://mikefarah.gitbook.io/yq/) | [Github releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
+| [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
 
 __Footnotes__
 
