@@ -108,7 +108,8 @@ RUN : \
 #
 RUN : \
     && cargo install cargo-deny \
-    && cargo install sqlx-cli
+    && cargo install sqlx-cli \
+    && cargo install cargo-llvm-cov
 
 # 
 # Protobuf tools
