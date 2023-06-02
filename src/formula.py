@@ -206,14 +206,17 @@ class DownloadFileFormula(Formula):
             assert False, "output_file or output_directory must be set"
 
         self.log('fetching file at "%s"', download_url)
-        with urllib.request.urlopen(download_url) as response:
-            # TODO(NiklasRosenstein): Parse Content-Disposition header?
-            self.log('writing file to "%s"', output_file)
-            os.makedirs(os.path.dirname(output_file), exist_ok=True)
-            Path(output_file).write_bytes(response.read())
-            if self.chmod is not None:
-                os.chmod(output_file, self.chmod)
-
+        try:
+            with urllib.request.urlopen(download_url) as response:
+                # TODO(NiklasRosenstein): Parse Content-Disposition header?
+                self.log('writing file to "%s"', output_file)
+                os.makedirs(os.path.dirname(output_file), exist_ok=True)
+                Path(output_file).write_bytes(response.read())
+                if self.chmod is not None:
+                    os.chmod(output_file, self.chmod)
+        except urllib.error.HTTPError as exc:
+            self.log('an unexpected error occurred fetching "%s":\n%s', download_url, exc.read().decode())
+            raise
 
 @dataclass
 class ArchiveMemberInfo:
