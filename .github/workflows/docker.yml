@@ -94,7 +94,7 @@ jobs:
           mv manifest-tool-linux-amd64 /usr/local/bin/manifest-tool
 
       - run: |
-          krakenw q tree -v --all #--resume :docker-kraken-image-multiarch
+          krakenw q tree -v --all --resume :docker-kraken-image-multiarch
           krakenw r --resume :docker-kraken-image-multiarch -v
         env:
           GITHUB_USER: ${{ github.actor }}
