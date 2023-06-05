@@ -78,6 +78,8 @@ jobs:
           name: kraken-build-state
           path: build/.kraken/buildenv/
 
+      - run: ls -la build/.kraken/buildenv/
+
       - uses: actions/setup-python@v2
         with:
           python-version: "3.10"
