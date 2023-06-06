@@ -72,7 +72,7 @@ RUN : \
     #
     && apt-get install -y xxd cmake \
     && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
-    && rustup component add --toolchain nightly \
+    && rustup component add rustfmt --toolchain nightly \
     #
     # helm
     #
@@ -112,9 +112,9 @@ RUN : \
     && cargo install sqlx-cli \
     && cargo install cargo-llvm-cov
 
-# 
+#
 # Protobuf tools
-# 
+#
 RUN : \
     && BIN="/usr/bin"  \
     && VERSION="1.17.0"  \
