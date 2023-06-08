@@ -1,7 +1,7 @@
 [requirements]
 requirements = [
-    "kraken-core>=0.11.1",
-    "kraken-std>=0.5.0",
+    "kraken-core>=0.23.5",
+    "kraken-std>=0.23.5",
     "jinja2",
 ]
 pythonpath = [
@@ -29,9 +29,9 @@ iniconfig = "2.0.0"
 jaraco-classes = "3.2.3"
 jinja2 = "3.1.2"
 keyring = "23.13.1"
-kraken-common = "0.20.4"
-kraken-core = "0.20.4"
-kraken-std = "0.20.4"
+kraken-common = "0.23.5"
+kraken-core = "0.23.5"
+kraken-std = "0.23.5"
 markdown-it-py = "2.2.0"
 markupsafe = "2.1.2"
 mdurl = "0.1.2"
