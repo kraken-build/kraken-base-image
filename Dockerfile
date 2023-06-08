@@ -72,7 +72,6 @@ RUN : \
     #
     && apt-get install -y xxd cmake \
     && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
-    && rustup component add rustfmt --toolchain nightly \
     #
     # helm
     #
@@ -110,7 +109,9 @@ RUN : \
 RUN : \
     && cargo install cargo-deny \
     && cargo install sqlx-cli \
-    && cargo install cargo-llvm-cov
+    && cargo install cargo-llvm-cov \
+    && rustup toolchain install nightly \
+    && rustup component add rustfmt --toolchain nightly
 
 #
 # Protobuf tools
