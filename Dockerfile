@@ -109,11 +109,13 @@ RUN : \
 RUN : \
     && cargo install cargo-deny \
     && cargo install sqlx-cli \
-    && cargo install cargo-llvm-cov
+    && cargo install cargo-llvm-cov \
+    && rustup toolchain install nightly \
+    && rustup component add rustfmt --toolchain nightly
 
-# 
+#
 # Protobuf tools
-# 
+#
 RUN : \
     && BIN="/usr/bin"  \
     && VERSION="1.17.0"  \
