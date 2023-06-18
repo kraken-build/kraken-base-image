@@ -42,9 +42,13 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
 def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]:
 
     if os.getenv("GITHUB_REF") == "refs/heads/develop":
-        versions = (version, "develop")
+        versions = [version, "develop"]
     else:
-        versions = (version,)
+        versions = [version]
+
+    m = re.match(r"^(\+d\.\d)\.\d+(.*)$", version)
+    assert m is not None, version
+    versions.append(f"{m.group(1)}{m.group(2)}")
 
     prefix = f"{image_prefix}/{platform}"
     tag_prefixes = [f"{prefix}:{tag}" for tag in versions]
