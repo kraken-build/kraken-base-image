@@ -13,11 +13,11 @@ image for continuous integration pipelines. The image is currently base on `ubun
 Aside from the `develop` tag, exact image versions can be pinned based on `git tag --describe`. The Kraken base image
 is built from various Ubuntu starting images.
 
-| Starting Image | Kraken base image tags |
-| -------------- | ---------------------- |
-| `ubuntu:18.04` | `develop-ubuntu_18.04`, `x.y.z-ubuntu_18.04` |
-| `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04` |
-| `ubuntu:22.04` | `develop`, `x.y.z`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04` |
+| Starting Image | Kraken base image tags | Notes | 
+| -------------- | ---------------------- | ----- |
+| `ubuntu:18.04` | `develop-ubuntu_18.04`, `x.y.z-ubuntu_18.04` | EOL -- Do not use anymore |
+| `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04` | |
+| `ubuntu:22.04` | `develop`, `x.y.z`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04` | |
 
 ## Image contents
 
