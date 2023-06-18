@@ -10,6 +10,7 @@ buildscript(
 )
 
 import os
+import re
 import time
 from functools import lru_cache
 from kraken.core import Project, Task
@@ -46,7 +47,7 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
     else:
         versions = [version]
 
-    m = re.match(r"^(\+d\.\d)\.\d+(.*)$", version)
+    m = re.match(r"^(\d+\.\d+)\.\d+(.*)$", version)
     assert m is not None, version
     versions.append(f"{m.group(1)}{m.group(2)}")
 
