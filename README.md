@@ -59,7 +59,7 @@ is built from various Ubuntu starting images.
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
 | rustfmt | rustup | nightly (additionally) |
-| sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
+| sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.7.5 |
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.3.2 |
