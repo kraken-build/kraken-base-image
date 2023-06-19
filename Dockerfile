@@ -92,18 +92,6 @@ RUN : \
 COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 
 #
-# Python tools
-#
-RUN : \
-    && python -m pip install pipx -v \
-    && pipx install poetry==1.3.2 \
-    && pipx install slap-cli==1.7.5 \
-    && pipx install kraken-wrapper==0.2.0 \
-    && pipx install proxy.py==2.4.3 && pipx inject proxy.py certifi \
-    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==6.6.0 \
-    && rm -rf ~/.cache/pip
-
-#
 # Rust tools
 #
 RUN : \
@@ -123,3 +111,16 @@ RUN : \
     "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
     -o "${BIN}/buf" && \
     chmod +x "${BIN}/buf"
+
+#
+# Python tools
+#
+RUN : \
+    && python -m pip install pipx -v \
+    && pipx install poetry==1.5.1 \
+    && pipx install pdm==2.7.4 \
+    && pipx install slap-cli==1.7.5 \
+    && pipx install kraken-wrapper==0.2.0 \
+    && pipx install proxy.py==2.4.3 && pipx inject proxy.py certifi \
+    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==6.6.0 \
+    && rm -rf ~/.cache/pip
