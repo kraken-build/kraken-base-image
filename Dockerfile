@@ -96,8 +96,8 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 RUN : \
     && python -m pip install pipx -v \
-    && pipx install poetry==1.3.2 \
-    && pipx install pdm==2.7.0 \
+    && pipx install poetry==1.5.1 \
+    && pipx install pdm==2.7.4 \
     && pipx install slap-cli==1.7.5 \
     && pipx install kraken-wrapper==0.2.0 \
     && pipx install proxy.py==2.4.3 && pipx inject proxy.py certifi \

@@ -49,9 +49,10 @@ is built from various Ubuntu starting images.
 | llvm | apt-get | latest |
 | manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
 | NodeJS | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall)) | 16 on `ubuntu:18.04`, 18 elsewhere |
+| PDM | Pipx (Python 3.10) | 2.7.4 |
 | Pipx | Pip (Python 3.10) | latest |
 | pkg-config | apt-get | latest |
-| Poetry | Pipx (Python 3.10) | 1.3.2 |
+| Poetry | Pipx (Python 3.10) | 1.5.1 |
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
 | proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
