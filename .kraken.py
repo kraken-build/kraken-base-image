@@ -3,13 +3,14 @@ from kraken.common import buildscript
 
 buildscript(
     requirements=[
-        "kraken-core>=0.11.1",
-        "kraken-std>=0.5.0",
+        "kraken-core>=0.23.5",
+        "kraken-std>=0.23.5",
         "jinja2",
     ],
 )
 
 import os
+import re
 import time
 from functools import lru_cache
 from kraken.core import Project, Task
@@ -21,7 +22,7 @@ version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 image_prefix = "ghcr.io/kraken-build/kraken-base-image"
 
 base_image = "ubuntu"
-image_versions = ["18.04", "20.04", "22.04"]
+image_versions = ["20.04", "22.04"]
 latest_version = image_versions[-1]
 
 default_base_image = f"{base_image}:{latest_version}"
@@ -42,9 +43,13 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
 def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]:
 
     if os.getenv("GITHUB_REF") == "refs/heads/develop":
-        versions = (version, "develop")
+        versions = [version, "develop"]
     else:
-        versions = (version,)
+        versions = [version]
+
+    m = re.match(r"^(\d+\.\d+)\.\d+(.*)$", version)
+    assert m is not None, version
+    versions.append(f"{m.group(1)}{m.group(2)}")
 
     prefix = f"{image_prefix}/{platform}"
     tag_prefixes = [f"{prefix}:{tag}" for tag in versions]
@@ -54,13 +59,13 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
 
     task = build_docker_image(
         name=f"docker-kraken-image/{base_image.replace(':', '_')}/{platform}",
-        backend="buildx",
+        backend="kaniko",
         dockerfile=project.directory / "Dockerfile",
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
         build_args={"CACHE_BUSTER": str(time.time()), "BASE_IMAGE": base_image},
-        cache_repo=f"{prefix}:cache",
+        cache_repo=f"{prefix}/cache",
         push=True,
         load=False,
     )

@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [ "arm64", "amd64" ]
-        base_image: [ "ubuntu_22.04", "ubuntu_20.04", "ubuntu_18.04" ]
+        base_image: [ "ubuntu_22.04", "ubuntu_20.04" ]
     steps:
 
       # NOTE (@NiklasRosenstein): Need Git 2.18 available on the runner for the checkout action to use it; otherwise
@@ -31,11 +31,11 @@ jobs:
       - uses: actions/setup-python@v2
         if: "${{ matrix.platform == 'amd64' }}"
         with:
-          python-version: "3.9.13"
+          python-version: "3.10.6"
 
       - name: Create Python 3 virtualenv (arm64)
         if: "${{ matrix.platform == 'arm64' }}"
-        run: python3.9 -m venv .venv
+        run: python3.10 -m venv .venv
 
       - name: Activate Python 3 virtualenv (arm64)
         if: "${{ matrix.platform == 'arm64' }}"
@@ -78,6 +78,8 @@ jobs:
           name: kraken-build-state
           path: build/.kraken/buildenv/
 
+      - run: ls -la build/.kraken/buildenv/
+
       - uses: actions/setup-python@v2
         with:
           python-version: "3.10"
@@ -92,7 +94,7 @@ jobs:
           mv manifest-tool-linux-amd64 /usr/local/bin/manifest-tool
 
       - run: |
-          krakenw q ls -a --resume :docker-kraken-image-multiarch -v
+          krakenw q tree -v --all --resume :docker-kraken-image-multiarch
           krakenw r --resume :docker-kraken-image-multiarch -v
         env:
           GITHUB_USER: ${{ github.actor }}

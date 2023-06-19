@@ -13,11 +13,11 @@ image for continuous integration pipelines. The image is currently base on `ubun
 Aside from the `develop` tag, exact image versions can be pinned based on `git tag --describe`. The Kraken base image
 is built from various Ubuntu starting images.
 
-| Starting Image | Kraken base image tags |
-| -------------- | ---------------------- |
-| `ubuntu:18.04` | `develop-ubuntu_18.04`, `x.y.z-ubuntu_18.04` |
-| `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04` |
-| `ubuntu:22.04` | `develop`, `x.y.z`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04` |
+| Starting Image | Kraken base image tags | Notes | 
+| -------------- | ---------------------- | ----- |
+| `ubuntu:18.04` | `develop-ubuntu_18.04`, `x.y.z-ubuntu_18.04` | EOL -- Do not use anymore |
+| `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04`, `x.y-ubuntu_20.04` | |
+| `ubuntu:22.04` | `develop`, `x.y.z`, `x.y`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04`, `x.y-ubuntu_22.04` | |
 
 ## Image contents
 
@@ -58,7 +58,8 @@ is built from various Ubuntu starting images.
 | Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.6 <sup>1)</sup>, 3.7, 3.8, 3.9, 3.10 <sup>default</sup>, 3.11 |
 | Rust | Rustup | latest |
 | Rustup | rustup.rs | latest |
-| sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.3.0 |
+| rustfmt | rustup | nightly (additionally) |
+| sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.7.5 |
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.3.2 |
