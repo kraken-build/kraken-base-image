@@ -23,7 +23,7 @@ is built from various Ubuntu starting images.
 
 | Software | Installed via | Version |
 | -------- | ------------- | ------- |
-| ansible | Pipx (Python 3.10) | 6.6.0 |
+| ansible | Pipx (Python 3.10) | 8.1.0 |
 | ansible-base | Pipx (Python 3.10) | 2.10.17 |
 | buf | [GitHub releases](https://github.com/bufbuild/buf/releases) | 1.17.0 |
 | build-essential | apt-get | latest |
@@ -41,7 +41,7 @@ is built from various Ubuntu starting images.
 | grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.11 |
 | jq | apt-get | latest |
 | Helm | get-helm-3 | latest |
-| kraken-wrapper | Pipx (Python 3.10) | 0.2.0 |
+| kraken-wrapper | Pipx (Python 3.10) | 0.27.1 |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | lcov | apt-get | latest
 | libffi | apt-get | latest |
@@ -61,7 +61,7 @@ is built from various Ubuntu starting images.
 | Rustup | rustup.rs | latest |
 | rustfmt | rustup | nightly (additionally) |
 | sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.7.5 |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.9.7 |
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
