@@ -6,7 +6,7 @@ ARG BASE_IMAGE
 ENV DEBIAN_FRONTEND noninteractive
 RUN : \
     && apt-get update \
-    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq \
+    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq sudo \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Python versions with deadsnakes.
@@ -124,3 +124,9 @@ RUN : \
     && pipx install proxy.py==2.4.3 && pipx inject proxy.py certifi \
     && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==8.1.0 \
     && rm -rf ~/.cache/pip
+
+#
+# Nix
+#
+RUN : \
+    && sh <(curl -L https://nixos.org/nix/install) --daemon
