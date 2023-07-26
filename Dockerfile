@@ -129,4 +129,6 @@ RUN : \
 # Nix
 #
 RUN : \
-    && sh <(curl -L https://nixos.org/nix/install) --daemon
+    && sh <(curl -L https://nixos.org/nix/install) --daemon \
+    && echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf \
+    && echo "max-jobs = auto" >> /etc/nix/nix.conf
