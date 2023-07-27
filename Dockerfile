@@ -105,6 +105,7 @@ RUN : \
 # Protobuf tools
 #
 RUN : \
+    && cargo install buffrs \
     && BIN="/usr/bin"  \
     && VERSION="1.17.0"  \
     && curl -sSL \

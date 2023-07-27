@@ -26,6 +26,7 @@ is built from various Ubuntu starting images.
 | ansible | Pipx (Python 3.10) | 8.1.0 |
 | ansible-base | Pipx (Python 3.10) | 2.10.17 |
 | buf | [GitHub releases](https://github.com/bufbuild/buf/releases) | 1.17.0 |
+| buffrs | cargo | latest |
 | build-essential | apt-get | latest |
 | cargo-deny | cargo | latest |
 | cargo-llvm-cov | cargo | latest |
