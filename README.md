@@ -13,7 +13,7 @@ image for continuous integration pipelines. The image is currently base on `ubun
 Aside from the `develop` tag, exact image versions can be pinned based on `git tag --describe`. The Kraken base image
 is built from various Ubuntu starting images.
 
-| Starting Image | Kraken base image tags | Notes | 
+| Starting Image | Kraken base image tags | Notes |
 | -------------- | ---------------------- | ----- |
 | `ubuntu:18.04` | `develop-ubuntu_18.04`, `x.y.z-ubuntu_18.04` | EOL -- Do not use anymore |
 | `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04`, `x.y-ubuntu_20.04` | |
@@ -26,7 +26,7 @@ is built from various Ubuntu starting images.
 | ansible | Pipx (Python 3.10) | 8.1.0 |
 | ansible-base | Pipx (Python 3.10) | 2.10.17 |
 | buf | [GitHub releases](https://github.com/bufbuild/buf/releases) | 1.17.0 |
-| buffrs | cargo | latest |
+| buffrs | cargo | 0.3.1 |
 | build-essential | apt-get | latest |
 | cargo-deny | cargo | latest |
 | cargo-llvm-cov | cargo | latest |
