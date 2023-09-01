@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+from fnmatch import fnmatch
 import functools
 import io
 import logging
@@ -141,11 +142,22 @@ class BinaryInstallFormula(Formula):
             for archive_member, output_filename in archive_members.items():
                 output_path = Path(install_to) / output_filename
                 output_path.parent.mkdir(parents=True, exist_ok=True)
-                self.log('extracting "%s" to "%s"', archive_member, output_path)
-                src, info = archive.get_member(archive_member)
-                with src, output_path.open("wb") as dst:
-                    shutil.copyfileobj(src, dst)
-                output_path.chmod(info.mode)
+
+                extracts = []
+                if '*' in archive_member:
+                    for item in archive.members():
+                        if fnmatch(item, archive_member):
+                            extracts.append((item, output_path.parent / os.path.basename(item)))
+                else:
+                    extracts = [(archive_member, output_path)]
+
+                for archive_member, output_path in extracts:
+                    self.log('extracting "%s" to "%s"', archive_member, output_path)
+                    src, info = archive.get_member(archive_member)
+                    with src, output_path.open("wb") as dst:
+                        shutil.copyfileobj(src, dst)
+                    output_path.chmod(info.mode)
+
 
 class UnixPackageFormula(Formula):
     """ Installs a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc. """

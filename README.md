@@ -28,6 +28,7 @@ is built from various Ubuntu starting images.
 | buf | [GitHub releases](https://github.com/bufbuild/buf/releases) | 1.17.0 |
 | buffrs | cargo | latest |
 | build-essential | apt-get | latest |
+| BuildKit | GitHub Releases | 0.12.2 |
 | cargo-deny | cargo | latest |
 | cargo-llvm-cov | cargo | latest |
 | clang | apt-get | latest |

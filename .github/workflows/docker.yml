@@ -5,8 +5,27 @@ on:
   pull_request: { branches: [ develop ] }
 
 jobs:
+  test-formulae:
+    runs-on: [ "self-hosted", "os:linux", "arch:${{ matrix.platform }}" ]
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ "arm64", "amd64" ]
+
+    steps:
+      - |
+        status_code=0
+        for formula in $(ls formulae/*.py); do
+          echo " :::: TEST FORMULA $formula"
+          if ! python src/main.py formulae/$formula -o install_to=bin; then
+            status_code=1
+          fi
+        done
+        exit $status_code
+
   build:
     runs-on: [ "self-hosted", "os:linux", "arch:${{ matrix.platform }}" ]
+    needs: [ test-formulae ]
     strategy:
       fail-fast: false
       matrix:
