@@ -13,7 +13,8 @@ jobs:
         platform: [ "arm64", "amd64" ]
 
     steps:
-      - run: |
+      - name: Test Formulae
+        run: |
           status_code=0
           for formula in $(ls formulae/*.py); do
             echo " :::: TEST FORMULA $formula"
