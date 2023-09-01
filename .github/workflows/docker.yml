@@ -17,7 +17,7 @@ jobs:
           status_code=0
           for formula in $(ls formulae/*.py); do
             echo " :::: TEST FORMULA $formula"
-            if ! python src/main.py formulae/$formula -o install_to=bin; then
+            if ! python3 src/main.py formulae/$formula -o install_to=bin; then
               status_code=1
             fi
           done
