@@ -43,7 +43,7 @@ is built from various Ubuntu starting images.
 | grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.11 |
 | jq | apt-get | latest |
 | Helm | get-helm-3 | latest |
-| kraken-wrapper | Pipx (Python 3.10) | 0.27.1 |
+| kraken-wrapper | Pipx (Python 3.10) | 0.31.0 |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | lcov | apt-get | latest
 | libffi | apt-get | latest |
@@ -51,10 +51,10 @@ is built from various Ubuntu starting images.
 | llvm | apt-get | latest |
 | manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
 | NodeJS | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall)) | 16 on `ubuntu:18.04`, 18 elsewhere |
-| PDM | Pipx (Python 3.10) | 2.7.4 |
+| PDM | Pipx (Python 3.10) | 2.8.2 |
 | Pipx | Pip (Python 3.10) | latest |
 | pkg-config | apt-get | latest |
-| Poetry | Pipx (Python 3.10) | 1.5.1 |
+| Poetry | Pipx (Python 3.10) | 1.6.0 |
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
 | proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
@@ -63,7 +63,7 @@ is built from various Ubuntu starting images.
 | Rustup | rustup.rs | latest |
 | rustfmt | rustup | nightly (additionally) |
 | sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.9.7 |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.10.0 |
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
