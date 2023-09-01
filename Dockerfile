@@ -50,6 +50,7 @@ RUN : \
     #
     # install from custom formulae
     #
+    && python /tmp/src/main.py /tmp/formulae/buildkit.py \
     && python /tmp/src/main.py /tmp/formulae/grcov.py \
     && python /tmp/src/main.py /tmp/formulae/kubectl.py \
     && python /tmp/src/main.py /tmp/formulae/manifest-tool.py \

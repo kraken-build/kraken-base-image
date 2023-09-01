@@ -27,7 +27,7 @@ def main() -> None:
     parser.add_argument("-d", "--dry-run", action="store_true")
     args = parser.parse_args()
 
-    logging.basicConfig(level=logging.INFO, format="%(message)s")
+    logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 
     options = {}
     for item in args.override or ():
