@@ -31,6 +31,7 @@ is built from various Ubuntu starting images.
 | BuildKit | GitHub Releases | 0.12.2 |
 | cargo-deny | cargo | latest |
 | cargo-llvm-cov | cargo | latest |
+| cargo-semver-checks | cargo | latest |
 | clang | apt-get | latest |
 | cmake | apt-get | latest |
 | cURL | apt-get | latest |

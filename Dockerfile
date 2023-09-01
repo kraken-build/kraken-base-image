@@ -97,6 +97,7 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 RUN : \
     && cargo install cargo-deny \
+    && cargo install cargo-semver-checks \
     && cargo install sqlx-cli \
     && cargo install cargo-llvm-cov \
     && rustup toolchain install nightly \
