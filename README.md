@@ -64,7 +64,7 @@ is built from various Ubuntu starting images.
 | Rustup | rustup.rs | latest |
 | rustfmt | rustup | nightly (additionally) |
 | sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.10.0 |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.10.2 |
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.3.2 |
 | wget | apt-get | latest |
