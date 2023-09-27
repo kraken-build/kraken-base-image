@@ -1,0 +1,3 @@
+[submodule "kraken-build"]
+	path = kraken-build
+	url = git@github.com:kraken-build/kraken-build.git
