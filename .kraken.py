@@ -59,7 +59,7 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
 
     task = build_docker_image(
         name=f"docker-kraken-image/{base_image.replace(':', '_')}/{platform}",
-        backend="kaniko",
+        backend="buildx",
         dockerfile=project.directory / "Dockerfile",
         auth=get_docker_auth(),
         tags=tags,
