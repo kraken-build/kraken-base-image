@@ -4,6 +4,9 @@ on:
   push: { branches: [ develop ], tags: [ "*" ], paths: [ ".kraken.*", "Dockerfile", ".github/workflows/*.yml", "src/*", "formulae/*" ] }
   pull_request: { branches: [ develop ] }
 
+env:
+  COLUMNS: 160
+
 jobs:
   test-formulae:
     runs-on: [ "self-hosted", "os:linux", "arch:${{ matrix.platform }}" ]
