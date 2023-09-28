@@ -59,7 +59,7 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
         tags=tags,
         platform=platform,
         build_args={"CACHE_BUSTER": str(time.time()), "BASE_IMAGE": base_image},
-        cache_repo=f"{prefix}/cache",
+        cache_repo=f"{prefix}:{version}-cache",
         push=True,
         load=False,
     )
