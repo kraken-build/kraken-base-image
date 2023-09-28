@@ -1,13 +1,7 @@
 from __future__ import annotations
 from kraken.common import buildscript
 
-buildscript(
-    requirements=[
-        "kraken-core>=0.23.5",
-        "kraken-std>=0.23.5",
-        "jinja2",
-    ],
-)
+buildscript(requirements=["kraken-std==0.31.6", "jinja2"])
 
 import os
 import re
@@ -59,13 +53,13 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
 
     task = build_docker_image(
         name=f"docker-kraken-image/{base_image.replace(':', '_')}/{platform}",
-        backend="kaniko",
+        backend="buildx",
         dockerfile=project.directory / "Dockerfile",
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
         build_args={"CACHE_BUSTER": str(time.time()), "BASE_IMAGE": base_image},
-        cache_repo=f"{prefix}/cache",
+        cache_repo=f"{prefix}:{version}-cache",
         push=True,
         load=False,
     )
