@@ -51,6 +51,7 @@ is built from various Ubuntu starting images.
 | libssl | apt-get | latest |
 | llvm | apt-get | latest |
 | manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
+| Nix | `https://nixos.org/nix/install` | latest |
 | NodeJS | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall)) | 16 on `ubuntu:18.04`, 18 elsewhere |
 | PDM | Pipx (Python 3.10) | 2.8.2 |
 | Pipx | Pip (Python 3.10) | latest |
