@@ -100,6 +100,7 @@ RUN : \
     && cargo install cargo-semver-checks \
     && cargo install sqlx-cli \
     && cargo install cargo-llvm-cov \
+    && cargo install cargo-hack \
     && rustup toolchain install nightly \
     && rustup component add rustfmt --toolchain nightly
 
