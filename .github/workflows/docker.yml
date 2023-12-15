@@ -9,7 +9,7 @@ env:
 
 jobs:
   test-formulae:
-    runs-on: [ self-hosted, "type-${{ matrix.platform }}" ]
+    runs-on: [ self-hosted, "type-${{ matrix.instance }}" ]
     strategy:
       fail-fast: false
       matrix:
