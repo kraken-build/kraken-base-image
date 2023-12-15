@@ -74,3 +74,10 @@ is built from various Ubuntu starting images.
 __Footnotes__
 
 <sup>1)</sup> Python 3.6 is not available on the `ubuntu:22.04` image.
+
+## Developemnt
+
+### CI
+
+We use [TestFlows-GitHub-Hetzner-Runners](https://github.com/testflows/TestFlows-GitHub-Hetzner-Runners) on this
+repository.
