@@ -20,8 +20,9 @@ jobs:
     steps:
       - name: Test Formulae
         run: |
+          set -e
           status_code=0
-          for formula in $(ls formulae/*.py); do
+          for formula in formulae/*.py; do
             echo " :::: TEST FORMULA $formula"
             if ! python3 src/main.py $formula -o install_to=bin; then
               status_code=1
