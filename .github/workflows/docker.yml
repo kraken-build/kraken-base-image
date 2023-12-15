@@ -9,11 +9,13 @@ env:
 
 jobs:
   test-formulae:
-    runs-on: [ self-hosted, "type-${{ matrix.instance }}" ]
+    runs-on: [ self-hosted, "type-${{ matrix.instance[0] }}", "image-${{ matrix.instance[1] }}-system-ubuntu-22.04"]
     strategy:
       fail-fast: false
       matrix:
-        instance: [ "cx11", "cax11" ]
+        instance:
+          - ["cx11", "x86"]
+          - ["cax11", "arm"]
 
     steps:
       - name: Test Formulae
