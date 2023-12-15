@@ -1,7 +1,7 @@
 from __future__ import annotations
 from kraken.common import buildscript
 
-buildscript(requirements=["kraken-std==0.31.6", "jinja2"])
+buildscript(requirements=["kraken-build==0.32.4", "jinja2"])
 
 import os
 import re
