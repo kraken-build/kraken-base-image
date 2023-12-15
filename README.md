@@ -45,7 +45,7 @@ is built from various Ubuntu starting images.
 | grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.11 |
 | jq | apt-get | latest |
 | Helm | get-helm-3 | latest |
-| kraken-wrapper | Pipx (Python 3.10) | 0.31.4 |
+| kraken-wrapper | Pipx (Python 3.10) | 0.32.4 |
 | Kubectl | apt-get (`apt.kubernetes.io`) | latest |
 | lcov | apt-get | latest
 | libffi | apt-get | latest |
