@@ -26,7 +26,7 @@ is built from various Ubuntu starting images.
 | ansible | Pipx (Python 3.10) | 8.1.0 |
 | ansible-base | Pipx (Python 3.10) | 2.10.17 |
 | buf | [GitHub releases](https://github.com/bufbuild/buf/releases) | 1.17.0 |
-| buffrs | cargo | 0.6.4 |
+| buffrs | cargo | 0.7.2 |
 | build-essential | apt-get | latest |
 | BuildKit | GitHub Releases | 0.12.2 |
 | cargo-deny | cargo | latest |
@@ -62,7 +62,7 @@ is built from various Ubuntu starting images.
 | proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
 | Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.6 <sup>1)</sup>, 3.7, 3.8, 3.9, 3.10 <sup>default</sup>, 3.11 |
-| Rust | Rustup | latest |
+| Rust / Cargo | Rustup | 1.73.0 / 0.73.0 |
 | Rustup | rustup.rs | latest |
 | rustfmt | rustup | nightly (additionally) |
 | sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
