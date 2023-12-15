@@ -100,8 +100,8 @@ RUN : \
     && cargo install cargo-semver-checks \
     && cargo install sqlx-cli \
     && cargo install cargo-llvm-cov \
-    && rustup toolchain install nightly \
-    && rustup component add rustfmt --toolchain nightly
+    && rustup toolchain install 1.73.0 \
+    && rustup component add rustfmt --toolchain 1.73.0
 
 #
 # Protobuf tools
