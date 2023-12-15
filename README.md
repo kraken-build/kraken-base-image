@@ -30,6 +30,7 @@ is built from various Ubuntu starting images.
 | build-essential | apt-get | latest |
 | BuildKit | GitHub Releases | 0.12.2 |
 | cargo-deny | cargo | latest |
+| cargo-hack | cargo | latest |
 | cargo-llvm-cov | cargo | latest |
 | cargo-semver-checks | cargo | latest |
 | clang | apt-get | latest |
