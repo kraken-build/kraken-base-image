@@ -68,7 +68,7 @@ is built from various Ubuntu starting images.
 | sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.10.3 |
 | sqlx-cli | cargo | latest |
-| Terraform | Hashicorp releases | 1.3.2 |
+| Terraform | Hashicorp releases | 1.6.6 |
 | wget | apt-get | latest |
 | [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
 
