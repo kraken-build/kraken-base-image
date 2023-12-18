@@ -15,7 +15,6 @@ is built from various Ubuntu starting images.
 
 | Starting Image | Kraken base image tags | Notes |
 | -------------- | ---------------------- | ----- |
-| `ubuntu:18.04` | `develop-ubuntu_18.04`, `x.y.z-ubuntu_18.04` | EOL -- Do not use anymore |
 | `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04`, `x.y-ubuntu_20.04` | |
 | `ubuntu:22.04` | `develop`, `x.y.z`, `x.y`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04`, `x.y-ubuntu_22.04` | |
 
@@ -23,12 +22,12 @@ is built from various Ubuntu starting images.
 
 | Software | Installed via | Version |
 | -------- | ------------- | ------- |
-| ansible | Pipx (Python 3.10) | 8.1.0 |
+| ansible | Pipx (Python 3.10) | 9.1.0 |
 | ansible-base | Pipx (Python 3.10) | 2.10.17 |
 | buf | [GitHub releases](https://github.com/bufbuild/buf/releases) | 1.17.0 |
 | buffrs | cargo | 0.7.2 |
 | build-essential | apt-get | latest |
-| BuildKit | GitHub Releases | 0.12.2 |
+| BuildKit | GitHub Releases | 0.12.4 |
 | cargo-deny | cargo | latest |
 | cargo-hack | cargo | latest |
 | cargo-llvm-cov | cargo | latest |
@@ -42,31 +41,31 @@ is built from various Ubuntu starting images.
 | Git | apt-get | latest |
 | Git LFS | apt-get | latest |
 | GraphViz | apt-get | latest |
-| grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.11 |
+| grcov | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py)) | 0.8.19 |
 | jq | apt-get | latest |
 | Helm | get-helm-3 | latest |
 | kraken-wrapper | Pipx (Python 3.10) | 0.32.4 |
-| Kubectl | apt-get (`apt.kubernetes.io`) | latest |
+| Kubectl | apt-get (`apt.kubernetes.io`) | 1.28.4 |
 | lcov | apt-get | latest
 | libffi | apt-get | latest |
 | libssl | apt-get | latest |
 | llvm | apt-get | latest |
-| manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.0.5 |
+| manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.1.5 |
 | Nix | `https://nixos.org/nix/install` | latest |
-| NodeJS | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall)) | 16 on `ubuntu:18.04`, 18 elsewhere |
-| PDM | Pipx (Python 3.10) | 2.8.2 |
-| Pipx | Pip (Python 3.10) | latest |
+| NodeJS | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall)) | 18 |
+| PDM | Pipx (Python 3.10) | 2.11.1 |
+| Pipx | Pip (Python 3.10) | 1.3.3 |
 | pkg-config | apt-get | latest |
-| Poetry | Pipx (Python 3.10) | 1.6.0 |
+| Poetry | Pipx (Python 3.10) | 1.7.1 |
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
 | proxy.py | Pipx (Python 3.10) | 2.4.3 |
 | pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
-| Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.6 <sup>1)</sup>, 3.7, 3.8, 3.9, 3.10 <sup>default</sup>, 3.11 |
+| Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.8, 3.9, 3.10 <sup>default</sup>, 3.11, 3.12 |
 | Rust / Cargo | Rustup | 1.73.0 / 0.73.0 |
 | Rustup | rustup.rs | latest |
 | rustfmt | rustup | nightly (additionally) |
-| sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.5.2 |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.10.3 |
+| sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.7.4 |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.11.1 |
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.6.6 |
 | wget | apt-get | latest |
