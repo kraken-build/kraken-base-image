@@ -83,6 +83,7 @@ RUN --mount=type=secret,id=MINIO_ADMIN_PASSWORD : \
     && ( SCCACHE_BUCKET=sccache \
         SCCACHE_ENDPOINT=http://95.217.239.127:9000 \
         SCCACHE_S3_USE_SSL=false \
+        SCCACHE_REGION=us-east-1 \
         AWS_ACCESS_KEY_ID=admin \
         AWS_SECRET_ACCESS_KEY=$(cat /run/secrets/MINIO_ADMIN_PASSWORD) \
         sccache --start-server \
