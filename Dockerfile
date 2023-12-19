@@ -17,31 +17,21 @@ RUN : \
     && apt-get install -y software-properties-common --no-install-recommends \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
-    # Install Python 3.6 - 3.10, and Pip for the system default Python version.
-    # Note that deadsnakes does not provide Python 3.6 on 22.04.
-    &&  if [ "${BASE_IMAGE}" == "ubuntu:22.04" ]; then \
-            apt-get install -y python{3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends; \
-        else \
-            apt-get install -y python{3.6,3.7,3.8,3.9,3.10,3.11}{,-venv,-dev} --no-install-recommends; \
-        fi \
+    && apt-get install -y python{3.8,3.9,3.10,3.11,3.12}{,-venv,-dev} --no-install-recommends \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 RUN : \
     # Install Pip for all other Python versions.
     && set -x \
-    # NOTE(NiklasRosenstein): get-pip.py is not supported for Python 3.6. And we don't have Python3.6 on 22.04.
-    && if [ "${BASE_IMAGE}" != "ubuntu:18.04" ] && [ "${BASE_IMAGE}" != "ubuntu:22.04" ]; then python3.6 -m ensurepip && python3.6 -m pip install --upgrade pip; fi \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.7 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 - \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 - \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 - \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 - \
     # Install Python 3.10 as the default version.
     && ln -svf $(which python3.10) /usr/bin/python \
     && ln -svf $(which python3.10) /usr/bin/python3
 
-ENV PYENV_ROOT /root/.pyenv
-ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
 
 COPY formulae /tmp/formulae
@@ -61,11 +51,7 @@ RUN : \
     #
     # more APT packages
     #
-    &&  if [ "${BASE_IMAGE}" == "ubuntu:18.04" ]; then \
-            ( curl -fsSL https://deb.nodesource.com/setup_16.x | bash - ); \
-        else \
-            ( curl -fsSL https://deb.nodesource.com/setup_18.x | bash - ); \
-        fi \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
@@ -77,10 +63,6 @@ RUN : \
     # helm
     #
     && ( curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash ) \
-    #
-    # Pyenv
-    #
-    && curl https://pyenv.run | bash \
     #
     # [cleanup]
     #
@@ -95,20 +77,28 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 # Rust tools
 #
-RUN : \
-    && cargo install cargo-deny \
-    && cargo install cargo-semver-checks \
-    && cargo install sqlx-cli \
-    && cargo install cargo-llvm-cov \
-    && cargo install cargo-hack \
+ARG ACTIONS_CACHE_URL
+RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && rustup toolchain install 1.73.0 \
-    && rustup component add rustfmt --toolchain 1.73.0
+    && rustup component add rustfmt --toolchain 1.73.0 \
+    && ( \
+        SCCACHE_GHA_ENABLED=true \
+        ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
+        ACTIONS_RUNTIME_TOKEN=$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN) \
+        sccache --start-server \
+    ) \
+    && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
+    && cargo install cargo-deny --version 0.14.3 \
+    && cargo install cargo-semver-checks --version 0.26.0 \
+    && cargo install sqlx-cli --version 0.7.3 \
+    && cargo install cargo-llvm-cov --version 0.5.39 \
+    && cargo install cargo-hack --version 0.6.15 \
+    && cargo install buffrs --version 0.7.2
 
 #
-# Protobuf tools
+# Buf (for Buffrs)
 #
 RUN : \
-    && cargo install buffrs --version 0.7.2 \
     && BIN="/usr/bin"  \
     && VERSION="1.17.0"  \
     && curl -sSL \
@@ -120,13 +110,12 @@ RUN : \
 # Python tools
 #
 RUN : \
-    && python -m pip install pipx -v \
-    && pipx install poetry==1.6.0 \
-    && pipx install pdm==2.8.2 \
-    && pipx install slap-cli==1.10.3 \
+    && python -m pip install pipx==1.3.3 -v \
+    && pipx install poetry==1.7.1 \
+    && pipx install pdm==2.11.1 \
+    && pipx install slap-cli==1.11.1 \
     && pipx install kraken-wrapper==0.32.4 \
-    && pipx install proxy.py==2.4.3 && pipx inject proxy.py certifi \
-    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==8.1.0 \
+    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==9.1.0 \
     && rm -rf ~/.cache/pip
 
 #
