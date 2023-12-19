@@ -58,8 +58,6 @@ is built from various Ubuntu starting images.
 | pkg-config | apt-get | latest |
 | Poetry | Pipx (Python 3.10) | 1.7.1 |
 | protobuf-compiler | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1 |
-| proxy.py | Pipx (Python 3.10) | 2.4.3 |
-| pyenv | [pyenv-installer](https://github.com/pyenv/pyenv-installer) | latest |
 | Python | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) | 3.8, 3.9, 3.10 <sup>default</sup>, 3.11, 3.12 |
 | Rust / Cargo | Rustup | 1.73.0 / 0.73.0 |
 | Rustup | rustup.rs | latest |
@@ -69,7 +67,7 @@ is built from various Ubuntu starting images.
 | sqlx-cli | cargo | latest |
 | Terraform | Hashicorp releases | 1.6.6 |
 | wget | apt-get | latest |
-| [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases) | 4.30.1 |
+| [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases) | 4.40.5 |
 
 __Footnotes__
 
