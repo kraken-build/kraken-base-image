@@ -58,8 +58,8 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
-        build_args={"CACHE_BUSTER": str(time.time()), "BASE_IMAGE": base_image},s
-        secrets={"MINIO_ADMIN_PASSWORD": os.environ["MINIO_ADMIN_PASSWORD"]},
+        build_args={"CACHE_BUSTER": str(time.time()), "BASE_IMAGE": base_image, "ACTIONS_CACHE_URL": os.environ["ACTIONS_CACHE_URL"]},
+        secrets={"ACTIONS_RUNTIME_TOKEN": os.environ["ACTIONS_RUNTIME_TOKEN"]},
         cache_repo=f"{prefix}:{base_image.replace(':', '_')}-cache",
         push=True,
         load=False,

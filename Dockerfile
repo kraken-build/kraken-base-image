@@ -77,18 +77,17 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 # Rust tools
 #
-RUN --mount=type=secret,id=MINIO_ADMIN_PASSWORD : \
+ARG ACTIONS_CACHE_URL
+RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && rustup toolchain install 1.73.0 \
     && rustup component add rustfmt --toolchain 1.73.0 \
-    && ( SCCACHE_BUCKET=sccache \
-        SCCACHE_ENDPOINT=http://95.217.239.127:9000 \
-        SCCACHE_S3_USE_SSL=false \
-        SCCACHE_REGION=us-east-1 \
-        AWS_ACCESS_KEY_ID=admin \
-        AWS_SECRET_ACCESS_KEY=$(cat /run/secrets/MINIO_ADMIN_PASSWORD) \
+    && ( \
+        SCCACHE_GHA_ENABLED=true \
+        ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
+        ACTIONS_RUNTIME_TOKEN=$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN) \
         sccache --start-server \
     ) \
-    && export RUSTC_WRAPPER=sccache \
+    && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
     && cargo install cargo-deny --version 0.14.3 \
     && cargo install cargo-semver-checks --version 0.26.0 \
     && cargo install sqlx-cli --version 0.7.3 \
