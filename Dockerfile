@@ -102,6 +102,7 @@ RUN : \
     && cargo install cargo-llvm-cov \
     && cargo install cargo-hack \
     && rustup toolchain install 1.73.0 \
+    && rustup default 1.73.0 \
     && rustup component add rustfmt --toolchain 1.73.0
 
 #
