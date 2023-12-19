@@ -77,20 +77,28 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 # Rust tools
 #
-RUN : \
+RUN --mount=type=secret,id=MINIO_ADMIN_PASSWORD : \
     && rustup toolchain install 1.73.0 \
     && rustup component add rustfmt --toolchain 1.73.0 \
+    && ( SCCACHE_BUCKET=sccache \
+        SCCACHE_ENDPOINT=http://95.217.239.127:9000 \
+        SCCACHE_S3_USE_SSL=false \
+        AWS_ACCESS_KEY_ID=admin \
+        AWS_SECRET_ACCESS_KEY=$(cat /run/secrets/MINIO_ADMIN_PASSWORD) \
+        sccache --start-server \
+    ) \
+    && export RUSTC_WRAPPER=sccache \
     && cargo install cargo-deny --version 0.14.3 \
     && cargo install cargo-semver-checks --version 0.26.0 \
     && cargo install sqlx-cli --version 0.7.3 \
     && cargo install cargo-llvm-cov --version 0.5.39 \
-    && cargo install cargo-hack --version 0.6.15
+    && cargo install cargo-hack --version 0.6.15 \
+    && cargo install buffrs --version 0.7.2
 
 #
-# Buffrs
+# Buf (for Buffrs)
 #
 RUN : \
-    && cargo install buffrs --version 0.7.2 \
     && BIN="/usr/bin"  \
     && VERSION="1.17.0"  \
     && curl -sSL \
