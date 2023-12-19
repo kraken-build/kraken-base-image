@@ -28,10 +28,10 @@ is built from various Ubuntu starting images.
 | buffrs | cargo | 0.7.2 |
 | build-essential | apt-get | latest |
 | BuildKit | GitHub Releases | 0.12.4 |
-| cargo-deny | cargo | latest |
-| cargo-hack | cargo | latest |
-| cargo-llvm-cov | cargo | latest |
-| cargo-semver-checks | cargo | latest |
+| cargo-deny | cargo | 0.14.3 |
+| cargo-hack | cargo | 0.6.15 |
+| cargo-llvm-cov | cargo | 0.5.39 |
+| cargo-semver-checks | cargo | 0.26.0 |
 | clang | apt-get | latest |
 | cmake | apt-get | latest |
 | cURL | apt-get | latest |
@@ -64,7 +64,7 @@ is built from various Ubuntu starting images.
 | rustfmt | rustup | nightly (additionally) |
 | sccache | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.7.4 |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10) | 1.11.1 |
-| sqlx-cli | cargo | latest |
+| sqlx-cli | cargo | 0.7.3 |
 | Terraform | Hashicorp releases | 1.6.6 |
 | wget | apt-get | latest |
 | [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases) | 4.40.5 |

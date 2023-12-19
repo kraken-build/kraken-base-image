@@ -78,16 +78,16 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 # Rust tools
 #
 RUN : \
-    && cargo install cargo-deny \
-    && cargo install cargo-semver-checks \
-    && cargo install sqlx-cli \
-    && cargo install cargo-llvm-cov \
-    && cargo install cargo-hack \
     && rustup toolchain install 1.73.0 \
-    && rustup component add rustfmt --toolchain 1.73.0
+    && rustup component add rustfmt --toolchain 1.73.0 \
+    && cargo install cargo-deny --version 0.14.3 \
+    && cargo install cargo-semver-checks --version 0.26.0 \
+    && cargo install sqlx-cli --version 0.7.3 \
+    && cargo install cargo-llvm-cov --version 0.5.39 \
+    && cargo install cargo-hack --version 0.6.15
 
 #
-# Protobuf tools
+# Buffrs
 #
 RUN : \
     && cargo install buffrs --version 0.7.2 \
