@@ -11,12 +11,21 @@ image for continuous integration pipelines. The image is currently base on `ubun
 ## Versioning
 
 Aside from the `develop` tag, exact image versions can be pinned based on `git tag --describe`. The Kraken base image
-is built from various Ubuntu starting images.
+is built from various Ubuntu starting images. We use semantic versioning in the form of `x.y.z` and `x.y` tags.
 
 | Starting Image | Kraken base image tags                                                                      | Notes |
 |----------------|---------------------------------------------------------------------------------------------|-------|
 | `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04`, `x.y-ubuntu_20.04`                            |       |
 | `ubuntu:22.04` | `develop`, `x.y.z`, `x.y`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04`, `x.y-ubuntu_22.04` |       |
+
+### Versioning rules
+
+New versions of the base image must adhere to the [Semantic Versioning](https://semver.org/) scheme. Any upgraded software
+that is no longer backwards compatible must be released as a minor version upgrade (we use major version 0). This is to prevent
+(non backwards-compatible) software ugprades from blocking the release of backwards compatible upgrades or hotfixes.
+
+Only when absolutely necessary, we introduce a branch for hot fixing older versions,. such as `0.17.x` to release versions of
+the base image in that minor version range besides a higher minor having already been released.
 
 ## Image contents
 
