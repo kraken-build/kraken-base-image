@@ -111,6 +111,8 @@ RUN : \
 #
 # Python tools
 #
+RUN mkdir -p /opt/pipx
+ENV PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin
 RUN : \
     && python -m pip install pipx==1.3.3 -v \
     && pipx install poetry==1.7.1 \
