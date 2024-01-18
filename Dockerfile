@@ -55,7 +55,7 @@ ENV PATH="$PATH:/$CARGO_HOME/bin"
 ENV PATH="$PATH:/$HOME/.local/bin"
 
 RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
-    --mount=type=bind,src=formulae,target=/tmp/src : \
+    --mount=type=bind,src=src,target=/tmp/src : \
     && set -x \
     && python /tmp/src/main.py /tmp/formulae/buf.py \
     && python /tmp/src/main.py /tmp/formulae/buildkit.py \
