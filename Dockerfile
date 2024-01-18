@@ -54,8 +54,8 @@ ENV PATH="$PATH:/$CARGO_HOME/bin"
 # At runtime many tools install to $HOME/.local/bin, but we don't as home may get overriden.
 ENV PATH="$PATH:/$HOME/.local/bin"
 
-RUN --mount=bind,src=formulae,target=/tmp/formulae \
-    --mount=bind,src=formulae,target=/tmp/src : \
+RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
+    --mount=type=bind,src=formulae,target=/tmp/src : \
     && set -x \
     && python /tmp/src/main.py /tmp/formulae/buf.py \
     && python /tmp/src/main.py /tmp/formulae/buildkit.py \
