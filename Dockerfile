@@ -39,7 +39,7 @@ RUN : \
     && echo "max-jobs = auto" >> /etc/nix/nix.conf
 
 # Setup the main user which can run apt-get.
-RUN useradd -m -s /bin/bash -G sudo,root -u 1000 main
+RUN useradd -m -s /bin/bash -u 1000 main
 RUN echo "main ALL=NOPASSWD: $(which apt-get)" >> /etc/sudoers
 RUN chown main:main -R /usr/local /opt
 USER main
