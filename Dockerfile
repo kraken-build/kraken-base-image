@@ -71,7 +71,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
 
 # Rust tools, build with sccache and GHA cache to speed up builds.
 ARG ACTIONS_CACHE_URL
-RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
+RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN,uid=1000 : \
     && rustup toolchain install 1.75.0 \
     && rustup toolchain install nightly --component rustfmt \
     && rustup default 1.75.0 \
