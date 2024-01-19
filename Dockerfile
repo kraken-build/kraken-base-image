@@ -66,7 +66,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     && python /tmp/src/main.py /tmp/formulae/sccache.py \
     && python /tmp/src/main.py /tmp/formulae/terraform.py \
     && python /tmp/src/main.py /tmp/formulae/yq.py \
-    && ( curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash ) \
+    && ( curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 --no-root | bash ) \
     && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y )
 
 # Rust tools, build with sccache and GHA cache to speed up builds.
