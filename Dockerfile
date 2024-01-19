@@ -43,6 +43,7 @@ RUN useradd -m -s /bin/bash -u 1000 main
 RUN echo "main ALL=NOPASSWD: $(which apt-get)" >> /etc/sudoers
 RUN chown main:main -R /usr/local /opt
 USER main
+WORKDIR /home/main
 
 # Point CARGO_HOME and PIPX_HOME outside of the home directory as that may get overridden with a mount.
 ENV CARGO_HOME=/opt/cargo
