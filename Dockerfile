@@ -46,6 +46,7 @@ USER main
 WORKDIR /home/main
 
 # Point CARGO_HOME and PIPX_HOME outside of the home directory as that may get overridden with a mount.
+ENV RUSTUP_HOME=/opt/rustup
 ENV CARGO_HOME=/opt/cargo
 ENV PIPX_HOME=/opt/pipx
 ENV PIPX_BIN_DIR=/usr/local/bin
