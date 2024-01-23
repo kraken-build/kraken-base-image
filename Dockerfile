@@ -39,7 +39,7 @@ RUN : \
     && echo "max-jobs = auto" >> /etc/nix/nix.conf
 
 # Setup the main user which can run apt-get.
-RUN useradd -m -s /bin/bash -u 1000 main
+RUN useradd -m -s /bin/bash -u 10000 main
 RUN echo "main ALL=NOPASSWD: $(which apt-get)" >> /etc/sudoers
 RUN chown main:main -R /usr/local /opt
 USER main
@@ -73,7 +73,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
 
 # Rust tools, build with sccache and GHA cache to speed up builds.
 ARG ACTIONS_CACHE_URL
-RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN,uid=1000 : \
+RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN,uid=10000 : \
     && rustup toolchain install 1.75.0 \
     && rustup toolchain install nightly --component rustfmt \
     && rustup default 1.75.0 \
