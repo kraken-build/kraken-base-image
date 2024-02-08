@@ -82,12 +82,13 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && rustup toolchain install 1.75.0 \
     && rustup toolchain install nightly --component rustfmt \
     && rustup default 1.75.0 \
-    && ( \
-        SCCACHE_GHA_ENABLED=true \
-        ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
-        ACTIONS_RUNTIME_TOKEN=$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN) \
-        sccache --start-server \
-    ) \
+    #&& ( \
+    #    SCCACHE_GHA_ENABLED=true \
+    #    ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
+    #    ACTIONS_RUNTIME_TOKEN=$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN) \
+    #    sccache --start-server \
+    #) \
+    && sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
     && cargo install cargo-deny --version 0.14.3 \
     && cargo install cargo-semver-checks --version 0.26.0 \
