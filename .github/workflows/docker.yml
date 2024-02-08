@@ -56,16 +56,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v2
-        if: "${{ matrix.platform[0] == 'amd64' }}"
+        # if: "${{ matrix.arch == 'amd64' }}"
         with:
-          python-version: "3.10.6"
+          python-version: "3.10"
 
       - name: Create Python 3 virtualenv (arm64)
-        if: "${{ matrix.platform[0] == 'arm64' }}"
+        # if: "${{ matrix.arch == 'arm64' }}"
         run: python3.10 -m venv .venv
 
       - name: Activate Python 3 virtualenv (arm64)
-        if: "${{ matrix.platform[0] == 'arm64' }}"
+        # if: "${{ matrix.arch == 'arm64' }}"
         run: source .venv/bin/activate && env >> $GITHUB_ENV
 
       - name: Install kraken-wrapper
@@ -84,8 +84,8 @@ jobs:
 
       - run: |
           krakenw r -s -v
-          krakenw q d --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.platform[0] }} -v
-          krakenw r --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.platform[0] }} -v --state-name "${{ matrix.base_image }}-${{ matrix.platform[0] }}"
+          krakenw q d --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.arch }} -v
+          krakenw r --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.arch }} -v --state-name "${{ matrix.base_image }}-${{ matrix.arch }}"
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
