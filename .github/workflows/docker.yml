@@ -133,6 +133,7 @@ jobs:
           mv manifest-tool-linux-amd64 ~/.local/bin/manifest-tool
 
       - run: |
+          export PATH="$PATH:$HOME/.local/bin"
           krakenw q tree -v --all --resume :docker-kraken-image-multiarch
           krakenw r --resume :docker-kraken-image-multiarch -v
         env:
