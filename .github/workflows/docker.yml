@@ -129,7 +129,7 @@ jobs:
         run: |
           wget -q https://github.com/estesp/manifest-tool/releases/download/v2.0.5/binaries-manifest-tool-2.0.5.tar.gz
           tar xvf binaries-manifest-tool-2.0.5.tar.gz manifest-tool-linux-amd64
-          mv manifest-tool-linux-amd64 /usr/local/bin/manifest-tool
+          mv manifest-tool-linux-amd64 ~/.local/bin/manifest-tool
 
       - run: |
           krakenw q tree -v --all --resume :docker-kraken-image-multiarch
