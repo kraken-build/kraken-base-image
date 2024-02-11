@@ -131,6 +131,7 @@ jobs:
           tar xvf binaries-manifest-tool-2.0.5.tar.gz manifest-tool-linux-amd64
           mkdir -p ~/.local/bin/manifest-tool
           mv manifest-tool-linux-amd64 ~/.local/bin/manifest-tool
+          chmod +x ~/.local/bin/manifest-tool
 
       - run: |
           export PATH="$PATH:$HOME/.local/bin"
