@@ -9,14 +9,11 @@ env:
 
 jobs:
   test-formulae:
-    runs-on: [ self-hosted, "type-${{ matrix.instance[0] }}", "image-${{ matrix.instance[1] }}-system-ubuntu-22.04"]
+    runs-on: "arc-${{ matrix.arch }}-small"
     strategy:
       fail-fast: false
       matrix:
-        instance:
-          - ["cx11", "x86"]
-          - ["cax11", "arm"]
-
+        arch: ["amd64", "arm64"]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,14 +32,12 @@ jobs:
           exit $status_code
 
   build:
-    runs-on: [ self-hosted, "type-${{ matrix.platform[2]}}", "image-${{ matrix.platform[1] }}-app-docker-ce" ]
+    runs-on: "arc-${{ matrix.arch }}-large"
     needs: [ test-formulae ]
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - ["amd64", "x86", "cx51"]
-          - ["arm64", "arm", "cax41"]
+        arch: ["amd64", "arm64"]
         base_image: [ "ubuntu_22.04", "ubuntu_20.04" ]
     steps:
 
@@ -61,16 +56,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v2
-        if: "${{ matrix.platform[0] == 'amd64' }}"
+        if: "${{ matrix.arch == 'amd64' }}"
         with:
-          python-version: "3.10.6"
+          python-version: "3.10"
 
       - name: Create Python 3 virtualenv (arm64)
-        if: "${{ matrix.platform[0] == 'arm64' }}"
+        if: "${{ matrix.arch == 'arm64' }}"
         run: python3.10 -m venv .venv
 
       - name: Activate Python 3 virtualenv (arm64)
-        if: "${{ matrix.platform[0] == 'arm64' }}"
+        if: "${{ matrix.arch == 'arm64' }}"
         run: source .venv/bin/activate && env >> $GITHUB_ENV
 
       - name: Install kraken-wrapper
@@ -89,8 +84,8 @@ jobs:
 
       - run: |
           krakenw r -s -v
-          krakenw q d --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.platform[0] }} -v
-          krakenw r --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.platform[0] }} -v --state-name "${{ matrix.base_image }}-${{ matrix.platform[0] }}"
+          krakenw q d --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.arch }} -v
+          krakenw r --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.arch }} -v --state-name "${{ matrix.base_image }}-${{ matrix.arch }}"
         env:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
@@ -101,7 +96,7 @@ jobs:
           path: build/.kraken/buildenv/state*.dill
 
   manifest-tool:
-    runs-on: ubuntu-latest
+    runs-on: "arc-amd64-small"
     needs: [ build ]
     steps:
       - uses: actions/checkout@v4
@@ -134,9 +129,12 @@ jobs:
         run: |
           wget -q https://github.com/estesp/manifest-tool/releases/download/v2.0.5/binaries-manifest-tool-2.0.5.tar.gz
           tar xvf binaries-manifest-tool-2.0.5.tar.gz manifest-tool-linux-amd64
-          mv manifest-tool-linux-amd64 /usr/local/bin/manifest-tool
+          mkdir -p ~/.local/bin/
+          mv manifest-tool-linux-amd64 ~/.local/bin/manifest-tool
+          chmod +x ~/.local/bin/manifest-tool
 
       - run: |
+          export PATH="$PATH:$HOME/.local/bin"
           krakenw q tree -v --all --resume :docker-kraken-image-multiarch
           krakenw r --resume :docker-kraken-image-multiarch -v
         env:
