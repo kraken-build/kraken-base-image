@@ -31,7 +31,7 @@ the base image in that minor version range besides a higher minor having already
 
 | Software                                               | Installed via                                                                                                      | Version                                       |
 |--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| ansible                                                | Pipx (Python 3.10)                                                                                                 | 9.1.0                                         |
+| ansible                                                | Pipx (Python 3.10)                                                                                                 | 9.2.0                                         |
 | ansible-base                                           | Pipx (Python 3.10)                                                                                                 | 2.10.17                                       |
 | buf                                                    | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.17.0                                        |
 | buffrs                                                 | cargo                                                                                                              | 0.7.6                                         |

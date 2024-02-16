@@ -119,7 +119,7 @@ RUN : \
     && pipx install slap-cli==1.12.0 \
     && pipx install kraken-wrapper==0.34.1 \
     && pipx install uv==0.1.1 \
-    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==9.1.0 \
+    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==9.2.0 \
     && rm -rf ~/.cache/pip
 
 #
