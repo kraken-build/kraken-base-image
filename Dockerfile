@@ -115,9 +115,10 @@ RUN : \
 RUN : \
     && python -m pip install pipx==1.3.3 -v \
     && pipx install poetry==1.7.1 \
-    && pipx install pdm==2.11.1 \
-    && pipx install slap-cli==1.11.1 \
-    && pipx install kraken-wrapper==0.32.4 \
+    && pipx install pdm==2.12.1 \
+    && pipx install slap-cli==1.12.0 \
+    && pipx install kraken-wrapper==0.34.1 \
+    && pipx install uv==0.1.1 \
     && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==9.1.0 \
     && rm -rf ~/.cache/pip
 
