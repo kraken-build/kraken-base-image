@@ -95,7 +95,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && cargo install sqlx-cli --version 0.7.3 \
     && cargo install cargo-llvm-cov --version 0.5.39 \
     && cargo install cargo-hack --version 0.6.15 \
-    && cargo install buffrs --version 0.7.6 \
+    && cargo install buffrs --version 0.8.0 \
     && sccache --stop-server
 
 #
