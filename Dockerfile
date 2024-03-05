@@ -34,12 +34,12 @@ RUN : \
 
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
 
-COPY formulae /tmp/formulae
-COPY src /tmp/src
-RUN : \
+RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
+    --mount=type=bind,src=src,target=/tmp/src : \
     #
     # install from custom formulae
     #
+    && python /tmp/src/main.py /tmp/formulae/argocd.py \
     && python /tmp/src/main.py /tmp/formulae/buildkit.py \
     && python /tmp/src/main.py /tmp/formulae/grcov.py \
     && python /tmp/src/main.py /tmp/formulae/kubectl.py \
@@ -66,7 +66,6 @@ RUN : \
     #
     # [cleanup]
     #
-    && rm -r /tmp/src /tmp/formulae \
     && rm -rf ~/.cache /var/cache/apt/archives /var/lib/apt/lists/*
 
 #
