@@ -42,6 +42,8 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     && python /tmp/src/main.py /tmp/formulae/argocd.py \
     && python /tmp/src/main.py /tmp/formulae/buildkit.py \
     && python /tmp/src/main.py /tmp/formulae/cni.py \
+    && python /tmp/src/main.py /tmp/formulae/cri-dockerd.py \
+    && python /tmp/src/main.py /tmp/formulae/crictl.py \
     && python /tmp/src/main.py /tmp/formulae/grcov.py \
     && python /tmp/src/main.py /tmp/formulae/kubectl.py \
     && python /tmp/src/main.py /tmp/formulae/manifest-tool.py \
