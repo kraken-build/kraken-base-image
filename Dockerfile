@@ -50,6 +50,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     && python /tmp/src/main.py /tmp/formulae/protobuf-compiler.py \
     && python /tmp/src/main.py /tmp/formulae/sccache.py \
     && python /tmp/src/main.py /tmp/formulae/terraform.py \
+    && python /tmp/src/main.py /tmp/formulae/stern.py \
     && python /tmp/src/main.py /tmp/formulae/yq.py \
     #
     # more APT packages

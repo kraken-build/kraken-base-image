@@ -94,16 +94,17 @@ the base image in that minor version range besides a higher minor having already
 
 ### Kubernetes
 
-| Software                         | Installed via                                                                                 | Version |
-|----------------------------------|-----------------------------------------------------------------------------------------------|---------|
-| argocd (CLI)                     | [GitHub releases](https://github.com/argoproj/argo-cd/releases)                               | 2.10.2  |
-| conntrack                        | apt-get                                                                                       | latest  |
-| ContainerNetworkingPlugins (CNI) | [GitHub releases](https://github.com/containernetworking/plugins/releases)                    | v1.4.0  |
-| cri-dockerd                      | [GitHub releases](https://github.com/Mirantis/cri-dockerd/releases)                           | v0.3.10 |
-| crictl                           | [GitHub releases](https://github.com/kubernetes-sigs/cri-tools/releases)                      | v1.29.0 |
-| Helm                             | get-helm-3                                                                                    | latest  |
-| kubectl                          | apt-get (`apt.kubernetes.io`)                                                                 | 1.28.4  |
-| minikube                         | `storage.googleapis.com/minikube/releases` ([docs](https://minikube.sigs.k8s.io/docs/start/)) | v1.32.0 |
+| Software                                | Installed via                                                                                 | Version |
+|-----------------------------------------|-----------------------------------------------------------------------------------------------|---------|
+| argocd (CLI)                            | [GitHub releases](https://github.com/argoproj/argo-cd/releases)                               | 2.10.2  |
+| conntrack                               | apt-get                                                                                       | latest  |
+| ContainerNetworkingPlugins (CNI)        | [GitHub releases](https://github.com/containernetworking/plugins/releases)                    | v1.4.0  |
+| cri-dockerd                             | [GitHub releases](https://github.com/Mirantis/cri-dockerd/releases)                           | v0.3.10 |
+| crictl                                  | [GitHub releases](https://github.com/kubernetes-sigs/cri-tools/releases)                      | v1.29.0 |
+| Helm                                    | get-helm-3                                                                                    | latest  |
+| kubectl                                 | apt-get (`apt.kubernetes.io`)                                                                 | 1.28.4  |
+| minikube                                | `storage.googleapis.com/minikube/releases` ([docs](https://minikube.sigs.k8s.io/docs/start/)) | v1.32.0 |
+| [stern](https://github.com/stern/stern) | [GitHub releases](https://github.com/stern/stern/releases/)                                   | v1.28.0 |
 
 ## Developemnt
 
