@@ -7,7 +7,7 @@ class MinikubeFormula(DownloadFileFormula):
 
     platform = sys.platform
     version = "v1.32.0"
-    download_url = "curl -LO https://storage.googleapis.com/minikube/releases/${version}/minikube-linux-${archv2}"
+    download_url = "https://storage.googleapis.com/minikube/releases/${version}/minikube-linux-${archv2}"
     chmod = 0o775
     output_directory = "${install_to}"
     output_file = "${output_directory}/minikube"
