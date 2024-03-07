@@ -125,6 +125,7 @@ class BinaryInstallFormula(Formula):
     archive_url: str
     archive_members: Sequence[str] | Mapping[str, str]
     install_to: str
+    strip_all_components: bool = True
 
     # Formula
 
@@ -132,8 +133,14 @@ class BinaryInstallFormula(Formula):
         archive_url = self._eval_member("archive_url")
         install_to = self._eval_member("install_to")
 
+        def get_output_filename(x: str) -> str:
+            if self.strip_all_components:
+                return os.path.basename(x)
+            else:
+                return x.lstrip('/')
+
         if isinstance(self.archive_members, Sequence):
-            archive_members = {x: os.path.basename(x) for x in (self._eval(x) for x in self.archive_members)}
+            archive_members = {x: get_output_filename(x) for x in (self._eval(x) for x in self.archive_members)}
         else:
             archive_members = {self._eval(k): self._eval(v) for k, v in self.archive_members.items()}
 
@@ -147,7 +154,7 @@ class BinaryInstallFormula(Formula):
                 if '*' in archive_member:
                     for item in archive.members():
                         if fnmatch(item, archive_member):
-                            extracts.append((item, output_path.parent / os.path.basename(item)))
+                            extracts.append((item, output_path.parent / get_output_filename(item)))
                 else:
                     extracts = [(archive_member, output_path)]
 
