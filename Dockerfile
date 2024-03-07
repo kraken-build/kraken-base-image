@@ -45,6 +45,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     && python /tmp/src/main.py /tmp/formulae/kubectl.py \
     && python /tmp/src/main.py /tmp/formulae/manifest-tool.py \
     && python /tmp/src/main.py /tmp/formulae/minikube.py \
+    && minikube config set WantUpdateNotification false \
     && python /tmp/src/main.py /tmp/formulae/protobuf-compiler.py \
     && python /tmp/src/main.py /tmp/formulae/sccache.py \
     && python /tmp/src/main.py /tmp/formulae/terraform.py \
