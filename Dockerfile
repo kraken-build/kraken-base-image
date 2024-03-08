@@ -6,7 +6,7 @@ ARG BASE_IMAGE
 ENV DEBIAN_FRONTEND noninteractive
 RUN : \
     && apt-get update \
-    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq sudo openssh-client cloud-utils qemu-utils qemu-kvm qemu-system-x86-64 qemu-system-aarch64 \
+    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq sudo openssh-client conntrack cloud-utils qemu-utils qemu-kvm qemu-system-x86-64 qemu-system-aarch64 \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Python versions with deadsnakes.
@@ -41,12 +41,18 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     #
     && python /tmp/src/main.py /tmp/formulae/argocd.py \
     && python /tmp/src/main.py /tmp/formulae/buildkit.py \
+    && python /tmp/src/main.py /tmp/formulae/cni.py \
+    && python /tmp/src/main.py /tmp/formulae/cri-dockerd.py \
+    && python /tmp/src/main.py /tmp/formulae/crictl.py \
     && python /tmp/src/main.py /tmp/formulae/grcov.py \
     && python /tmp/src/main.py /tmp/formulae/kubectl.py \
     && python /tmp/src/main.py /tmp/formulae/manifest-tool.py \
+    && python /tmp/src/main.py /tmp/formulae/minikube.py \
+    && minikube config set WantUpdateNotification false \
     && python /tmp/src/main.py /tmp/formulae/protobuf-compiler.py \
     && python /tmp/src/main.py /tmp/formulae/sccache.py \
     && python /tmp/src/main.py /tmp/formulae/terraform.py \
+    && python /tmp/src/main.py /tmp/formulae/stern.py \
     && python /tmp/src/main.py /tmp/formulae/yq.py \
     #
     # more APT packages
