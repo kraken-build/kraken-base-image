@@ -84,9 +84,9 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
-    && rustup toolchain install 1.76.0 \
+    && rustup toolchain install 1.77.0 \
     && rustup toolchain install nightly --component rustfmt \
-    && rustup default 1.76.0 \
+    && rustup default 1.77.0 \
     #&& ( \
     #    SCCACHE_GHA_ENABLED=true \
     #    ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
