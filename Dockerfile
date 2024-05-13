@@ -119,7 +119,7 @@ RUN : \
 #
 RUN : \
     && python -m pip install pipx==1.3.3 -v \
-    && pipx install poetry==1.7.1 \
+    && pipx install poetry==1.8.3 \
     && pipx install pdm==2.12.1 \
     && pipx install slap-cli==1.12.0 \
     && pipx install kraken-wrapper==0.34.1 \
