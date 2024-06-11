@@ -40,6 +40,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     # install from custom formulae
     #
     && python /tmp/src/main.py /tmp/formulae/argocd.py \
+    && python /tmp/src/main.py /tmp/formulae/buf.py \
     && python /tmp/src/main.py /tmp/formulae/buildkit.py \
     && python /tmp/src/main.py /tmp/formulae/cni.py \
     && python /tmp/src/main.py /tmp/formulae/cri-dockerd.py \
@@ -102,17 +103,6 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && cargo install cargo-hack --version 0.6.28 \
     && cargo install buffrs --version 0.8.1 \
     && sccache --stop-server
-
-#
-# Buf
-#
-RUN : \
-    && BIN="/usr/bin"  \
-    && VERSION="1.32.2"  \
-    && curl -sSL \
-    "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
-    -o "${BIN}/buf" && \
-    chmod +x "${BIN}/buf"
 
 #
 # Python tools
