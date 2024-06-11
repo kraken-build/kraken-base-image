@@ -84,9 +84,9 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
-    && rustup toolchain install 1.77.0 \
+    && rustup toolchain install 1.78.0 \
     && rustup toolchain install nightly --component rustfmt \
-    && rustup default 1.77.0 \
+    && rustup default 1.78.0 \
     #&& ( \
     #    SCCACHE_GHA_ENABLED=true \
     #    ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
@@ -95,12 +95,12 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     #) \
     && sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && cargo install cargo-deny --version 0.14.20 \
-    && cargo install cargo-semver-checks --version 0.26.0 \
-    && cargo install sqlx-cli --version 0.7.3 \
-    && cargo install cargo-llvm-cov --version 0.5.39 \
-    && cargo install cargo-hack --version 0.6.15 \
-    && cargo install buffrs --version 0.8.0 \
+    && cargo install cargo-deny --version 0.14.24 \
+    && cargo install cargo-semver-checks --version 0.31.0 \
+    && cargo install sqlx-cli --version 0.7.4 \
+    && cargo install cargo-llvm-cov --version 0.6.10 \
+    && cargo install cargo-hack --version 0.6.28 \
+    && cargo install buffrs --version 0.8.1 \
     && sccache --stop-server
 
 #
@@ -108,7 +108,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
 #
 RUN : \
     && BIN="/usr/bin"  \
-    && VERSION="1.17.0"  \
+    && VERSION="1.32.2"  \
     && curl -sSL \
     "https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-$(uname -s)-$(uname -m)" \
     -o "${BIN}/buf" && \
@@ -118,13 +118,13 @@ RUN : \
 # Python tools
 #
 RUN : \
-    && python -m pip install pipx==1.3.3 -v \
+    && python -m pip install pipx==1.6.0 -v \
     && pipx install poetry==1.8.3 \
-    && pipx install pdm==2.12.1 \
-    && pipx install slap-cli==1.12.0 \
-    && pipx install kraken-wrapper==0.34.1 \
-    && pipx install uv==0.1.1 \
-    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==9.2.0 \
+    && pipx install pdm==2.15.4 \
+    && pipx install slap-cli==1.14.1 \
+    && pipx install kraken-wrapper==0.36.8 \
+    && pipx install uv==0.2.10 \
+    && pipx install ansible==9.6.1 --include-deps \
     && rm -rf ~/.cache/pip
 
 #
