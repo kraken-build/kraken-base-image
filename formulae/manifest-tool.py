@@ -6,7 +6,7 @@ from formula import BinaryInstallFormula
 
 class ManifestToolFormula(BinaryInstallFormula):
 
-    version = "2.1.6"
+    version = "2.1.7"
     archive_url = (
         "https://github.com/estesp/manifest-tool/releases/download/v${version}/"
         "binaries-manifest-tool-${version}.tar.gz"

@@ -35,7 +35,7 @@ the base image in that minor version range besides a higher minor having already
 |----------------------------------------|-------------------------------------------------------------------------------------------------|---------|
 | ansible                                | Pipx (Python 3.10)                                                                              | 9.6.1   |
 | build-essential                        | apt-get                                                                                         | latest  |
-| BuildKit                               | GitHub Releases                                                                                 | 0.13.2  |
+| BuildKit                               | GitHub Releases                                                                                 | 0.15.1  |
 | clang                                  | apt-get                                                                                         | latest  |
 | cloud-utils                            | apt-get                                                                                         | latest  |
 | cURL                                   | apt-get                                                                                         | latest  |
@@ -52,13 +52,13 @@ the base image in that minor version range besides a higher minor having already
 | sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.8.1   |
 | sqlx-cli                               | cargo                                                                                           | 0.7.4   |
 | wget                                   | apt-get                                                                                         | latest  |
-| [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.44.1  |
+| [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.44.3  |
 
 ### Language runtimese and tools
 
 | Software                                               | Installed via                                                                                                      | Version                                       |
 |--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| buf                                                    | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.32.2                                        |
+| buf                                                    | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.35.1                                        |
 | buffrs                                                 | cargo                                                                                                              | 0.8.1                                         |
 | cargo-deny                                             | cargo                                                                                                              | 0.14.24                                       |
 | cargo-hack                                             | cargo                                                                                                              | 0.6.28                                        |
@@ -74,13 +74,13 @@ the base image in that minor version range besides a higher minor having already
 | PDM                                                    | Pipx (Python 3.10)                                                                                                 | 2.15.4                                        |
 | Pipx                                                   | Pip (Python 3.10)                                                                                                  | 1.6.0                                         |
 | Poetry                                                 | Pipx (Python 3.10)                                                                                                 | 1.8.3                                         |
-| protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1                                        |
+| protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.27.3                                        |
 | Python                                                 | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)                                        | 3.8, 3.9, 3.10 <sup>default</sup>, 3.11, 3.12 |
 | Rust / Cargo                                           | Rustup                                                                                                             | 1.79.0                                        |
 | rustfmt                                                | rustup                                                                                                             | nightly (additionally)                        |
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                        |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10)                                                                                                 | 1.14.1                                        |
-| Terraform                                              | Hashicorp releases                                                                                                 | 1.8.5                                         |
+| Terraform                                              | Hashicorp releases                                                                                                 | 1.9.3                                         |
 | [uv](https://astral.sh/blog/uv)                        | Pipx                                                                                                               | 0.2.10                                        |
 
 ### Container tools
@@ -89,19 +89,19 @@ the base image in that minor version range besides a higher minor having already
 |---------------|------------------------------------------------------------------------------------------------------------|---------|
 | Docker        | apt-get (`docker.io` package)                                                                              | latest  |
 | Docker Buildx | DockerHub                                                                                                  | latest  |
-| manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.1.6   |
+| manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.1.7   |
 
 ### Kubernetes
 
 | Software                                | Installed via                                                                                 | Version |
 |-----------------------------------------|-----------------------------------------------------------------------------------------------|---------|
-| argocd (CLI)                            | [GitHub releases](https://github.com/argoproj/argo-cd/releases)                               | 2.11.3  |
+| argocd (CLI)                            | [GitHub releases](https://github.com/argoproj/argo-cd/releases)                               | 2.12.0  |
 | conntrack                               | apt-get                                                                                       | latest  |
-| ContainerNetworkingPlugins (CNI)        | [GitHub releases](https://github.com/containernetworking/plugins/releases)                    | 1.5.0   |
+| ContainerNetworkingPlugins (CNI)        | [GitHub releases](https://github.com/containernetworking/plugins/releases)                    | 1.5.1   |
 | cri-dockerd                             | [GitHub releases](https://github.com/Mirantis/cri-dockerd/releases)                           | 0.3.14  |
-| crictl                                  | [GitHub releases](https://github.com/kubernetes-sigs/cri-tools/releases)                      | 1.30.0  |
+| crictl                                  | [GitHub releases](https://github.com/kubernetes-sigs/cri-tools/releases)                      | 1.30.1  |
 | Helm                                    | get-helm-3                                                                                    | latest  |
-| kubectl                                 | apt-get (`apt.kubernetes.io`)                                                                 | 1.30.1  |
+| kubectl                                 | apt-get (`apt.kubernetes.io`)                                                                 | 1.30.3  |
 | minikube                                | `storage.googleapis.com/minikube/releases` ([docs](https://minikube.sigs.k8s.io/docs/start/)) | 1.33.1  |
 | [stern](https://github.com/stern/stern) | [GitHub releases](https://github.com/stern/stern/releases/)                                   | 1.30.0  |
 
