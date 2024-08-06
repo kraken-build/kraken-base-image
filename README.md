@@ -80,7 +80,7 @@ the base image in that minor version range besides a higher minor having already
 | rustfmt                                                | rustup                                                                                                             | nightly (additionally)                        |
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                        |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10)                                                                                                 | 1.12.0                                        |
-| Terraform                                              | Hashicorp releases                                                                                                 | 1.6.6                                         |
+| Terraform                                              | Hashicorp releases                                                                                                 | 1.8.5                                         |
 | [uv](https://astral.sh/blog/uv)                        | Pipx                                                                                                               | 0.2.33                                        |
 
 ### Container tools
