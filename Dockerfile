@@ -96,7 +96,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     #) \
     && sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && cargo install cargo-deny --version 0.16.1 \
+    && cargo install cargo-deny --version 0.14.24 \
     && cargo install cargo-semver-checks --version 0.33.0 \
     && cargo install sqlx-cli --version 0.8.0 \
     && cargo install cargo-llvm-cov --version 0.6.11 \
