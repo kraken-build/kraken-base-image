@@ -13,7 +13,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: ["amd64", "arm64"]
+        # note: (@niklas) Disable ARM64 test for now because we keep getting an ARM64 CI runner with an
+        #       IP address that is blacklisted by Google storage APIs, failing some formula's downloads.
+        arch: ["amd64"] #, "arm64"]
     steps:
       - uses: actions/checkout@v4
         with:
