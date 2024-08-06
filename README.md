@@ -34,7 +34,6 @@ the base image in that minor version range besides a higher minor having already
 | Software                               | Installed via                                                                                   | Version |
 |----------------------------------------|-------------------------------------------------------------------------------------------------|---------|
 | ansible                                | Pipx (Python 3.10)                                                                              | 9.8.0   |
-| ansible-base                           | Pipx (Python 3.10)                                                                              | 2.10.17 |
 | build-essential                        | apt-get                                                                                         | latest  |
 | BuildKit                               | GitHub Releases                                                                                 | 0.13.2  |
 | clang                                  | apt-get                                                                                         | latest  |

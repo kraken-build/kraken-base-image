@@ -114,7 +114,7 @@ RUN : \
     && pipx install slap-cli==1.14.1 \
     && pipx install kraken-wrapper==0.38.0 \
     && pipx install uv==0.2.33 \
-    && pipx install ansible-base==2.10.17 && pipx inject ansible-base ansible==9.8.0 \
+    && pipx install ansible==9.8.0 --include-deps \
     && rm -rf ~/.cache/pip
 
 #
