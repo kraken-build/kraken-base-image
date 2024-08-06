@@ -110,11 +110,11 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
 RUN : \
     && python -m pip install pipx==1.6.0 -v \
     && pipx install poetry==1.8.3 \
-    && pipx install pdm==2.15.4 \
+    && pipx install pdm==2.17.3 \
     && pipx install slap-cli==1.14.1 \
-    && pipx install kraken-wrapper==0.36.8 \
-    && pipx install uv==0.2.10 \
-    && pipx install ansible==9.6.1 --include-deps \
+    && pipx install kraken-wrapper==0.38.0 \
+    && pipx install uv==0.2.33 \
+    && pipx install ansible==9.8.0 --include-deps \
     && rm -rf ~/.cache/pip
 
 #
