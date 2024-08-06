@@ -33,7 +33,7 @@ the base image in that minor version range besides a higher minor having already
 
 | Software                               | Installed via                                                                                   | Version |
 |----------------------------------------|-------------------------------------------------------------------------------------------------|---------|
-| ansible                                | Pipx (Python 3.10)                                                                              | 9.2.0   |
+| ansible                                | Pipx (Python 3.10)                                                                              | 9.8.0   |
 | ansible-base                           | Pipx (Python 3.10)                                                                              | 2.10.17 |
 | build-essential                        | apt-get                                                                                         | latest  |
 | BuildKit                               | GitHub Releases                                                                                 | 0.12.4  |
@@ -44,7 +44,7 @@ the base image in that minor version range besides a higher minor having already
 | Git LFS                                | apt-get                                                                                         | latest  |
 | GraphViz                               | apt-get                                                                                         | latest  |
 | jq                                     | apt-get                                                                                         | latest  |
-| kraken-wrapper                         | Pipx (Python 3.10)                                                                              | 0.34.1  |
+| kraken-wrapper                         | Pipx (Python 3.10)                                                                              | 0.38.0  |
 | libffi                                 | apt-get                                                                                         | latest  |
 | libssl                                 | apt-get                                                                                         | latest  |
 | openssh-client                         | apt-get                                                                                         | latest  |
@@ -72,8 +72,8 @@ the base image in that minor version range besides a higher minor having already
 | llvm                                                   | apt-get                                                                                                            | latest                                        |
 | Nix                                                    | `https://nixos.org/nix/install`                                                                                    | latest                                        |
 | NodeJS                                                 | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 18                                            |
-| PDM                                                    | Pipx (Python 3.10)                                                                                                 | 2.11.1                                        |
-| Pipx                                                   | Pip (Python 3.10)                                                                                                  | 1.3.3                                         |
+| PDM                                                    | Pipx (Python 3.10)                                                                                                 | 2.17.3                                        |
+| Pipx                                                   | Pip (Python 3.10)                                                                                                  | 1.6.0                                         |
 | Poetry                                                 | Pipx (Python 3.10)                                                                                                 | 1.8.3                                         |
 | protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.1                                        |
 | Python                                                 | [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)                                        | 3.8, 3.9, 3.10 <sup>default</sup>, 3.11, 3.12 |
@@ -82,7 +82,7 @@ the base image in that minor version range besides a higher minor having already
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                        |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.10)                                                                                                 | 1.12.0                                        |
 | Terraform                                              | Hashicorp releases                                                                                                 | 1.6.6                                         |
-| [uv](https://astral.sh/blog/uv)                        | Pipx                                                                                                               | 0.1.1                                         |
+| [uv](https://astral.sh/blog/uv)                        | Pipx                                                                                                               | 0.2.33                                        |
 
 ### Container tools
 
