@@ -50,7 +50,7 @@ the base image in that minor version range besides a higher minor having already
 | pkg-config                             | apt-get                                                                                         | latest  |
 | QEMU (kvm, x86_64, aarch64)            | apt-get                                                                                         | latest  |
 | sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.8.1   |
-| sqlx-cli                               | cargo                                                                                           | 0.7.4   |
+| sqlx-cli                               | cargo                                                                                           | 0.8.0   |
 | wget                                   | apt-get                                                                                         | latest  |
 | [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.44.1  |
 
@@ -59,11 +59,11 @@ the base image in that minor version range besides a higher minor having already
 | Software                                               | Installed via                                                                                                      | Version                                       |
 |--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
 | buf                                                    | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.32.2                                        |
-| buffrs                                                 | cargo                                                                                                              | 0.8.1                                         |
-| cargo-deny                                             | cargo                                                                                                              | 0.14.24                                       |
-| cargo-hack                                             | cargo                                                                                                              | 0.6.28                                        |
-| cargo-llvm-cov                                         | cargo                                                                                                              | 0.6.10                                        |
-| cargo-semver-checks                                    | cargo                                                                                                              | 0.31.0                                        |
+| buffrs                                                 | cargo                                                                                                              | 0.9.0                                         |
+| cargo-deny                                             | cargo                                                                                                              | 0.16.1                                        |
+| cargo-hack                                             | cargo                                                                                                              | 0.6.30                                        |
+| cargo-llvm-cov                                         | cargo                                                                                                              | 0.6.11                                        |
+| cargo-semver-checks                                    | cargo                                                                                                              | 0.33.0                                        |
 | cmake                                                  | apt-get                                                                                                            | latest                                        |
 | gcc, g++                                               | apt-get                                                                                                            | latest                                        |
 | grcov                                                  | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py))                        | 0.8.19                                        |
