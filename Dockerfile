@@ -87,7 +87,8 @@ ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
-    && upx which `rustc` \
+    # NOTE: Don't UPX rustc as its expected to be invoked many times concurrently, and UPX appears to be hindering
+    #       the OS' ability to not load the same binary into memory multiple times.
     && upx which `cargo` \
     && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
     && sccache --start-server \
