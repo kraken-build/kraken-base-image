@@ -97,7 +97,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && cargo install cargo-hack --version 0.6.30 \
     && cargo install buffrs --version 0.9.0 \
     && sccache --stop-server \
-    && du -sh .cache/*
+    && du -hd1 /root
 
 #
 # Python tools
