@@ -87,15 +87,17 @@ ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
+    && upx which `rustc` \
+    && upx which `cargo` \
     && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
     && sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && time cargo install cargo-deny --version 0.14.24 --locked \
-    && time cargo install cargo-semver-checks --version 0.33.0 --locked \
-    && time cargo install sqlx-cli --version 0.8.0 --locked \
-    && time cargo install cargo-llvm-cov --version 0.6.11 --locked \
-    && time cargo install cargo-hack --version 0.6.30 --locked \
-    && time cargo install buffrs --version 0.9.0 --locked \
+    && time cargo install cargo-deny --version 0.14.24 --locked && upx `which cargo-deny `\
+    && time cargo install cargo-semver-checks --version 0.33.0 --locked && upx `which cargo-semver-checks` \
+    && time cargo install sqlx-cli --version 0.8.0 --locked && upx `which sqlx-cli` \
+    && time cargo install cargo-llvm-cov --version 0.6.11 --locked && upx `which cargo-llvm-cov` \
+    && time cargo install cargo-hack --version 0.6.30 --locked && upx `which cargo-hack` \
+    && time cargo install buffrs --version 0.9.0 --locked && upx `which buffrs` \
     && sccache --stop-server \
     && du -hd1 /root
 
