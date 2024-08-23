@@ -62,10 +62,10 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
-    # Rust
+    # Rustup (no default toolchain, we pick one below)
     #
     && apt-get install -y xxd cmake \
-    && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
+    && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none ) \
     #
     # helm
     #
@@ -87,21 +87,17 @@ ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
-    #&& ( \
-    #    SCCACHE_GHA_ENABLED=true \
-    #    ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
-    #    ACTIONS_RUNTIME_TOKEN=$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN) \
-    #    sccache --start-server \
-    #) \
+    && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
     && sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && cargo install cargo-deny --version 0.14.24 \
-    && cargo install cargo-semver-checks --version 0.33.0 \
-    && cargo install sqlx-cli --version 0.8.0 \
-    && cargo install cargo-llvm-cov --version 0.6.11 \
-    && cargo install cargo-hack --version 0.6.30 \
-    && cargo install buffrs --version 0.9.0 \
-    && sccache --stop-server
+    && time cargo install cargo-deny --version 0.14.24 \
+    && time cargo install cargo-semver-checks --version 0.33.0 \
+    && time cargo install sqlx-cli --version 0.8.0 \
+    && time cargo install cargo-llvm-cov --version 0.6.11 \
+    && time cargo install cargo-hack --version 0.6.30 \
+    && time cargo install buffrs --version 0.9.0 \
+    && sccache --stop-server \
+    && du -hd1 /root
 
 #
 # Python tools
