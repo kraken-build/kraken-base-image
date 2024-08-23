@@ -170,7 +170,7 @@ class BinaryInstallFormula(Formula):
                     with src, output_path.open("wb") as dst:
                         shutil.copyfileobj(src, dst)
                     output_path.chmod(self.mode if self.mode is not None else info.mode)
-                    if self.upx_optimize and os.access(os.X_OK):
+                    if self.upx_optimize and os.access(output_path, os.X_OK):
                         self.log('optimizing binary "%s" with UPX', output_path)
                         upx_optimize(output_path)
 
