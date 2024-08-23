@@ -6,7 +6,6 @@ on:
 
 env:
   COLUMNS: 160
-  KRAKENW_USE: UV
 
 jobs:
   test-formulae:
