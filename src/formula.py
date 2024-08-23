@@ -224,6 +224,7 @@ class DownloadFileFormula(Formula):
     output_directory: str | None = None
     chmod: int | None = None
     install_to: str
+    upx_optimize: bool = False
 
     def install(self) -> None:
         download_url = self._eval_member("download_url")
