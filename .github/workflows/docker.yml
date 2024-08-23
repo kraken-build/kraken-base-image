@@ -74,7 +74,7 @@ jobs:
         run: source .venv/bin/activate && env >> $GITHUB_ENV
 
       - name: Install kraken-wrapper
-        run: pip install --upgrade kraken-wrapper
+        run: pip install uv==0.3.0 && uv tool install kraken-wrapper==0.39.0
 
       # See https://github.com/orgs/community/discussions/42856#discussioncomment-7678867
       - name: Adding required env vars for caching Docker build
@@ -131,7 +131,7 @@ jobs:
           python-version: "3.10"
 
       - name: Install kraken-wrapper
-        run: pip install kraken-wrapper
+        run: pip install uv==0.3.0 && uv tool install kraken-wrapper==0.39.0
 
       - name: Install manifest-tool
         run: |
