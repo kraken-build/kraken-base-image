@@ -62,10 +62,10 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
-    # Rust
+    # Rustup (no default toolchain, we pick one below)
     #
     && apt-get install -y xxd cmake \
-    && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y ) \
+    && ( curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none ) \
     #
     # helm
     #
