@@ -87,12 +87,7 @@ ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
-    #&& ( \
-    #    SCCACHE_GHA_ENABLED=true \
-    #    ACTIONS_CACHE_URL=$ACTIONS_CACHE_URL \
-    #    ACTIONS_RUNTIME_TOKEN=$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN) \
-    #    sccache --start-server \
-    #) \
+    && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
     && sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
     && cargo install cargo-deny --version 0.14.24 \
@@ -101,7 +96,8 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && cargo install cargo-llvm-cov --version 0.6.11 \
     && cargo install cargo-hack --version 0.6.30 \
     && cargo install buffrs --version 0.9.0 \
-    && sccache --stop-server
+    && sccache --stop-server \
+    && du -sh .cache/*
 
 #
 # Python tools
