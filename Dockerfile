@@ -104,14 +104,13 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
 # Python tools
 #
 RUN : \
-    && python -m pip install pipx==1.6.0 -v \
-    && pipx install poetry==1.8.3 \
-    && pipx install pdm==2.17.3 \
-    && pipx install slap-cli==1.14.1 \
-    && pipx install kraken-wrapper==0.38.0 \
-    && pipx install uv==0.2.33 \
-    && pipx install ansible==9.8.0 --include-deps \
-    && rm -rf ~/.cache/pip
+    && python -m pip install pipx==1.7.1 uv==0.3.2 -v \
+    && uv tool install poetry==1.8.3 \
+    && uv tool install pdm==2.17.3 \
+    && uv tool install slap-cli==1.14.1 \
+    && uv tool install kraken-wrapper==0.38.0 \
+    && uv tool install ansible==9.8.0 --include-deps \
+    && rm -rf ~/.cache
 
 #
 # Nix
