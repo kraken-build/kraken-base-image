@@ -10,5 +10,6 @@ class BufFormula(DownloadFileFormula):
     download_url = "https://github.com/bufbuild/buf/releases/download/v${version}/buf-${platform}-${archv1}"
     chmod = 0o775
     output_directory = "${install_to}"
+    output_file = "${install_to}/buf"
     install_to = "/usr/local/bin"
     upx_optimize = True
