@@ -179,6 +179,7 @@ class UnixPackageFormula(Formula):
     """ Installs a package that has been split into a typical Unix directory structure, bin/, lib/, include/, etc. """
     archive_url: str
     install_to: str = '/usr/local'
+    upx_optimize: bool = False
 
     def install(self) -> None:
         install_to = self._eval_member('install_to')
@@ -193,6 +194,9 @@ class UnixPackageFormula(Formula):
                 with src, output_path.open("wb") as dst:
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
+                if self.upx_optimize and os.access(output_path, os.X_OK):
+                    self.log('optimizing binary "%s" with UPX', output_path)
+                    upx_optimize(output_path)
 
 
 @contextlib.contextmanager

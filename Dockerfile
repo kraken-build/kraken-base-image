@@ -70,6 +70,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     # helm
     #
     && ( curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash ) \
+    && upx `which helm` \
     #
     # [cleanup]
     #
