@@ -13,6 +13,7 @@ import posixpath
 import shutil
 import stat
 import string
+import subprocess
 import sys
 import tarfile
 import urllib.request
@@ -119,6 +120,7 @@ class Formula:
     def finalize(self) -> None:
         pass
 
+
 class BinaryInstallFormula(Formula):
 
     archive_type: str | None = None
@@ -126,6 +128,10 @@ class BinaryInstallFormula(Formula):
     archive_members: Sequence[str] | Mapping[str, str]
     install_to: str
     strip_all_components: bool = True
+    mode: int | None = None
+    upx_optimize: bool = False
+
+    _extracted_members: list[str] = []
 
     # Formula
 
@@ -163,7 +169,10 @@ class BinaryInstallFormula(Formula):
                     src, info = archive.get_member(archive_member)
                     with src, output_path.open("wb") as dst:
                         shutil.copyfileobj(src, dst)
-                    output_path.chmod(info.mode)
+                    output_path.chmod(self.mode if self.mode is not None else info.mode)
+                    if self.upx_optimize and os.access(os.X_OK):
+                        self.log('optimizing binary "%s" with UPX', output_path)
+                        upx_optimize(output_path)
 
 
 class UnixPackageFormula(Formula):
@@ -185,6 +194,7 @@ class UnixPackageFormula(Formula):
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
 
+
 @contextlib.contextmanager
 def _read_file_archive(filename: str, fp: BinaryIO) -> Iterator[Archive]:
     archive_type = _file_archive_type(filename)
@@ -195,6 +205,7 @@ def _read_file_archive(filename: str, fp: BinaryIO) -> Iterator[Archive]:
     else:
         raise ValueError(f"invalid archive type: {archive_type!r}")
 
+
 def _file_archive_type(filename: str) -> str:
     suffix1 = Path(filename).suffix
     suffix2 = Path(Path(filename).stem).suffix
@@ -204,6 +215,7 @@ def _file_archive_type(filename: str) -> str:
         return "tar"
     else:
         raise RuntimeError(f"could not determine archive type from {filename!r}")
+
 
 class DownloadFileFormula(Formula):
 
@@ -224,6 +236,7 @@ class DownloadFileFormula(Formula):
         else:
             assert False, "output_file or output_directory must be set"
 
+        self.output_file = output_file
         self.log('fetching file at "%s"', download_url)
         try:
             with urllib.request.urlopen(download_url) as response:
@@ -236,6 +249,11 @@ class DownloadFileFormula(Formula):
         except urllib.error.HTTPError as exc:
             self.log('an unexpected error occurred fetching "%s":\n%s', download_url, exc.read().decode())
             raise
+
+        if self.upx_optimize and os.access(output_file, os.X_OK):
+            self.log('optimizing binary "%s" with UPX', output_file)
+            upx_optimize(output_file)
+
 
 @dataclass
 class ArchiveMemberInfo:
@@ -284,3 +302,7 @@ class ZipArchive(Archive):
 
     def members(self) -> list[str]:
         return [entry.filename for entry in self._zip.infolist() if not entry.filename.endswith('/')] # dirs end with /
+
+
+def upx_optimize(file: str | Path) -> None:
+    subprocess.run(["upx", str(file)], check=True)

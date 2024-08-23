@@ -13,3 +13,4 @@ class ManifestToolFormula(BinaryInstallFormula):
     )
     archive_members = {"manifest-tool-${platform}-${archv2}": "manifest-tool"}
     install_to = "/usr/local/bin"
+    upx_optimize = True

@@ -51,6 +51,7 @@ the base image in that minor version range besides a higher minor having already
 | QEMU (kvm, x86_64, aarch64)            | apt-get                                                                                         | latest  |
 | sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.8.1   |
 | sqlx-cli                               | cargo                                                                                           | 0.8.0   |
+| [UPX](https://upx.github.io/)          | apt-get                                                                                         | latest  |
 | wget                                   | apt-get                                                                                         | latest  |
 | [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.44.3  |
 

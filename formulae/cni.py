@@ -8,3 +8,4 @@ class CniFormula(BinaryInstallFormula):
     archive_members = ["*"]
     install_to = "/opt/cni/bin"
     strip_all_components = False
+    upx_optimize = True
