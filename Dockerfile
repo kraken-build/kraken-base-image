@@ -109,7 +109,8 @@ RUN : \
     && uv tool install pdm==2.17.3 \
     && uv tool install slap-cli==1.14.1 \
     && uv tool install kraken-wrapper==0.38.0 \
-    && uv tool install ansible==9.8.0 --include-deps \
+    # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
+    && pipx tool install ansible==9.8.0 --include-deps \
     && rm -rf ~/.cache
 
 #
