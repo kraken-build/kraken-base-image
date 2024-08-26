@@ -17,17 +17,16 @@ RUN : \
     && apt-get install -y software-properties-common --no-install-recommends \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt update \
-    && apt-get install -y python{3.8,3.9,3.10,3.11,3.12}{,-venv,-dev} --no-install-recommends \
+    && apt-get install -y python{3.10,3.11,3.12,3.13}{,-venv,-dev} --no-install-recommends \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 RUN : \
     # Install Pip for all other Python versions.
     && set -x \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 - \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 - \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 - \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13 - \
     # Install Python 3.10 as the default version.
     && ln -svf $(which python3.10) /usr/bin/python \
     && ln -svf $(which python3.10) /usr/bin/python3
@@ -84,9 +83,7 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 # Rust tools
 #
-ARG ACTIONS_CACHE_URL
-RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
-    && rustup toolchain install 1.80.0 \
+RUN rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
     && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
     && sccache --start-server \

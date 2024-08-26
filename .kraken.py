@@ -16,7 +16,7 @@ version = GitVersion.parse(git_describe(project.directory)).format(dirty=False)
 image_prefix = "ghcr.io/kraken-build/kraken-base-image"
 
 base_image = "ubuntu"
-image_versions = ["20.04", "22.04"]
+image_versions = ["22.04", "24.04"]
 latest_version = image_versions[-1]
 
 default_base_image = f"{base_image}:{latest_version}"
