@@ -10,6 +10,7 @@ class TerraformFormula(BinaryInstallFormula):
     archive_url = "https://releases.hashicorp.com/terraform/${version}/terraform_${version}_linux_${archv2}.zip"
     archive_members = ["terraform"]
     install_to = "/usr/local/bin"
+    upx_optimize = True
 
     def finalize(self) -> None:
         self.chmod("+x", "${install_to}/terraform")

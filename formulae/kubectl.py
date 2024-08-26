@@ -11,3 +11,4 @@ class KubectlFormula(DownloadFileFormula):
     chmod = 0o775
     output_directory = "${install_to}"
     install_to = "/usr/local/bin"
+    upx_optimize = True

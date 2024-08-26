@@ -10,3 +10,4 @@ class GrcovFormula(BinaryInstallFormula):
     archive_url = "https://github.com/mozilla/grcov/releases/download/v${version}/grcov-${archv1}-${platform}.tar.bz2"
     archive_members = ["grcov"]
     install_to = "/usr/local/bin"
+    upx_optimize = True

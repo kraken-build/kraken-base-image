@@ -12,3 +12,4 @@ class ArgocdFormula(DownloadFileFormula):
     output_directory = "${install_to}"
     output_file = "${output_directory}/argocd"
     install_to = "/usr/local/bin"
+    upx_optimize = True

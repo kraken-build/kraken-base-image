@@ -6,7 +6,7 @@ ARG BASE_IMAGE
 ENV DEBIAN_FRONTEND noninteractive
 RUN : \
     && apt-get update \
-    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq sudo openssh-client conntrack cloud-utils qemu-utils qemu-kvm qemu-system-x86-64 qemu-system-aarch64 \
+    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq sudo openssh-client conntrack cloud-utils qemu-utils qemu-kvm qemu-system-x86-64 qemu-system-aarch64 upx \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install Python versions with deadsnakes.
@@ -70,6 +70,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     # helm
     #
     && ( curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash ) \
+    && upx `which helm` \
     #
     # [cleanup]
     #
@@ -90,12 +91,12 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
     && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
     && sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && time cargo install cargo-deny --version 0.14.24 \
-    && time cargo install cargo-semver-checks --version 0.33.0 \
-    && time cargo install sqlx-cli --version 0.8.0 \
-    && time cargo install cargo-llvm-cov --version 0.6.11 \
-    && time cargo install cargo-hack --version 0.6.30 \
-    && time cargo install buffrs --version 0.9.0 \
+    && time cargo install cargo-deny --version 0.14.24 --locked \
+    && time cargo install cargo-semver-checks --version 0.33.0 --locked \
+    && time cargo install sqlx-cli --version 0.8.0 --locked \
+    && time cargo install cargo-llvm-cov --version 0.6.11 --locked \
+    && time cargo install cargo-hack --version 0.6.30 --locked \
+    && time cargo install buffrs --version 0.9.0 --locked \
     && sccache --stop-server \
     && du -hd1 /root
 
@@ -103,14 +104,14 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
 # Python tools
 #
 RUN : \
-    && python -m pip install pipx==1.6.0 -v \
-    && pipx install poetry==1.8.3 \
-    && pipx install pdm==2.17.3 \
-    && pipx install slap-cli==1.14.1 \
-    && pipx install kraken-wrapper==0.38.0 \
-    && pipx install uv==0.2.33 \
+    && python -m pip install pipx==1.7.1 uv==0.3.2 -v \
+    && uv tool install poetry==1.8.3 \
+    && uv tool install pdm==2.17.3 \
+    && uv tool install slap-cli==1.14.1 \
+    && uv tool install kraken-wrapper==0.38.0 \
+    # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
     && pipx install ansible==9.8.0 --include-deps \
-    && rm -rf ~/.cache/pip
+    && rm -rf ~/.cache
 
 #
 # Nix

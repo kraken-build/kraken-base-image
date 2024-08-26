@@ -13,3 +13,4 @@ class ProtobufCompilerFormula(UnixPackageFormula):
         "https://github.com/protocolbuffers/protobuf/releases/download/v${version}/"
         "protoc-${version}-${platform}-${arch}.zip"
     )
+    upx_optimize = True

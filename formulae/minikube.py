@@ -12,3 +12,4 @@ class MinikubeFormula(DownloadFileFormula):
     output_directory = "${install_to}"
     output_file = "${output_directory}/minikube"
     install_to = "/usr/local/bin"
+    upx_optimize = True
