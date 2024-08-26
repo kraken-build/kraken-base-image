@@ -84,9 +84,7 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 #
 # Rust tools
 #
-ARG ACTIONS_CACHE_URL
-RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
-    && rustup toolchain install 1.80.0 \
+RUN rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
     && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
     && sccache --start-server \
