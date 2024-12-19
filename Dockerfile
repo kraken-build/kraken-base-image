@@ -89,7 +89,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
     --mount=type=cache,target=/tmp/sccache,rw : \
     && rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
-    && SCCACHE_GHA_ENABLED=on sccache --start-server \
+    && SCCACHE_GHA_ENABLED=on ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
     && time cargo install cargo-deny --version 0.14.24 --locked \
     && time cargo install cargo-semver-checks --version 0.33.0 --locked \
