@@ -9,11 +9,14 @@ env:
 
 jobs:
   test-formulae:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
-      matrix:
-        arch: ["amd64", "arm64"]
+      includes:
+      - arch: amd64
+        runs-on: ubuntu-latest
+      - arch: arm64
+        runs-on: ARM64
     steps:
       - uses: actions/checkout@v4
         with:
