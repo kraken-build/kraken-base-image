@@ -12,7 +12,7 @@ jobs:
     runs-on: ${{ matrix.runs_on }}
     strategy:
       fail-fast: false
-      includes:
+      include:
       - arch: amd64
         runs_on: ubuntu-latest
       - arch: arm64
@@ -43,7 +43,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        includes:
+        include:
         - arch: amd64
           base_image: ubuntu_20.04
           runs_on: ubuntu-latest
