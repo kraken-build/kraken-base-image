@@ -9,14 +9,14 @@ env:
 
 jobs:
   test-formulae:
-    runs-on: ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs_on }}
     strategy:
       fail-fast: false
       includes:
       - arch: amd64
-        runs-on: ubuntu-latest
+        runs_on: ubuntu-latest
       - arch: arm64
-        runs-on: ARM64
+        runs_on: ARM64
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,7 +38,7 @@ jobs:
           exit $status_code
 
   build:
-    runs-on: ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs_on }}
     needs: [ test-formulae ]
     strategy:
       fail-fast: false
@@ -46,16 +46,16 @@ jobs:
         includes:
         - arch: amd64
           base_image: ubuntu_20.04
-          runs-on: ubuntu-latest
+          runs_on: ubuntu-latest
         - arch: amd64
           base_image: ubuntu_22.04
-          runs-on: ubuntu-latest
+          runs_on: ubuntu-latest
         - arch: arm64
           base_image: ubuntu_20.04
-          runs-on: ARM64
+          runs_on: ARM64
         - arch: arm64
           base_image: ubuntu_22.04
-          runs-on: ARM64
+          runs_on: ARM64
     permissions:
       packages: write
       contents: read
