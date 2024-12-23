@@ -12,11 +12,12 @@ jobs:
     runs-on: ${{ matrix.runs_on }}
     strategy:
       fail-fast: false
-      include:
-      - arch: amd64
-        runs_on: ubuntu-latest
-      - arch: arm64
-        runs_on: ARM64
+      matrix:
+        include:
+        - arch: amd64
+          runs_on: ubuntu-latest
+        - arch: arm64
+          runs_on: ARM64
     steps:
       - uses: actions/checkout@v4
         with:
