@@ -35,13 +35,24 @@ jobs:
           exit $status_code
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runs-on }}
     needs: [ test-formulae ]
     strategy:
       fail-fast: false
       matrix:
-        arch: ["amd64", "arm64"]
-        base_image: [ "ubuntu_22.04", "ubuntu_20.04" ]
+        includes:
+        - arch: amd64
+          base_image: ubuntu_20.04
+          runs-on: ubuntu-latest
+        - arch: amd64
+          base_image: ubuntu_22.04
+          runs-on: ubuntu-latest
+        - arch: arm64
+          base_image: ubuntu_20.04
+          runs-on: ARM64
+        - arch: arm64
+          base_image: ubuntu_22.04
+          runs-on: ARM64
     permissions:
       packages: write
       contents: read
