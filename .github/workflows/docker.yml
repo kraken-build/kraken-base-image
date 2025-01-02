@@ -102,6 +102,8 @@ jobs:
             core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env['ACTIONS_RUNTIME_TOKEN'])
 
       - run: |
+          # NOTE: Required for self-hosted runner because the entry is not set in PATH.
+          export PATH="$PATH:$HOME/.local/bin"
           krakenw r -s -v
           krakenw q d --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.arch }} -v
           krakenw r --resume :docker-kraken-image/${{ matrix.base_image }}/linux/${{ matrix.arch }} -v --state-name "${{ matrix.base_image }}-${{ matrix.arch }}"
