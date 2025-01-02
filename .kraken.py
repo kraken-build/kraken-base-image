@@ -1,11 +1,10 @@
 from __future__ import annotations
 from kraken.common import buildscript
 
-buildscript(requirements=["kraken-build==0.32.4", "jinja2"])
+buildscript(requirements=["kraken-build"])
 
 import os
 import re
-import time
 from functools import lru_cache
 from kraken.core import Project, Task
 from kraken.std.docker import build_docker_image, manifest_tool
@@ -35,7 +34,6 @@ def get_docker_auth() -> dict[str, tuple[str, str]]:
 
 
 def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]:
-
     if os.getenv("GITHUB_REF") == "refs/heads/develop":
         versions = [version, "develop"]
     else:
@@ -58,7 +56,7 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
         auth=get_docker_auth(),
         tags=tags,
         platform=platform,
-        build_args={"CACHE_BUSTER": str(time.time()), "BASE_IMAGE": base_image, "ACTIONS_CACHE_URL": os.environ["ACTIONS_CACHE_URL"]},
+        build_args={"BASE_IMAGE": base_image, "ACTIONS_CACHE_URL": os.environ["ACTIONS_CACHE_URL"]},
         secrets={"ACTIONS_RUNTIME_TOKEN": os.environ["ACTIONS_RUNTIME_TOKEN"]},
         cache_repo=f"{prefix}:{base_image.replace(':', '_')}-cache",
         push=True,
