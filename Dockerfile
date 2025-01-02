@@ -85,11 +85,11 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 # Rust tools
 #
 ARG ACTIONS_CACHE_URL
-RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN : \
+RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
+    --mount=type=cache,target=/tmp/sccache,rw : \
     && rustup toolchain install 1.80.0 \
     && rustup default 1.80.0 \
-    && export SCCACHE_REDIS_ENDPOINT=redis://redis-headless.sccache:6379 \
-    && sccache --start-server \
+    && SCCACHE_GHA_ENABLED=on ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
     && time cargo install cargo-deny --version 0.14.24 --locked \
     && time cargo install cargo-semver-checks --version 0.33.0 --locked \
