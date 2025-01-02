@@ -17,7 +17,7 @@ jobs:
         - arch: amd64
           runs_on: ubuntu-latest
         - arch: arm64
-          runs_on: [runs-on, runner=2cpu-linux-arm64]
+          runs_on: [ARM64]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,10 +53,10 @@ jobs:
           runs_on: ubuntu-latest
         - arch: arm64
           base_image: ubuntu_20.04
-          runs_on: [runs-on, runner=2cpu-linux-arm64]
+          runs_on: [ARM64]
         - arch: arm64
           base_image: ubuntu_22.04
-          runs_on: [runs-on, runner=2cpu-linux-arm64]
+          runs_on: [ARM64]
     permissions:
       packages: write
       contents: read
