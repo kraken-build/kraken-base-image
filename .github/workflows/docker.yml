@@ -17,7 +17,7 @@ jobs:
         - arch: amd64
           runs_on: ubuntu-latest
         - arch: arm64
-          runs_on: [ARM64]
+          runs_on: [buildjet-2vcpu-ubuntu-2204-arm]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -58,10 +58,10 @@ jobs:
           runs_on: ubuntu-latest
         - arch: arm64
           base_image: ubuntu_20.04
-          runs_on: [ARM64]
+          runs_on: [buildjet-4vcpu-ubuntu-2204-arm]
         - arch: arm64
           base_image: ubuntu_22.04
-          runs_on: [ARM64]
+          runs_on: [buildjet-4vcpu-ubuntu-2204-arm]
     permissions:
       packages: write
       contents: read
