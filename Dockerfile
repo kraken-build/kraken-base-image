@@ -6,31 +6,18 @@ ARG BASE_IMAGE
 ENV DEBIAN_FRONTEND noninteractive
 RUN : \
     && apt-get update \
-    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq sudo openssh-client conntrack cloud-utils qemu-utils qemu-kvm qemu-system-x86-64 qemu-system-aarch64 upx \
+    && apt-get install -y curl git wget libssl-dev libffi-dev llvm clang gcc g++ pkg-config build-essential jq sudo openssh-client conntrack cloud-utils qemu-utils qemu-kvm qemu-system-x86-64 qemu-system-aarch64 upx time \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
-# Install Python versions with deadsnakes.
-SHELL [ "/bin/bash", "-c" ]
-RUN : \
-    && set -x \
-    && apt-get update \
-    && apt-get install -y software-properties-common --no-install-recommends \
-    && add-apt-repository ppa:deadsnakes/ppa \
-    && apt update \
-    && apt-get install -y python{3.8,3.9,3.10,3.11,3.12}{,-venv,-dev} --no-install-recommends \
-    && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
-
+# Install UV and Python distributions.
+COPY --from=ghcr.io/astral-sh/uv:0.5.13 /uv /bin/uv
 RUN : \
     # Install Pip for all other Python versions.
     && set -x \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.8 - \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9 - \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10 - \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 - \
-    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 - \
-    # Install Python 3.10 as the default version.
-    && ln -svf $(which python3.10) /usr/bin/python \
-    && ln -svf $(which python3.10) /usr/bin/python3
+    && uv python install 3.8 3.9 3.10 3.11 3.12 3.13 \
+    # Use Python 3.12 as the default version.
+    && ln -svf $(uv python find 3.12) /usr/bin/python \
+    && ln -svf $(uv python find 3.12) /usr/bin/python3
 
 ENV PATH="$PATH:/root/.cargo/bin:/root/.local/bin"
 
@@ -104,7 +91,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
 # Python tools
 #
 RUN : \
-    && python -m pip install pipx==1.7.1 uv==0.3.2 -v \
+    && uv tool install pipx==1.7.1 \
     && uv tool install poetry==1.8.3 \
     && uv tool install pdm==2.17.3 \
     && uv tool install slap-cli==1.14.1 \
@@ -117,6 +104,6 @@ RUN : \
 # Nix
 #
 RUN : \
-    && sh <(curl -L https://nixos.org/nix/install) --daemon \
+    && bash -c 'sh <(curl -L https://nixos.org/nix/install) --daemon' \
     && echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf \
     && echo "max-jobs = auto" >> /etc/nix/nix.conf
