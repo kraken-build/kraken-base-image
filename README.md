@@ -15,8 +15,8 @@ is built from various Ubuntu starting images. We use semantic versioning in the 
 
 | Starting Image | Kraken base image tags                                                                      | Notes |
 |----------------|---------------------------------------------------------------------------------------------|-------|
-| `ubuntu:20.04` | `develop-ubuntu_20.04`, `x.y.z-ubuntu_20.04`, `x.y-ubuntu_20.04`                            |       |
-| `ubuntu:22.04` | `develop`, `x.y.z`, `x.y`, `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04`, `x.y-ubuntu_22.04` |       |
+| `ubuntu:22.04` | `develop-ubuntu_22.04`, `x.y.z-ubuntu_22.04`, `x.y-ubuntu_22.04`                            |       |
+| `ubuntu:24.04` | `develop`, `x.y.z`, `x.y`, `develop-ubuntu_24.04`, `x.y.z-ubuntu_24.04`, `x.y-ubuntu_24.04` |       |
 
 ### Versioning rules
 

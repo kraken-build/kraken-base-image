@@ -51,13 +51,13 @@ jobs:
       matrix:
         include:
         - arch: amd64
-          base_image: ubuntu_20.04
+          base_image: ubuntu_24.04
           runs_on: ubuntu-latest
         - arch: amd64
           base_image: ubuntu_22.04
           runs_on: ubuntu-latest
         - arch: arm64
-          base_image: ubuntu_20.04
+          base_image: ubuntu_24.04
           runs_on: [buildjet-4vcpu-ubuntu-2204-arm]
         - arch: arm64
           base_image: ubuntu_22.04
