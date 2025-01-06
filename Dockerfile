@@ -87,8 +87,8 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
     --mount=type=cache,target=/tmp/sccache,rw : \
-    && rustup toolchain install 1.83.0 \
-    && rustup default 1.83.0 \
+    && rustup toolchain install 1.82.0 \
+    && rustup default 1.82.0 \
     && SCCACHE_GHA_ENABLED=on ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
     && time cargo install cargo-deny --version 0.14.24 --locked \
