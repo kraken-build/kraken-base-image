@@ -74,15 +74,15 @@ COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/doc
 ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
     --mount=type=cache,target=/tmp/sccache,rw : \
-    && rustup toolchain install 1.83.0 \
-    && rustup default 1.83.0 \
+    && rustup toolchain install 1.85.0 \
+    && rustup default 1.85.0 \
     && SCCACHE_GHA_ENABLED=on ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && time cargo install cargo-deny --version 0.14.24 --locked \
-    && time cargo install cargo-semver-checks --version 0.33.0 --locked \
-    && time cargo install sqlx-cli --version 0.8.0 --locked \
-    && time cargo install cargo-llvm-cov --version 0.6.11 --locked \
-    && time cargo install cargo-hack --version 0.6.30 --locked \
+    && time cargo install cargo-deny --version 0.18.0 --locked \
+    && time cargo install cargo-semver-checks --version 0.39.0 --locked \
+    && time cargo install sqlx-cli --version 0.8.3 --locked \
+    && time cargo install cargo-llvm-cov --version 0.6.16 --locked \
+    && time cargo install cargo-hack --version 0.6.35 --locked \
     && time cargo install buffrs --version 0.9.0 --locked \
     && sccache --stop-server \
     && du -hd1 /root

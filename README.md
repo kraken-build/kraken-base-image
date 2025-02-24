@@ -50,7 +50,7 @@ the base image in that minor version range besides a higher minor having already
 | pkg-config                             | apt-get                                                                                         | latest  |
 | QEMU (kvm, x86_64, aarch64)            | apt-get                                                                                         | latest  |
 | sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.8.1   |
-| sqlx-cli                               | cargo                                                                                           | 0.8.0   |
+| sqlx-cli                               | cargo                                                                                           | 0.8.3   |
 | [UPX](https://upx.github.io/)          | apt-get                                                                                         | latest  |
 | wget                                   | apt-get                                                                                         | latest  |
 | [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.44.3  |
@@ -61,10 +61,10 @@ the base image in that minor version range besides a higher minor having already
 |--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
 | buf                                                    | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.35.1                                              |
 | buffrs                                                 | cargo                                                                                                              | 0.9.0                                               |
-| cargo-deny                                             | cargo                                                                                                              | 0.14.24                                             |
-| cargo-hack                                             | cargo                                                                                                              | 0.6.30                                              |
-| cargo-llvm-cov                                         | cargo                                                                                                              | 0.6.11                                              |
-| cargo-semver-checks                                    | cargo                                                                                                              | 0.33.0                                              |
+| cargo-deny                                             | cargo                                                                                                              | 0.18.0                                              |
+| cargo-hack                                             | cargo                                                                                                              | 0.6.35                                              |
+| cargo-llvm-cov                                         | cargo                                                                                                              | 0.6.16                                              |
+| cargo-semver-checks                                    | cargo                                                                                                              | 0.39.0                                              |
 | cmake                                                  | apt-get                                                                                                            | latest                                              |
 | gcc, g++                                               | apt-get                                                                                                            | latest                                              |
 | grcov                                                  | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py))                        | 0.8.19                                              |
@@ -77,7 +77,7 @@ the base image in that minor version range besides a higher minor having already
 | Poetry                                                 | Pipx (Python 3.12)                                                                                                 | 1.8.3                                               |
 | protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.3                                              |
 | Python                                                 | `uv python install`                                                                                                | 3.8, 3.9, 3.10, 3.11, 3.12 <sup>default</sup>, 3.13 |
-| Rust / Cargo                                           | Rustup                                                                                                             | 1.83.0                                              |
+| Rust / Cargo                                           | Rustup                                                                                                             | 1.85.0                                              |
 | rustfmt                                                | rustup                                                                                                             | nightly (additionally)                              |
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                              |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.12)                                                                                                 | 1.14.1                                              |
