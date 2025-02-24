@@ -33,7 +33,7 @@ the base image in that minor version range besides a higher minor having already
 
 | Software                               | Installed via                                                                                   | Version |
 |----------------------------------------|-------------------------------------------------------------------------------------------------|---------|
-| ansible                                | Pipx (Python 3.12)                                                                              | 9.8.0   |
+| ansible                                | Pipx (Python 3.12)                                                                              | 11.2.0  |
 | build-essential                        | apt-get                                                                                         | latest  |
 | BuildKit                               | GitHub Releases                                                                                 | 0.15.1  |
 | clang                                  | apt-get                                                                                         | latest  |
@@ -43,7 +43,7 @@ the base image in that minor version range besides a higher minor having already
 | Git LFS                                | apt-get                                                                                         | latest  |
 | GraphViz                               | apt-get                                                                                         | latest  |
 | jq                                     | apt-get                                                                                         | latest  |
-| kraken-wrapper                         | Pipx (Python 3.12)                                                                              | 0.38.0  |
+| kraken-wrapper                         | uv                                                                                              | 0.43.0  |
 | libffi                                 | apt-get                                                                                         | latest  |
 | libssl                                 | apt-get                                                                                         | latest  |
 | openssh-client                         | apt-get                                                                                         | latest  |
@@ -72,17 +72,17 @@ the base image in that minor version range besides a higher minor having already
 | llvm                                                   | apt-get                                                                                                            | latest                                              |
 | Nix                                                    | `https://nixos.org/nix/install`                                                                                    | latest                                              |
 | NodeJS                                                 | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 18                                                  |
-| PDM                                                    | Pipx (Python 3.12)                                                                                                 | 2.17.3                                              |
-| Pipx                                                   | Pip (Python 3.12)                                                                                                  | 1.6.0                                               |
-| Poetry                                                 | Pipx (Python 3.12)                                                                                                 | 1.8.3                                               |
+| PDM                                                    | uv                                                                                                                 | 2.22.3                                              |
+| Pipx                                                   | uv                                                                                                                 | 1.6.0                                               |
+| Poetry                                                 | uv                                                                                                                 | 1.8.3                                               |
 | protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.3                                              |
 | Python                                                 | `uv python install`                                                                                                | 3.8, 3.9, 3.10, 3.11, 3.12 <sup>default</sup>, 3.13 |
 | Rust / Cargo                                           | Rustup                                                                                                             | 1.85.0                                              |
 | rustfmt                                                | rustup                                                                                                             | nightly (additionally)                              |
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                              |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | Pipx (Python 3.12)                                                                                                 | 1.14.1                                              |
+| Slap ([link](https://github.com/python-slap/slap-cli)) | uv                                                                                                                 | 1.15.0                                              |
 | Terraform                                              | Hashicorp releases                                                                                                 | 1.9.3                                               |
-| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.5.13                                              |
+| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.6.2                                               |
 
 ### Container tools
 
