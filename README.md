@@ -105,10 +105,3 @@ the base image in that minor version range besides a higher minor having already
 | kubectl                                 | apt-get (`apt.kubernetes.io`)                                                                 | 1.30.3  |
 | minikube                                | `storage.googleapis.com/minikube/releases` ([docs](https://minikube.sigs.k8s.io/docs/start/)) | 1.33.1  |
 | [stern](https://github.com/stern/stern) | [GitHub releases](https://github.com/stern/stern/releases/)                                   | 1.30.0  |
-
-## Developemnt
-
-### CI
-
-We use [TestFlows-GitHub-Hetzner-Runners](https://github.com/testflows/TestFlows-GitHub-Hetzner-Runners) on this
-repository.
