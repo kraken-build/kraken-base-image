@@ -92,7 +92,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
 #
 RUN : \
     && uv tool install pipx==1.7.1 \
-    && uv tool install poetry==1.8.3 \
+    && uv tool install poetry==2.1.1 \
     && uv tool install pdm==2.22.3 \
     && uv tool install slap-cli==1.15.0 \
     && uv tool install kraken-wrapper==0.43.0 \
