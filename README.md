@@ -33,7 +33,7 @@ the base image in that minor version range besides a higher minor having already
 
 | Software                               | Installed via                                                                                   | Version |
 |----------------------------------------|-------------------------------------------------------------------------------------------------|---------|
-| ansible                                | Pipx (Python 3.12)                                                                              | 11.2.0  |
+| ansible                                | Pipx                                                                                            | 11.3.0  |
 | build-essential                        | apt-get                                                                                         | latest  |
 | BuildKit                               | GitHub Releases                                                                                 | 0.15.1  |
 | clang                                  | apt-get                                                                                         | latest  |
@@ -72,7 +72,7 @@ the base image in that minor version range besides a higher minor having already
 | llvm                                                   | apt-get                                                                                                            | latest                                              |
 | Nix                                                    | `https://nixos.org/nix/install`                                                                                    | latest                                              |
 | NodeJS                                                 | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 18                                                  |
-| PDM                                                    | uv                                                                                                                 | 2.22.3                                              |
+| PDM                                                    | uv (Python 3.12)                                                                                                   | 2.22.3                                              |
 | Pipx                                                   | uv                                                                                                                 | 1.6.0                                               |
 | Poetry                                                 | uv                                                                                                                 | 2.1.1                                               |
 | protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.3                                              |
