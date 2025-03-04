@@ -92,11 +92,12 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
 RUN : \
     && uv tool install pipx==1.7.1 \
     && uv tool install poetry==2.1.1 \
-    && uv tool install pdm==2.22.3 \
+    # NOTE: Python 3.12 for more lenient certificate validation
+    && uv tool install --python=python3.12 pdm==2.22.3 \
     && uv tool install slap-cli==1.15.0 \
-    && uv tool install kraken-wrapper==0.43.0 \
+    && uv tool install kraken-wrapper==0.43.1 \
     # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
-    && pipx install ansible==11.2.0 --include-deps \
+    && pipx install ansible==11.3.0 --include-deps \
     && rm -rf ~/.cache
 
 #
