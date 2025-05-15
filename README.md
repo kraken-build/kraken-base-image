@@ -49,7 +49,7 @@ the base image in that minor version range besides a higher minor having already
 | openssh-client                         | apt-get                                                                                         | latest  |
 | pkg-config                             | apt-get                                                                                         | latest  |
 | QEMU (kvm, x86_64, aarch64)            | apt-get                                                                                         | latest  |
-| sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.8.1   |
+| sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.10.0  |
 | sqlx-cli                               | cargo                                                                                           | 0.8.3   |
 | [UPX](https://upx.github.io/)          | apt-get                                                                                         | latest  |
 | wget                                   | apt-get                                                                                         | latest  |

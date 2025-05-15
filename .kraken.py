@@ -57,7 +57,7 @@ def build_kraken_image(base_image: str, platform: str) -> tuple[Task, list[str]]
         tags=tags,
         platform=platform,
         build_args={"BASE_IMAGE": base_image, "ACTIONS_CACHE_URL": os.environ["ACTIONS_CACHE_URL"]},
-        secrets={"ACTIONS_RUNTIME_TOKEN": os.environ["ACTIONS_RUNTIME_TOKEN"]},
+        secrets={name: os.environ[name] for name in ("ACTIONS_CACHE_URL", "ACTIONS_RESULTS_URL", "ACTIONS_RUNTIME_TOKEN", "ACTIONS_CACHE_SERVICE_V2")},
         cache_repo=f"{prefix}:{base_image.replace(':', '_')}-cache",
         push=True,
         load=False,
