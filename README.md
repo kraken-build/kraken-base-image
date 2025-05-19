@@ -33,7 +33,7 @@ the base image in that minor version range besides a higher minor having already
 
 | Software                               | Installed via                                                                                   | Version |
 |----------------------------------------|-------------------------------------------------------------------------------------------------|---------|
-| ansible                                | Pipx                                                                                            | 11.3.0  |
+| ansible                                | Pipx                                                                                            | 11.5.0  |
 | build-essential                        | apt-get                                                                                         | latest  |
 | BuildKit                               | GitHub Releases                                                                                 | 0.15.1  |
 | clang                                  | apt-get                                                                                         | latest  |
@@ -50,7 +50,7 @@ the base image in that minor version range besides a higher minor having already
 | pkg-config                             | apt-get                                                                                         | latest  |
 | QEMU (kvm, x86_64, aarch64)            | apt-get                                                                                         | latest  |
 | sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.10.0  |
-| sqlx-cli                               | cargo                                                                                           | 0.8.3   |
+| sqlx-cli                               | cargo                                                                                           | 0.8.5   |
 | [UPX](https://upx.github.io/)          | apt-get                                                                                         | latest  |
 | wget                                   | apt-get                                                                                         | latest  |
 | [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.44.3  |
@@ -61,10 +61,10 @@ the base image in that minor version range besides a higher minor having already
 |--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
 | buf                                                    | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.35.1                                              |
 | buffrs                                                 | cargo                                                                                                              | 0.10.0                                              |
-| cargo-deny                                             | cargo                                                                                                              | 0.18.0                                              |
-| cargo-hack                                             | cargo                                                                                                              | 0.6.35                                              |
+| cargo-deny                                             | cargo                                                                                                              | 0.18.2                                              |
+| cargo-hack                                             | cargo                                                                                                              | 0.6.36                                              |
 | cargo-llvm-cov                                         | cargo                                                                                                              | 0.6.16                                              |
-| cargo-semver-checks                                    | cargo                                                                                                              | 0.39.0                                              |
+| cargo-semver-checks                                    | cargo                                                                                                              | 0.41.0                                              |
 | cmake                                                  | apt-get                                                                                                            | latest                                              |
 | gcc, g++                                               | apt-get                                                                                                            | latest                                              |
 | grcov                                                  | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py))                        | 0.8.19                                              |
@@ -72,17 +72,17 @@ the base image in that minor version range besides a higher minor having already
 | llvm                                                   | apt-get                                                                                                            | latest                                              |
 | Nix                                                    | `https://nixos.org/nix/install`                                                                                    | latest                                              |
 | NodeJS                                                 | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 18                                                  |
-| PDM                                                    | uv (Python 3.12)                                                                                                   | 2.22.3                                              |
+| PDM                                                    | uv (Python 3.12)                                                                                                   | 2.24.1                                              |
 | Pipx                                                   | uv                                                                                                                 | 1.6.0                                               |
-| Poetry                                                 | uv                                                                                                                 | 2.1.1                                               |
+| Poetry                                                 | uv                                                                                                                 | 2.1.3                                               |
 | protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.3                                              |
 | Python                                                 | `uv python install`                                                                                                | 3.8, 3.9, 3.10, 3.11, 3.12 <sup>default</sup>, 3.13 |
-| Rust / Cargo                                           | Rustup                                                                                                             | 1.85.0                                              |
+| Rust / Cargo                                           | Rustup                                                                                                             | 1.87.0                                              |
 | rustfmt                                                | rustup                                                                                                             | nightly (additionally)                              |
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                              |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | uv                                                                                                                 | 1.15.0                                              |
 | Terraform                                              | Hashicorp releases                                                                                                 | 1.9.3                                               |
-| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.6.2                                               |
+| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.7.3                                               |
 
 ### Container tools
 
