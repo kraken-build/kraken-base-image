@@ -65,7 +65,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
 #
 # docker-buildx
 # Pin to a version prior docker cli 28.3 to not be affected by authentication changes (https://github.com/docker/cli/issues/6156)
-COPY --from=docker/buildx-bin:v0.25 /buildx /usr/libexec/docker/cli-plugins/docker-buildx
+COPY --from=docker/buildx-bin:v0.28 /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 
 #
 # Rust tools
