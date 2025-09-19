@@ -81,11 +81,11 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
        ACTIONS_CACHE_SERVICE_V2="$(cat /run/secrets/ACTIONS_CACHE_SERVICE_V2)" \
        sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && time cargo install cargo-deny --version 0.18.2 --locked \
-    && time cargo install cargo-semver-checks --version 0.41.0 --locked \
-    && time cargo install sqlx-cli --version 0.8.5 --locked \
-    && time cargo install cargo-llvm-cov --version 0.6.16 --locked \
-    && time cargo install cargo-hack --version 0.6.36 --locked \
+    && time cargo install cargo-deny --version 0.18.4 --locked \
+    && time cargo install cargo-semver-checks --version 0.43.0 --locked \
+    && time cargo install sqlx-cli --version 0.8.6 --locked \
+    && time cargo install cargo-llvm-cov --version 0.6.19 --locked \
+    && time cargo install cargo-hack --version 0.6.38 --locked \
     && time cargo install buffrs --version 0.11.0 --locked \
     && sccache --stop-server \
     && du -hd1 /root
@@ -95,11 +95,11 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
 #
 RUN : \
     && uv tool install pipx==1.7.1 \
-    && uv tool install poetry==2.1.3 \
+    && uv tool install poetry==2.2.0 \
     # NOTE: Python 3.12 for more lenient certificate validation
-    && uv tool install --python=python3.12 pdm==2.24.1 \
+    && uv tool install --python=python3.12 pdm==2.25.9 \
     && uv tool install slap-cli==1.15.0 \
-    && uv tool install kraken-wrapper==0.43.1 \
+    && uv tool install kraken-wrapper==0.48.2 \
     # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
     && pipx install ansible==11.5.0 --include-deps \
     && rm -rf ~/.cache
