@@ -43,7 +43,7 @@ the base image in that minor version range besides a higher minor having already
 | Git LFS                                | apt-get                                                                                         | latest  |
 | GraphViz                               | apt-get                                                                                         | latest  |
 | jq                                     | apt-get                                                                                         | latest  |
-| kraken-wrapper                         | uv                                                                                              | 0.48.2  |
+| kraken-wrapper                         | uv                                                                                              | 0.48.3  |
 | libffi                                 | apt-get                                                                                         | latest  |
 | libssl                                 | apt-get                                                                                         | latest  |
 | openssh-client                         | apt-get                                                                                         | latest  |
