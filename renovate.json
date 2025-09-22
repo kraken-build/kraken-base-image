@@ -3,4 +3,10 @@
   "extends": [
     "config:recommended"
   ]
+  "packageRules": [
+    {
+      "matchPackageNames": ["buildx"],
+      "allowedVersions": "<0.26.0",
+    }
+  ]
 }
