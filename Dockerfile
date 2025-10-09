@@ -10,7 +10,7 @@ RUN : \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install UV and Python distributions.
-COPY --from=ghcr.io/astral-sh/uv:0.8.5 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.9.1 /uv /bin/uv
 RUN : \
     # Install Pip for all other Python versions.
     && set -x \
