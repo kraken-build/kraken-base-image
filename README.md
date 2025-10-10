@@ -76,13 +76,13 @@ the base image in that minor version range besides a higher minor having already
 | Pipx                                                   | uv                                                                                                                 | 1.7.1                                               |
 | Poetry                                                 | uv                                                                                                                 | 2.2.0                                               |
 | protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.3                                              |
-| Python                                                 | `uv python install`                                                                                                | 3.8, 3.9, 3.10, 3.11, 3.12 <sup>default</sup>, 3.13 |
+| Python                                                 | `uv python install`                                                                                           | 3.8, 3.9, 3.10, 3.11, 3.12 <sup>default</sup>, 3.13 3.14 |
 | Rust / Cargo                                           | Rustup                                                                                                             | 1.90.0                                              |
 | rustfmt                                                | rustup                                                                                                             | nightly (additionally)                              |
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                              |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | uv                                                                                                                 | 1.15.0                                              |
 | Terraform                                              | Hashicorp releases                                                                                                 | 1.9.3                                               |
-| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.8.5                                               |
+| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.9.1                                               |
 
 ### Container tools
 
