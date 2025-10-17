@@ -150,7 +150,7 @@ jobs:
           enable-cache: false
 
       - name: Install kraken-wrapper
-        run: uv tool install kraken-wrapper==0.39.0
+        run: uv tool install kraken-wrapper==0.48.4
 
       - name: Install manifest-tool
         run: |
