@@ -27,9 +27,10 @@ jobs:
         run: sudo apt-get update && sudo apt-get install upx -y
 
       - name: Install Python 3.10
-        uses: actions/setup-python@v6
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.10"
+          enable-cache: false
 
       - name: Test Formulae
         run: |
@@ -37,7 +38,7 @@ jobs:
           status_code=0
           for formula in formulae/*.py; do
             echo " :::: TEST FORMULA $formula"
-            if ! python3 src/main.py $formula -o install_to=bin; then
+            if ! python src/main.py $formula -o install_to=bin; then
               status_code=1
             fi
           done
@@ -81,15 +82,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-python@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.10"
-
-      - name: Create Python 3 virtualenv
-        run: python3.10 -m venv .venv
+          enable-cache: false
 
       - name: Install kraken-wrapper
-        run: pip install uv==0.3.0 && uv tool install kraken-wrapper==0.39.0
+        run: uv tool install kraken-wrapper==0.48.4
 
       # See https://github.com/orgs/community/discussions/42856#discussioncomment-7678867
       - name: Adding required env vars for caching Docker build
@@ -145,12 +144,13 @@ jobs:
 
       - run: ls -la build/.kraken/buildenv/
 
-      - uses: actions/setup-python@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.10"
+          enable-cache: false
 
       - name: Install kraken-wrapper
-        run: pip install uv==0.3.0 && uv tool install kraken-wrapper==0.39.0
+        run: uv tool install kraken-wrapper==0.48.4
 
       - name: Install manifest-tool
         run: |
