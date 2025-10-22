@@ -14,7 +14,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.9.3 /uv /bin/uv
 RUN : \
     # Install Pip for all other Python versions.
     && set -x \
-    && uv python install 3.10 3.11 3.12 3.13 3.14 \
+    && uv python install 3.10 3.11 3.12 3.13 \
     # Use Python 3.12 as the default version.
     && uv python install 3.12 --default
 
