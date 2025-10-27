@@ -112,7 +112,7 @@ jobs:
           GITHUB_USER: ${{ github.actor }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: kraken-build-state-${{ matrix.base_image }}-${{ matrix.arch }}
           path: build/.kraken/buildenv/state*.dill
@@ -136,7 +136,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: kraken-build-state-*
           path: build/.kraken/buildenv/
