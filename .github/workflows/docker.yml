@@ -88,7 +88,7 @@ jobs:
           enable-cache: false
 
       - name: Install kraken-wrapper
-        run: uv tool install kraken-wrapper==0.48.4
+        run: uv tool install kraken-wrapper==0.49.0
 
       # See https://github.com/orgs/community/discussions/42856#discussioncomment-7678867
       - name: Adding required env vars for caching Docker build
@@ -150,7 +150,7 @@ jobs:
           enable-cache: false
 
       - name: Install kraken-wrapper
-        run: uv tool install kraken-wrapper==0.48.4
+        run: uv tool install kraken-wrapper==0.49.0
 
       - name: Install manifest-tool
         run: |
