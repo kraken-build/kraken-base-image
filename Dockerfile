@@ -99,7 +99,7 @@ RUN : \
     # NOTE: Python 3.12 for more lenient certificate validation
     && uv tool install --python=python3.12 pdm==2.25.9 \
     && uv tool install slap-cli==1.15.0 \
-    && uv tool install kraken-wrapper==0.48.3 \
+    && uv tool install kraken-wrapper==0.49.0 \
     # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
     && pipx install ansible==11.5.0 --include-deps \
     && rm -rf ~/.cache
