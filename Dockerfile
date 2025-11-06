@@ -97,7 +97,7 @@ RUN : \
     && uv tool install pipx==1.7.1 \
     && uv tool install poetry==2.2.0 \
     # NOTE: Python 3.12 for more lenient certificate validation
-    && uv tool install --python=python3.12 pdm==2.25.9 \
+    && uv tool install --python=python3.12 pdm==2.26.1 \
     && uv tool install slap-cli==1.15.0 \
     && uv tool install kraken-wrapper==0.49.0 \
     # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
