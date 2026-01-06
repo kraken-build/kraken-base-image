@@ -81,7 +81,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
        ACTIONS_CACHE_SERVICE_V2="$(cat /run/secrets/ACTIONS_CACHE_SERVICE_V2)" \
        sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && time cargo install cargo-deny --version 0.18.4 --locked \
+    && time cargo install cargo-deny --version 0.18.9 --locked \
     && time cargo install cargo-semver-checks --version 0.43.0 --locked \
     && time cargo install sqlx-cli --version 0.8.6 --locked \
     && time cargo install cargo-llvm-cov --version 0.6.19 --locked \
