@@ -86,7 +86,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
     && time cargo install sqlx-cli --version 0.8.6 --locked \
     && time cargo install cargo-llvm-cov --version 0.6.19 --locked \
     && time cargo install cargo-hack --version 0.6.38 --locked \
-    && time cargo install buffrs --version 0.11.0 --locked \
+    && time cargo install buffrs --version 0.12.2 --locked \
     && sccache --stop-server \
     && du -hd1 /root
 
