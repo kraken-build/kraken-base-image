@@ -82,7 +82,7 @@ the base image in that minor version range besides a higher minor having already
 | Rustup                                                 | rustup.rs                                                                                                          | latest                                              |
 | Slap ([link](https://github.com/python-slap/slap-cli)) | uv                                                                                                                 | 1.15.0                                              |
 | Terraform                                              | Hashicorp releases                                                                                                 | 1.9.3                                               |
-| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.9.1                                               |
+| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.11.11                                             |
 
 ### Container tools
 
