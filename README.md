@@ -57,32 +57,29 @@ the base image in that minor version range besides a higher minor having already
 
 ### Language runtimese and tools
 
-| Software                                               | Installed via                                                                                                      | Version                                             |
-|--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| buf                                                    | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.35.1                                              |
-| buffrs                                                 | cargo                                                                                                              | 0.12.2                                              |
-| cargo-deny                                             | cargo                                                                                                              | 0.18.9                                              |
-| cargo-hack                                             | cargo                                                                                                              | 0.6.38                                              |
-| cargo-llvm-cov                                         | cargo                                                                                                              | 0.6.19                                              |
-| cargo-semver-checks                                    | cargo                                                                                                              | 0.43.0                                              |
-| cmake                                                  | apt-get                                                                                                            | latest                                              |
-| gcc, g++                                               | apt-get                                                                                                            | latest                                              |
-| grcov                                                  | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py))                        | 0.8.19                                              |
-| lcov                                                   | apt-get                                                                                                            | latest                                              |
-| llvm                                                   | apt-get                                                                                                            | latest                                              |
-| Nix                                                    | `https://nixos.org/nix/install`                                                                                    | latest                                              |
-| NodeJS                                                 | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 18                                                  |
-| PDM                                                    | uv (Python 3.12)                                                                                                   | 2.25.9                                              |
-| Pipx                                                   | uv                                                                                                                 | 1.7.1                                               |
-| Poetry                                                 | uv                                                                                                                 | 2.2.0                                               |
-| protobuf-compiler                                      | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.3                                              |
-| Python                                                 | `uv python install`                                                                                           | 3.10, 3.11, 3.12 <sup>default</sup>, 3.13, 3.14 |
-| Rust / Cargo                                           | Rustup                                                                                                             | 1.90.0                                              |
-| rustfmt                                                | rustup                                                                                                             | nightly (additionally)                              |
-| Rustup                                                 | rustup.rs                                                                                                          | latest                                              |
-| Slap ([link](https://github.com/python-slap/slap-cli)) | uv                                                                                                                 | 1.15.0                                              |
-| Terraform                                              | Hashicorp releases                                                                                                 | 1.9.3                                               |
-| [uv](https://astral.sh/blog/uv)                        | docker.io                                                                                                          | 0.11.11                                             |
+| Software                        | Installed via                                                                                                      | Version                                         |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+| buf                             | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.35.1                                          |
+| buffrs                          | cargo                                                                                                              | 0.12.2                                          |
+| cargo-deny                      | cargo                                                                                                              | 0.18.9                                          |
+| cargo-hack                      | cargo                                                                                                              | 0.6.38                                          |
+| cargo-llvm-cov                  | cargo                                                                                                              | 0.6.19                                          |
+| cargo-semver-checks             | cargo                                                                                                              | 0.43.0                                          |
+| cmake                           | apt-get                                                                                                            | latest                                          |
+| gcc, g++                        | apt-get                                                                                                            | latest                                          |
+| grcov                           | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py))                        | 0.8.19                                          |
+| lcov                            | apt-get                                                                                                            | latest                                          |
+| llvm                            | apt-get                                                                                                            | latest                                          |
+| Nix                             | `https://nixos.org/nix/install`                                                                                    | latest                                          |
+| NodeJS                          | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 18                                              |
+| Pipx                            | uv                                                                                                                 | 1.7.1                                           |
+| protobuf-compiler               | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 3.20.3                                          |
+| Python                          | `uv python install`                                                                                                | 3.10, 3.11, 3.12 <sup>default</sup>, 3.13, 3.14 |
+| Rust / Cargo                    | Rustup                                                                                                             | 1.90.0                                          |
+| rustfmt                         | rustup                                                                                                             | nightly (additionally)                          |
+| Rustup                          | rustup.rs                                                                                                          | latest                                          |
+| Terraform                       | Hashicorp releases                                                                                                 | 1.9.3                                           |
+| [uv](https://astral.sh/blog/uv) | docker.io                                                                                                          | 0.11.11                                         |
 
 ### Container tools
 
