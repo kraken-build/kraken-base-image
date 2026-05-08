@@ -13,5 +13,29 @@
       "matchUpdateTypes": ["patch"],
       "automerge": true
     }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update uv version copied from the ghcr.io/astral-sh/uv image (Dockerfile and README)",
+      "fileMatch": ["(^|/)Dockerfile$", "(^|/)README\\.md$"],
+      "matchStrings": [
+        "COPY --from=ghcr\\.io/astral-sh/uv:(?<currentValue>[^\\s]+) ",
+        "\\[uv\\]\\([^)]*\\)\\s*\\|\\s*docker\\.io\\s*\\|\\s*(?<currentValue>[0-9][^\\s|]*)"
+      ],
+      "depNameTemplate": "ghcr.io/astral-sh/uv",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Update kraken-wrapper version installed via uv tool install (Dockerfile and README)",
+      "fileMatch": ["(^|/)Dockerfile$", "(^|/)README\\.md$"],
+      "matchStrings": [
+        "uv tool install kraken-wrapper==(?<currentValue>[^\\s]+)",
+        "\\|\\s*kraken-wrapper\\s*\\|[^|]*\\|\\s*(?<currentValue>[0-9][^\\s|]*)"
+      ],
+      "depNameTemplate": "kraken-wrapper",
+      "datasourceTemplate": "pypi"
+    }
   ]
 }
