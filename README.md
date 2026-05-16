@@ -22,9 +22,9 @@ is built from various Ubuntu starting images. We use semantic versioning in the 
 
 New versions of the base image must adhere to the [Semantic Versioning](https://semver.org/) scheme. Any upgraded software
 that is no longer backwards compatible must be released as a minor version upgrade (we use major version 0). This is to prevent
-(non backwards-compatible) software ugprades from blocking the release of backwards compatible upgrades or hotfixes.
+(non backwards-compatible) software upgrades from blocking the release of backwards compatible upgrades or hotfixes.
 
-Only when absolutely necessary, we introduce a branch for hot fixing older versions,. such as `0.17.x` to release versions of
+Only when absolutely necessary, we introduce a branch for hot fixing older versions, such as `0.17.x` to release versions of
 the base image in that minor version range besides a higher minor having already been released.
 
 ## Image contents
@@ -55,7 +55,7 @@ the base image in that minor version range besides a higher minor having already
 | wget                                   | apt-get                                                                                         | latest  |
 | [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.44.3  |
 
-### Language runtimese and tools
+### Language runtimes and tools
 
 | Software                        | Installed via                                                                                                      | Version                                         |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
