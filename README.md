@@ -78,7 +78,7 @@ the base image in that minor version range besides a higher minor having already
 | Rust / Cargo                    | Rustup                                                                                                             | 1.90.0                                          |
 | rustfmt                         | rustup                                                                                                             | nightly (additionally)                          |
 | Rustup                          | rustup.rs                                                                                                          | latest                                          |
-| Terraform                       | Hashicorp releases                                                                                                 | 1.9.3                                           |
+| Terraform                       | Hashicorp releases                                                                                                 | 1.13.3                                          |
 | [uv](https://astral.sh/blog/uv) | docker.io                                                                                                          | 0.11.11                                         |
 
 ### Container tools
@@ -86,7 +86,7 @@ the base image in that minor version range besides a higher minor having already
 | Software      | Installed via                                                                                              | Version |
 |---------------|------------------------------------------------------------------------------------------------------------|---------|
 | Docker        | apt-get (`docker.io` package)                                                                              | latest  |
-| Docker Buildx | DockerHub                                                                                                  | latest  |
+| Docker Buildx | DockerHub                                                                                                  | 0.25    |
 | manifest-tool | [GitHub releases](https://github.com/estesp/manifest-tool/releases) ([formula](formulae/manifest-tool.py)) | 2.1.7   |
 
 ### Kubernetes
