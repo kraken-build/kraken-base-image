@@ -19,7 +19,7 @@ jobs:
         - arch: arm64
           runs_on: ubuntu-24.04-arm
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -71,7 +71,7 @@ jobs:
 
       # NOTE (@NiklasRosenstein): Need Git 2.18 available on the runner for the checkout action to use it; otherwise
       #       it falls back to the REST API and Git operations afterwards will fail because no repository is present.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -125,7 +125,7 @@ jobs:
       contents: read
       attestations: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
