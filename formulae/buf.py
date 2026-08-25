@@ -6,7 +6,7 @@ from formula import DownloadFileFormula
 class BufFormula(DownloadFileFormula):
 
     platform = sys.platform.capitalize()
-    version = "1.35.1"
+    version = "1.72.0"
     download_url = "https://github.com/bufbuild/buf/releases/download/v${version}/buf-${platform}-${archv1}"
     chmod = 0o775
     output_directory = "${install_to}"
