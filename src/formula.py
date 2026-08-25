@@ -310,4 +310,12 @@ class ZipArchive(Archive):
 
 
 def upx_optimize(file: str | Path) -> None:
-    subprocess.run(["upx", str(file)], check=True)
+    path = Path(file)
+    mode = path.stat().st_mode
+    # UPX rewrites the binary in place and skips it if the file is not writable (some archives, such as the
+    # protoc release zips, ship their binaries as read-only).
+    path.chmod(mode | stat.S_IWUSR)
+    try:
+        subprocess.run(["upx", str(path)], check=True)
+    finally:
+        path.chmod(mode)
