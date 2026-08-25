@@ -92,7 +92,7 @@ jobs:
 
       # See https://github.com/orgs/community/discussions/42856#discussioncomment-7678867
       - name: Adding required env vars for caching Docker build
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         with:
