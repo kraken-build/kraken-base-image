@@ -95,7 +95,7 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
 #
 RUN : \
     && uv tool install pipx==1.7.1 \
-    && uv tool install kraken-wrapper==0.51.0 \
+    && uv tool install kraken-wrapper==0.52.1 \
     # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
     && pipx install ansible==11.5.0 --include-deps \
     && rm -rf ~/.cache
