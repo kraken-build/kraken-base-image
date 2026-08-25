@@ -170,7 +170,7 @@ class BinaryInstallFormula(Formula):
                     with src, output_path.open("wb") as dst:
                         shutil.copyfileobj(src, dst)
                     output_path.chmod(self.mode if self.mode is not None else info.mode)
-                    if self.upx_optimize and os.access(output_path, os.X_OK):
+                    if self.upx_optimize and is_executable_binary(output_path):
                         self.log('optimizing binary "%s" with UPX', output_path)
                         upx_optimize(output_path)
 
@@ -194,7 +194,7 @@ class UnixPackageFormula(Formula):
                 with src, output_path.open("wb") as dst:
                     shutil.copyfileobj(src, dst)
                 output_path.chmod(info.mode)
-                if self.upx_optimize and os.access(output_path, os.X_OK):
+                if self.upx_optimize and is_executable_binary(output_path):
                     self.log('optimizing binary "%s" with UPX', output_path)
                     upx_optimize(output_path)
 
@@ -255,7 +255,7 @@ class DownloadFileFormula(Formula):
             self.log('an unexpected error occurred fetching "%s":\n%s', download_url, exc.read().decode())
             raise
 
-        if self.upx_optimize and os.access(output_file, os.X_OK):
+        if self.upx_optimize and is_executable_binary(output_file):
             self.log('optimizing binary "%s" with UPX', output_file)
             upx_optimize(output_file)
 
@@ -307,6 +307,31 @@ class ZipArchive(Archive):
 
     def members(self) -> list[str]:
         return [entry.filename for entry in self._zip.infolist() if not entry.filename.endswith('/')] # dirs end with /
+
+
+# Native executable formats that UPX knows how to pack. Universal/fat Mach-O binaries are deliberately absent,
+# UPX cannot handle them (and their magic collides with Java class files).
+_EXECUTABLE_MAGICS = (
+    b"\x7fELF",  # ELF
+    b"MZ",  # PE
+    b"\xfe\xed\xfa\xce",  # Mach-O, 32-bit, big endian
+    b"\xfe\xed\xfa\xcf",  # Mach-O, 64-bit, big endian
+    b"\xce\xfa\xed\xfe",  # Mach-O, 32-bit, little endian
+    b"\xcf\xfa\xed\xfe",  # Mach-O, 64-bit, little endian
+)
+
+
+def is_executable_binary(file: str | Path) -> bool:
+    """Whether *file* is a native executable that UPX can operate on. The executable bit alone is not enough of a
+    signal: archives may set it on files that are not binaries at all (the protoc release zips, for example, ship
+    a world-executable `readme.txt`)."""
+
+    path = Path(file)
+    if not path.is_file() or not os.access(path, os.X_OK):
+        return False
+    with path.open("rb") as fp:
+        header = fp.read(4)
+    return header.startswith(_EXECUTABLE_MAGICS)
 
 
 def upx_optimize(file: str | Path) -> None:
