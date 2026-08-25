@@ -6,7 +6,7 @@ from formula import DownloadFileFormula
 class ArgocdFormula(DownloadFileFormula):
 
     platform = sys.platform
-    version = "v2.12.0"
+    version = "v3.5.1"
     download_url = "https://github.com/argoproj/argo-cd/releases/download/${version}/argocd-linux-${archv2}"
     chmod = 0o775
     output_directory = "${install_to}"

@@ -44,7 +44,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     #
     # more APT packages
     #
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
@@ -73,20 +73,20 @@ COPY --from=docker/buildx-bin:v0.25 /buildx /usr/libexec/docker/cli-plugins/dock
 ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
     --mount=type=cache,target=/tmp/sccache,rw : \
-    && rustup toolchain install 1.90.0 \
-    && rustup default 1.90.0 \
+    && rustup toolchain install 1.98.0 \
+    && rustup default 1.98.0 \
     && SCCACHE_GHA_ENABLED=on ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" \
        ACTIONS_RESULTS_URL="$(cat /run/secrets/ACTIONS_RESULTS_URL)" \
        ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" \
        ACTIONS_CACHE_SERVICE_V2="$(cat /run/secrets/ACTIONS_CACHE_SERVICE_V2)" \
        sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
-    && time cargo install cargo-deny --version 0.18.9 --locked \
-    && time cargo install cargo-semver-checks --version 0.43.0 --locked \
-    && time cargo install sqlx-cli --version 0.8.6 --locked \
-    && time cargo install cargo-llvm-cov --version 0.6.19 --locked \
-    && time cargo install cargo-hack --version 0.6.38 --locked \
-    && time cargo install buffrs --version 0.12.2 --locked \
+    && time cargo install cargo-deny --version 0.20.2 --locked \
+    && time cargo install cargo-semver-checks --version 0.50.0 --locked \
+    && time cargo install sqlx-cli --version 0.9.0 --locked \
+    && time cargo install cargo-llvm-cov --version 0.9.0 --locked \
+    && time cargo install cargo-hack --version 0.6.45 --locked \
+    && time cargo install buffrs --version 0.13.3 --locked \
     && sccache --stop-server \
     && du -hd1 /root
 
@@ -94,10 +94,9 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
 # Python tools
 #
 RUN : \
-    && uv tool install pipx==1.7.1 \
+    && uv tool install pipx==1.16.7 \
     && uv tool install kraken-wrapper==0.52.1 \
-    # NOTE: Uv does not support --include-deps yet, see https://github.com/astral-sh/uv/issues/6314
-    && pipx install ansible==11.5.0 --include-deps \
+    && uv tool install --with-executables-from ansible-core,ansible-lint ansible==14.3.1 \
     && rm -rf ~/.cache
 
 #
