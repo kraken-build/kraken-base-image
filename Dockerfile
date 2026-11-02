@@ -10,7 +10,7 @@ RUN : \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Install UV and Python distributions.
-COPY --from=ghcr.io/astral-sh/uv:0.12.5 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.13.6 /uv /bin/uv
 RUN : \
     # Install Pip for all other Python versions.
     && set -x \
@@ -44,7 +44,7 @@ RUN --mount=type=bind,src=formulae,target=/tmp/formulae \
     #
     # more APT packages
     #
-    && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_26.x | bash - \
     && apt-get update \
     && apt-get install -y docker.io nodejs graphviz unzip lcov git-lfs \
     #
@@ -73,8 +73,8 @@ COPY --from=docker/buildx-bin:v0.25 /buildx /usr/libexec/docker/cli-plugins/dock
 ARG ACTIONS_CACHE_URL
 RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
     --mount=type=cache,target=/tmp/sccache,rw : \
-    && rustup toolchain install 1.98.0 \
-    && rustup default 1.98.0 \
+    && rustup toolchain install 1.99.1 \
+    && rustup default 1.99.1 \
     && SCCACHE_GHA_ENABLED=on ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" \
        ACTIONS_RESULTS_URL="$(cat /run/secrets/ACTIONS_RESULTS_URL)" \
        ACTIONS_RUNTIME_TOKEN="$(cat /run/secrets/ACTIONS_RUNTIME_TOKEN)" \
@@ -82,10 +82,10 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
        sccache --start-server \
     && export RUSTC_WRAPPER=sccache CARGO_INCREMENTAL=0 \
     && time cargo install cargo-deny --version 0.20.2 --locked \
-    && time cargo install cargo-semver-checks --version 0.50.0 --locked \
+    && time cargo install cargo-semver-checks --version 0.51.0 --locked \
     && time cargo install sqlx-cli --version 0.9.0 --locked \
-    && time cargo install cargo-llvm-cov --version 0.9.0 --locked \
-    && time cargo install cargo-hack --version 0.6.45 --locked \
+    && time cargo install cargo-llvm-cov --version 0.9.1 --locked \
+    && time cargo install cargo-hack --version 0.6.46 --locked \
     && time cargo install buffrs --version 0.13.3 --locked \
     && sccache --stop-server \
     && du -hd1 /root
@@ -94,9 +94,9 @@ RUN --mount=type=secret,id=ACTIONS_RUNTIME_TOKEN \
 # Python tools
 #
 RUN : \
-    && uv tool install pipx==1.16.7 \
+    && uv tool install pipx==1.18.11 \
     && uv tool install kraken-wrapper==0.52.1 \
-    && uv tool install --with-executables-from ansible-core,ansible-lint ansible==14.3.1 \
+    && uv tool install --with-executables-from ansible-core,ansible-lint ansible==14.5.0 \
     && rm -rf ~/.cache
 
 #
