@@ -33,9 +33,9 @@ the base image in that minor version range besides a higher minor having already
 
 | Software                               | Installed via                                                                                   | Version |
 |----------------------------------------|-------------------------------------------------------------------------------------------------|---------|
-| ansible                                | uv                                                                                              | 14.3.1  |
+| ansible                                | uv                                                                                              | 14.5.0  |
 | build-essential                        | apt-get                                                                                         | latest  |
-| BuildKit                               | GitHub Releases                                                                                 | 0.32.2  |
+| BuildKit                               | GitHub Releases                                                                                 | 0.34.1  |
 | clang                                  | apt-get                                                                                         | latest  |
 | cloud-utils                            | apt-get                                                                                         | latest  |
 | cURL                                   | apt-get                                                                                         | latest  |
@@ -49,37 +49,37 @@ the base image in that minor version range besides a higher minor having already
 | openssh-client                         | apt-get                                                                                         | latest  |
 | pkg-config                             | apt-get                                                                                         | latest  |
 | QEMU (kvm, x86_64, aarch64)            | apt-get                                                                                         | latest  |
-| sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.17.0  |
+| sccache                                | [GitHub releases](https://github.com/mozilla/sccache/releases) ([formula](formulae/sccache.py)) | 0.19.0  |
 | sqlx-cli                               | cargo                                                                                           | 0.9.0   |
 | [UPX](https://upx.github.io/)          | apt-get                                                                                         | latest  |
 | wget                                   | apt-get                                                                                         | latest  |
-| [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.53.6  |
+| [yq](https://mikefarah.gitbook.io/yq/) | [GitHub releases](https://github.com/mikefarah/yq/releases)                                     | 4.54.1  |
 
 ### Language runtimes and tools
 
-| Software                        | Installed via                                                                                                      | Version                                         |
-|---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| buf                             | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.72.0                                          |
-| buffrs                          | cargo                                                                                                              | 0.13.3                                          |
-| cargo-deny                      | cargo                                                                                                              | 0.20.2                                          |
-| cargo-hack                      | cargo                                                                                                              | 0.6.45                                          |
-| cargo-llvm-cov                  | cargo                                                                                                              | 0.9.0                                           |
-| cargo-semver-checks             | cargo                                                                                                              | 0.50.0                                          |
-| cmake                           | apt-get                                                                                                            | latest                                          |
-| gcc, g++                        | apt-get                                                                                                            | latest                                          |
-| grcov                           | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py))                        | 0.10.7                                          |
-| lcov                            | apt-get                                                                                                            | latest                                          |
-| llvm                            | apt-get                                                                                                            | latest                                          |
-| Nix                             | `https://nixos.org/nix/install`                                                                                    | latest                                          |
-| NodeJS                          | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 24                                              |
-| Pipx                            | uv                                                                                                                 | 1.16.7                                          |
-| protobuf-compiler               | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 36.0                                            |
-| Python                          | `uv python install`                                                                                                | 3.10, 3.11, 3.12 <sup>default</sup>, 3.13, 3.14 |
-| Rust / Cargo                    | Rustup                                                                                                             | 1.98.0                                          |
-| rustfmt                         | rustup                                                                                                             | nightly (additionally)                          |
-| Rustup                          | rustup.rs                                                                                                          | latest                                          |
-| Terraform                       | Hashicorp releases                                                                                                 | 1.15.9                                          |
-| [uv](https://astral.sh/blog/uv) | docker.io                                                                                                          | 0.12.5                                         |
+| Software                        | Installed via                                                                                                      | Version                                               |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| buf                             | [GitHub releases](https://github.com/bufbuild/buf/releases)                                                        | 1.75.0                                                |
+| buffrs                          | cargo                                                                                                              | 0.13.3                                                |
+| cargo-deny                      | cargo                                                                                                              | 0.20.2                                                |
+| cargo-hack                      | cargo                                                                                                              | 0.6.46                                                |
+| cargo-llvm-cov                  | cargo                                                                                                              | 0.9.1                                                 |
+| cargo-semver-checks             | cargo                                                                                                              | 0.51.0                                                |
+| cmake                           | apt-get                                                                                                            | latest                                                |
+| gcc, g++                        | apt-get                                                                                                            | latest                                                |
+| grcov                           | [GitHub releases](https://github.com/mozilla/grcov/releases) ([formula](formulae/grcov.py))                        | 0.10.8                                                |
+| lcov                            | apt-get                                                                                                            | latest                                                |
+| llvm                            | apt-get                                                                                                            | latest                                                |
+| Nix                             | `https://nixos.org/nix/install`                                                                                    | latest                                                |
+| NodeJS                          | apt-get (via [nodesource install](https://github.com/nodesource/distributions#debinstall))                         | 26                                                    |
+| Pipx                            | uv                                                                                                                 | 1.18.11                                               |
+| protobuf-compiler               | [GitHub releases](https://github.com/protocolbuffers/protobuf/releases) ([formula](formulae/protobuf-compiler.py)) | 36.2                                                  |
+| Python                          | `uv python install`                                                                                                | 3.10, 3.11, 3.12 <sup>default</sup>, 3.13, 3.14, 3.15 |
+| Rust / Cargo                    | Rustup                                                                                                             | 1.99.1                                                |
+| rustfmt                         | rustup                                                                                                             | nightly (additionally)                                |
+| Rustup                          | rustup.rs                                                                                                          | latest                                                |
+| Terraform                       | Hashicorp releases                                                                                                 | 1.17.1                                                |
+| [uv](https://astral.sh/blog/uv) | docker.io                                                                                                          | 0.13.6                                                |
 
 ### Container tools
 
@@ -93,12 +93,12 @@ the base image in that minor version range besides a higher minor having already
 
 | Software                                | Installed via                                                                                 | Version |
 |-----------------------------------------|-----------------------------------------------------------------------------------------------|---------|
-| argocd (CLI)                            | [GitHub releases](https://github.com/argoproj/argo-cd/releases)                               | 3.5.1   |
+| argocd (CLI)                            | [GitHub releases](https://github.com/argoproj/argo-cd/releases)                               | 3.5.6   |
 | conntrack                               | apt-get                                                                                       | latest  |
 | ContainerNetworkingPlugins (CNI)        | [GitHub releases](https://github.com/containernetworking/plugins/releases)                    | 1.9.1   |
-| cri-dockerd                             | [GitHub releases](https://github.com/Mirantis/cri-dockerd/releases)                           | 0.4.6   |
-| crictl                                  | [GitHub releases](https://github.com/kubernetes-sigs/cri-tools/releases)                      | 1.36.0  |
+| cri-dockerd                             | [GitHub releases](https://github.com/Mirantis/cri-dockerd/releases)                           | 0.4.10  |
+| crictl                                  | [GitHub releases](https://github.com/kubernetes-sigs/cri-tools/releases)                      | 1.37.0  |
 | Helm                                    | get-helm-3                                                                                    | latest  |
-| kubectl                                 | `dl.k8s.io` ([formula](formulae/kubectl.py))                                                  | 1.36.4  |
-| minikube                                | `storage.googleapis.com/minikube/releases` ([docs](https://minikube.sigs.k8s.io/docs/start/)) | 1.38.1  |
-| [stern](https://github.com/stern/stern) | [GitHub releases](https://github.com/stern/stern/releases/)                                   | 1.34.0  |
+| kubectl                                 | `dl.k8s.io` ([formula](formulae/kubectl.py))                                                  | 1.37.2  |
+| minikube                                | `storage.googleapis.com/minikube/releases` ([docs](https://minikube.sigs.k8s.io/docs/start/)) | 1.39.0  |
+| [stern](https://github.com/stern/stern) | [GitHub releases](https://github.com/stern/stern/releases/)                                   | 1.35.0  |

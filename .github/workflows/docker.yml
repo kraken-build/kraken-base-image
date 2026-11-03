@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
         - arch: amd64
-          runs_on: ubuntu-latest
+          runs_on: ubuntu-24.04
         - arch: arm64
           runs_on: ubuntu-24.04-arm
     steps:
@@ -50,13 +50,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Runners are pinned to 24.04: the amd64 builds started failing once
+        # ubuntu-latest moved to Ubuntu 26.04 (Docker 29, Buildx 0.38).
         include:
         - arch: amd64
           base_image: ubuntu_24.04
-          runs_on: ubuntu-latest
+          runs_on: ubuntu-24.04
         - arch: amd64
           base_image: ubuntu_22.04
-          runs_on: ubuntu-latest
+          runs_on: ubuntu-24.04
         - arch: arm64
           base_image: ubuntu_24.04
           runs_on: ubuntu-24.04-arm
@@ -118,7 +120,7 @@ jobs:
           path: build/.kraken/buildenv/state*.dill
 
   manifest-tool:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [ build ]
     permissions:
       packages: write
