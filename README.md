@@ -79,7 +79,7 @@ the base image in that minor version range besides a higher minor having already
 | rustfmt                         | rustup                                                                                                             | nightly (additionally)                                |
 | Rustup                          | rustup.rs                                                                                                          | latest                                                |
 | Terraform                       | Hashicorp releases                                                                                                 | 1.17.1                                                |
-| [uv](https://astral.sh/blog/uv) | docker.io                                                                                                          | 0.13.7                                                |
+| [uv](https://astral.sh/blog/uv) | docker.io                                                                                                          | 0.13.8                                                |
 
 ### Container tools
 
